@@ -8,8 +8,8 @@
 \XeTeXlinebreakskip = 0pt plus 1pt
 \newcommand {\mycmdB}[1]{{ \heiti #1}}
 \begin{document}
-\title{实验报告 lab 1}
-\author{姓名：王钦\quad学号：13349112}
+\title{实验报告 Lab 1}
+\author{姓名：王钦\quad 学号：13349112}
 \date{}
 \maketitle
 \section*{ Part 1}
@@ -17,16 +17,35 @@
 1. 步骤7中所看到不同的十个协议：\verb|TCP, Http, OICQ, SSHv2, ARP, WebSocket, NBNS, UDP, DHCP, SSH|\\\\
 2. \verb|13:44:34.604860 - 13:44:31.076031 = 3.573091 second|\\\\
 3. The Internet address of the gaia.cs.umass.edu is \verb|128.119.245.12|,The Internet address of my computer is \verb|192.168.42.125|\\\\
-4. 
-
+4. 见压缩包中的\verb|Lab1_print_PDF.pdf| 
 }
 
-
 \section*{ Part 2}
-\hangindent=4em \hangafter=-3{
-1: There are	\\
-2:			\\
-
+\hangindent=4em \hangafter=-50{
+1. Broswer http version: \verb|HTTP 1.1|.Server http version: \verb|Http|	\\\\
+2. \verb|Accept-language :zh-CN\r\n|	\\\\
+3. My computer's IP: \verb|192.168.42.125|.gaia.cs.umass.edu's IP: \verb|128.119.245.12|\\\\
+4. Status code : \verb|304 Not Modified|\\\\
+5. Arrival Time : \verb|Apr  8, 2015 18:40:04.913970000 CST|\\\\
+6. \verb|554 bytes (4432 bits)|\\\\
+7. No\\\\
+8. No.There didn't have a \verb|IF-Modified-Since line|.\\\\
+9. Yes,there server did!Because I have cleaned the cache.Then the Sever explicitly return a html contents.\\\\
+10. Yes.The GET request had a IF-Modified-Since header line\verb|If-Modified-Since: Wed, 08 Apr 2015 05:59:01 GMT|.Follow is time and date.\\\\
+11. The status code is \verb|304 Not Modified|.The server didn't explicitly return the contents of the file.Because broswer has previous cache about contents.\\\\
+12. One\\\\
+13. Four TCP segments were needed.\\\\
+14. \verb|Status code: 200. Http.response.phrase:ok|\\\\
+15. NO, there are not.\\\\
+16. In total,Three GET request sent by broswer.one request a HTML,Others request three pictures which in the html\\
+	Internet address:\\
+	\indent	\verb|128.119.245.12|\\
+	\indent	\verb|165.193.140.14|\\
+	\indent	\verb|128.119.240.90|
+	\\\\
+17. They were downloaded serially.Because their time in the package list are different,and there were transmitted by 2 TCP.\\\\
+18. \verb|Status code: 401 , Phrase: Authorization Required |\\\\
+19. \verb|Authorization: Basic d2lyZXNoYXJrLXN0dWRlbnRzOm5ldHdvcms|\\\\
 }
 
 \end{document}
