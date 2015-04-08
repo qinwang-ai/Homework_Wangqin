@@ -1,0 +1,25 @@
+
+
+                       Welcome to Wangqin's OS v1.3
+
+
+     There are some system programs: -- date ,time ,asc ,clear
+     You can man it to see detail.Ex: man date
+     You can enter the funtion name to run.
+
+     There also have three user's programs
+     Please type 'man run' to see more.....)
+
+
+root@wangqin:~# man run
+ NAME run - [run squence] run user's program accord squence Ex: run 123
+root@wangqin:~# man date
+ NAME date - return the today's date
+root@wangqin:~# wqw
+  No such file or Directory
+root@wangqin:~# date
+ Now Date is:  2015-04-06
+root@wangqin:~# time
+ Now time is:  22:17:29
+
+root@wangqin:~# clearﬂ

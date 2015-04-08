@@ -1,127 +1,26 @@
-OS_Start:
+[bits 16]
+global print_welcome_msg 
+global screen_init, print_message 
+global input_char,printToscn,get_pointer_pos
+global set_pointer_pos,print_flag,scroll_screen,flag_scroll
+global flag_position:data,flag_scroll_up,init_ss
+global init_flag_position
 
-org 0x8100;加载到0x8100执行
-;org 0x7c00
-;style BEGIN================
 
-	call init;操作系统初始化
-	call initvar;变量初始化
+extern main		;forbid run this file any time
+jmp main
 
-	call print_init
-	mov bp,menu_msg	;str's offset
-	call print_style_header
-	mov dx,0517H; setting char position
-	mov cx,menu_msg_l;setting string'slength
-	int 10h	;display 
-
-	mov bp,menu_msg2	;str's offset
-	call print_style
-	mov dx,0805H
-	mov cx,menu_msg_l2
-	int 10h
-
-	mov bp,msg3	;str's offset
-	mov dx,0905H
-	mov cx,msg_l3
-	int 10h
-
-	mov bp,msg5	;str's offset
-	mov dx,1005H
-	mov cx,msg_l5
-	int 10h
-
-;style END==================
-LISTEN:
-	mov ah,0x00; listen keyboard	
-	int 0x16	
-	cmp al,0x0d
-
-   
-	jne display
-	
-	jmp RUN_USER
-
-RUN_USER:
-
-	cmp word [a],0 ;第一个程序
-	jne exea
-	jmp RUN_OVER	;没有则结束
-	exea:
-	mov ax,[a]
-	sub ax,46D	;扇区偏移，前两个扇区中分别放着引导和操作系统   [a]-48  +2 =  [a]-46  [a] is char not int
-	mov [now_shanqu],ax	;ax is temp
-	call run
-	
-	cmp word [b],0 ;第二个程序
-	jne exeb
-	jmp RUN_OVER
-	exeb:
-	mov ax,[b]
-	sub ax,46D	;扇区偏移，前两个扇区中分别放着引导和操作系统
-	mov [now_shanqu],ax	;ax is temp
-	call run
-
-	cmp word [c],0 ;第三个程序
-	jne exec
-	jmp RUN_OVER
-	exec:
-	mov ax,[c]
-	sub ax,46D	;扇区偏移，前两个扇区中分别放着引导和操作系统
-	mov word [now_shanqu],ax
-	call run
-	
-RUN_OVER:
-
-	jmp	OS_Start;所有程序执行完毕返回操作系统
-	
-
-jmp $		;LAST instruction to execute 
-
-;===========================data============================================
-menu_msg:
-	db `Hello,Welcome To Wangqin's OS v1.0`
-menu_msg_l equ ($-menu_msg) 
-
-menu_msg2:
-	db `There are three user's programs,You can put the numbers sequence to run`
-menu_msg_l2 equ ($-menu_msg2) 
-
-msg3:
-	db 'Example:1 2 3,1 3 2, 1 3,1 .....'
-msg_l3 equ ($-msg3) 
-
-msg5:
-	db `Input end with Enter\n  Num Sequence:`
-msg_l5 equ ($-msg5) 
-
-var:		;程序所用到的一些临时变量
-	count dd 0
-	a dd 0
-	b dd 0
-	c dd 0
-	now_shanqu dd 0
-
-;===========================functions============
-
-print_init:		;打印初始化
-
-	mov ax,cs
-	mov ds,ax
-	mov es,ax	;base address
-	ret
-
-print_style:	;打印样式设置
-mov ax,1301h;setting char style
-mov bx,71D;setting font color
+init_ss:
+	mov ax,0
+	mov ss,ax
 ret
 
-print_style_header:		;标题样式设置
-mov ax,1301h;setting char style
-mov bx,78D;setting font color
+init_flag_position:
+	mov ax,0x1000
+	mov [ flag_position],ax 
 ret
 
-
-init:               ;make all screen write
+screen_init:               ;make all screen write
 	mov ax,0xb800
 	mov es,ax
 	mov ax,00
@@ -138,74 +37,191 @@ init:               ;make all screen write
 
 ret
 
-initvar:
-;---------------------make all vars is zero
-	mov ax,0
-	mov [count],ax
-	mov [a],ax
-	mov [b],ax
-	mov [c],ax
-	mov [now_shanqu],ax
+screen_init_last_line:               ;make last line white
+	mov ax,0xb800
+	mov es,ax
+	mov ax,00
+	mov cx,3999
+	mov bx,3872
+
+	loop_2:
+	mov byte [es:bx],' '
+	inc bx
+	mov byte [es:bx],78D;font color
+	inc bx
+	cmp bx,cx
+	jle loop_2
 
 ret
 
 
-display:			;显示输入的sequence
-	mov ah,0x0e
-	mov bl,0x00
-
-	inc word [count]	;count of input sequence
-	cmp word [count],1
-	je savea
-	jmp compB
-	savea:
-	mov [a],al		;save
-	int 10h
-	je LISTEN
-
-	compB:
-	cmp word [count],2	
-	je saveb
-	jmp compC
-	saveb:
-
-	mov [b],al
-	int 10h
-	je LISTEN
-
-	compC:
-	cmp word [count],3
-	je savec
-	jmp compD
-	savec:
-	mov [c],al		;save  char not int 
-	int 10h			;display
-	je LISTEN
-	
-	compD:
-	cmp word [count],4 ;超过四个字符 不显示 也不保存，继续监听直到回车
-	jge LISTEN
-
-
-
-run:						;执行某个用户的程序,具体扇区在[now_shanqu] 中
-	call init	;清屏仅仅清屏而已
-;----------------加载---------
-	mov ax,0
+print_welcome_msg:		;param ( string, len, position) 
+	mov ax,cs
 	mov es,ax
-	mov bx,0xa700;加载到内存e000
-	mov ax,0201H;
-	mov dx,0
-	mov ch,0
-	mov cl,[now_shanqu];要被加载的扇区号
-	int 13h;加载
-;---------------执行-----------
-	call word 0xa700		;not dword
-	ret
+	mov ds,ax
+
+	push bp	
+	mov bp, msg;[bp+4]
+	mov cx,msg_l;[bp+6]
+
+	mov ax,1301h	;01 只有字符串
+	mov bx,78D		;Bh is font color
+	mov dx,0517h	;position
+	int 10h
+	pop bp
+ret 
+
+print_message:		;  descripatoin
+	mov ax,cs
+	mov es,ax
+	mov ds,ax
+	push bp
+	mov bp, msg2;[bp+4]
+	mov cx,msg2_l;[bp+6]
+
+	mov ax,1301h	;01 只有字符串
+	mov bx,71D		;Bh is font color
+	mov dx,0805h	;position
+	int 10h
+	pop bp
+ret 
+
+print_flag:		;root@wangqin#
+
+	mov ax,cs
+	mov ds,ax
+	mov es,ax
+
+	mov ax,1301h	;01 只有字符串
+	mov bx,71D		;Bh is font color
+;	mov dx,1305h	;position
+	mov dx, [flag_position]	;position
+	push bp
+	mov bp, msg3
+	mov cx,msg3_l
+
+	int 10h
+	pop bp
+	call screen_init_last_line   ;for some compatible questions when scrolling
+ret
 
 
-times 512-($-$$) db 0	;扇区剩余位置填充0
+flag_scroll:		;flag move next line
+	push ax
+	mov ax,[flag_position]		;flag move down
+	add ax,0x100				;next line
+	mov [flag_position],ax
+	pop ax
+ret
 
+flag_scroll_up:		;flag move next line
+	push ax
+	mov ax,[flag_position]		;flag move down
+	sub ax,0x100				;next line
+	mov [flag_position],ax
+	pop ax
+ret
+
+input_char:
+	mov ah,0x00; listen keyboard  return value is save in ax	
+	int 16h	
+ret
+
+printToscn:			;显示输入的sequence
+	mov ax,ds
+	mov es,ax
+
+	mov ah,0x0e
+	mov bl,0x0e
+	mov cx,bp	;cx is temp  bp don't change
+	mov bp,sp
+	mov al,[bp+4]
+	mov bp,cx	;cx is temp
+	mov cx,1
+	int 10h
+ret 
+
+get_pointer_pos:
+	
+	mov ah,0x03 ;功能号
+	mov bh,0x00
+	int 10h
+	mov ax,dx ;return row:col
+ret 
+
+set_pointer_pos:
+	mov ax,ds
+	mov es,ax
+	
+	mov cx,bp		;cx is temp
+	mov bp,sp
+
+	mov ah,0x02 ;功能号
+	mov bh,0x00		;页号
+;	mov dx,[bp+4]	;行列
+	mov dx,[flag_position]	;行列
+	int 10h
+	mov bp,cx
+ret 
+
+scroll_screen:
+	
+	mov ah,0x06 ;功能号
+	mov al,0x01		;how many line 
+	mov cx,0x0000
+	mov dx,0x2580
+	mov bh,78D
+	int 10h
+ret 
+
+
+compatible_vmware:
+	;----------------------for some comptable question
+	mov ax,cs
+	mov ds,ax
+	mov es,ax
+
+	mov ax,1301h	;01 只有字符串
+	mov bx,78D		;Bh is font color
+	mov dx, 0x2428	;position
+	push bp
+	mov bp, format_line
+	mov cx,format_line_l
+	int 10h
+	pop bp
+ret
+
+
+
+
+
+
+
+
+
+
+
+
+;------------------DATA-------------------
+msg:
+	db `Welcome to Wangqin\'s OS v1.3`		;style 78D
+msg_l equ $-msg
+
+msg2:					;style 71D
+	db `There are some system programs: -- date ,time ,asc ,clear  \r\n     You can man it to see detail.Ex: man date \r\n     You can enter the funtion name to run.\r\n\r\n     There also have three user's programs \r\n     Please type 'man run' to see more.....)`
+msg2_l equ $-msg2
+
+msg3:
+	db 'root@wangqin:~# '
+msg3_l equ $-msg3
+
+format_line:
+	db '                                                            '
+format_line_l equ $-format_line
+
+
+var:
+	flag_position dd 0x1000
 
 
 

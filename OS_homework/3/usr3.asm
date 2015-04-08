@@ -1,10 +1,10 @@
-org 0xa700		;加载到 e0000内存中执行
-;org 0x7c00		;加载到 e0000内存中执行
+org 0x1000		;加载到 e0000内存中执行
+;org 0x100		;加载到 e0000内存中执行
 
 mov ax,cs
 mov es,ax
 mov ds,ax		;es ,ds   = cs
-
+push bp
 mov bp,msg		
 mov cx,msg_l
 mov ax,1301h	;01 只有字符串
@@ -20,7 +20,7 @@ mov dx,0813h	;position
 int 10h
 
 
-call delay
+;call delay
 
 mov bp,msg3	
 mov cx,msg3_l
@@ -34,6 +34,7 @@ mov ah,0x00
 int 0x16
 
 ;--------------------
+pop bp
 
 ret				;手动添加ret 结束后返回操作系统
 
@@ -60,10 +61,10 @@ delay:
 		mov cx,00
 		timer:
 			inc cx
-			cmp cx,60000D
+			cmp cx,600D
 		jne timer
 		inc dx
-		cmp dx,60000D
+		cmp dx,6000D
 	jne timer2
 	ret
 
