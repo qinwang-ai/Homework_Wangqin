@@ -265,6 +265,7 @@ void run_error(){
 	char *p = " Run error.Note: each num should be 0<x<4";
 	print_str( p, strlen( p));
 }
+
 void run( char *str){
 	str += 4;
 	

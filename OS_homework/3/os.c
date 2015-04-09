@@ -1,6 +1,6 @@
 __asm__(".code16gcc");
 
-//-------------------------os nasm supply-----
+//-------------------------os.nasm supply-----
 extern void print_welcome_msg();
 extern void screen_init();
 extern void print_message(); extern void printToscn( char);
@@ -12,18 +12,19 @@ extern void flag_scroll_up();
 extern char input_char();  //return type char
 extern unsigned short int get_pointer_pos();
 extern void set_pointer_pos();
+extern void print_corner();
 
 
 //-------------------------oslib nasm supply-----
 
 extern void clear();
 
-//------------------------osclibc
+//------------------------osclibc supply-----
 
 
 extern inline void print_str( const char *p , unsigned short int l);
 
-		//compaire whether two string equal
+//compaire whether two string equal
 
 extern char strcmp(const char *a, const char *b);
 extern inline void time ();
@@ -85,6 +86,7 @@ inline char listen_key(){
 		key[i] = temp;	
 		if(i<63)i++;
 		printToscn( temp);
+		print_corner();
 	}
 	key[i] = '\0';
 	screen_sc_T = 1;
@@ -124,8 +126,6 @@ inline char listen_key(){
 	if( key[0] == '\0'){
 		return i;
 	}
-
-
 	
 	flag_scroll();
 	set_pointer_pos();
@@ -133,7 +133,6 @@ inline char listen_key(){
 	screen_sc_T = 2;
 	return i;
 }
-
 
 
 
