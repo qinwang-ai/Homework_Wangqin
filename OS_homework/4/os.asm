@@ -4,7 +4,7 @@ global screen_init, print_message
 global input_char,printToscn,get_pointer_pos
 global set_pointer_pos,print_flag,scroll_screen,flag_scroll
 global flag_position:data,flag_scroll_up,init_ss
-global init_flag_position
+global init_flag_position,print_corner
 
 
 extern main		;forbid run this file any time
@@ -33,8 +33,20 @@ screen_init:               ;make all screen write
 	mov byte [es:bx],78D;font color
 	inc bx
 	cmp bx,cx
-	jle loop
+	jle loop	;<=
 
+ret
+
+print_corner:
+	; \ / [
+		mov ax,0xb800
+		mov es,ax
+		mov bx,3998D
+		mov byte [es:bx],'\'
+		call delay
+		mov byte [es:bx],'/'
+		call delay
+		mov byte [es:bx],'|'
 ret
 
 screen_init_last_line:               ;make last line white
@@ -190,6 +202,26 @@ compatible_vmware:
 	int 10h
 	pop bp
 ret
+
+
+;time delay
+delay:
+	push dx
+	push cx
+	mov dx,00
+	timer2:	
+		mov cx,00
+		timer:
+			inc cx
+			cmp cx,600D
+		jne timer
+		inc dx
+		cmp dx,6000D
+	jne timer2
+	pop cx
+	pop dx
+ret
+
 
 
 
