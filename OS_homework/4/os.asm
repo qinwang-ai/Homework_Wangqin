@@ -9,6 +9,8 @@ global interrupt_init
 
 
 extern main		;forbid run this file any time
+extern int_33,int_34,int_35,int_36
+
 jmp main
 
 init_ss:
@@ -39,9 +41,10 @@ screen_init:               ;make all screen write
 ret
 
 interrupt_init:
-	;#1  setting up time interrupt 
 	mov ax,cs
 	mov ds,ax
+
+	;#1  setting up time interrupt 
 	mov ax,0x1c
 	mov [ interrupt_num], ax
 	mov ax, print_corner
@@ -49,7 +52,12 @@ interrupt_init:
 	call insert_interrupt_vector
 
 
-	;#2 
+	;#2 int 33
+	mov ax,0x33
+	mov [ interrupt_num], ax
+	mov ax, process_int33
+	mov [ interrupt_vector_offset],ax
+	call insert_interrupt_vector
 
 ret
 
@@ -81,6 +89,22 @@ print_corner:
 		mov [ es:bx],al
 
 		cotinue_corner:
+iret
+
+process_int33:
+	call int_33
+iret
+
+process_int34:
+	call int_34
+iret
+
+process_int35:
+	call int_35
+iret
+
+process_int36:
+	call int_36
 iret
 
 screen_init_last_line:               ;make last line white
@@ -282,8 +306,8 @@ format_line_l equ $-format_line
 
 var:
 	flag_position dd 0x1000
-	interrupt_num dw 0x1c
-	interrupt_vector_offset dw 0x7c00
+	interrupt_num dw 0x1c				;init
+	interrupt_vector_offset dw 0x7c00	;init
 	pointer db 0
 	cornerstring db '\\\\\\\\\\||||||||||//////////'
 

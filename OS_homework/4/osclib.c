@@ -15,10 +15,14 @@ extern void load_user( unsigned short int);
 extern void run_user(); 
 
 extern char screen_sc_T; 
+//ing
+extern void int_33();
+extern void int_34();
+extern void int_35();
+extern void int_36();
 
 
 
-//shegnming
 
 
 
@@ -206,6 +210,16 @@ char synCheck( char * str, const char * dst){		//str is key
 		}
 	}
 
+	if( strcmp( prompt, "int")){				//check man
+		if( !strcmp( str, "int 33h\0")&&
+			!strcmp( str, "int 34h\0")&&
+			!strcmp( str, "int 35h\0")&&
+			!strcmp( str, "int 36h\0")
+			){
+			return 0;
+		}
+	}
+
 	return 1;
 }
 
@@ -265,6 +279,7 @@ void run_error(){
 	char *p = " Run error.Note: each num should be 0<x<4";
 	print_str( p, strlen( p));
 }
+
 void run( char *str){
 	str += 4;
 	
@@ -284,6 +299,29 @@ void run( char *str){
 		str++;
 	}
 }
+
+void int_33(){
+	screen_init();
+	//load_user( 16);
+	//run_user();
+}
+
+void int_34(){
+	load_user( 17);
+	run_user();
+}
+
+void int_35(){
+	load_user( 18);
+	run_user();
+}
+
+void int_36(){
+	load_user( 19);
+	run_user();
+}
+
+
 
 
 

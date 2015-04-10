@@ -4,8 +4,7 @@ __asm__(".code16gcc");
 extern void print_welcome_msg();
 extern void screen_init();
 extern void print_message();
-extern void printToscn( char);
-extern void print_flag();
+extern void printToscn( char); extern void print_flag();
 extern void scroll_screen();
 extern void flag_scroll();
 extern void init_ss();
@@ -122,6 +121,25 @@ inline char listen_key(){
 	
 	if( synCheck( key, "run\0")){
 		run( key);
+		return i;
+	}
+
+	if( synCheck( key, "int\0")){
+		if( strcmp( key, "int 33h")){
+			__asm__(  "int $0x33");
+		}
+		return i;
+		if( strcmp( key, "int 34h")){
+			__asm__(  "int $0x34");
+		}
+		return i;
+		if( strcmp( key, "int 35h")){
+			__asm__(  "int $0x35");
+		}
+		return i;
+		if( strcmp( key, "int 36h")){
+			__asm__(  "int $0x36");
+		}
 		return i;
 	}
 
