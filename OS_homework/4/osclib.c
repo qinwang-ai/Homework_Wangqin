@@ -167,7 +167,7 @@ inline void date(){
 	printToscn(((year & 0xf00) >> 8) + '0');
 	printToscn(((year & 0xf0) >> 4) + '0');
 	printToscn((year & 0xf) + '0');
-	printToscn('-');
+	printToscn(' ');
 	printToscn(((m_d & 0xf000) >> 12) + '0');
 	printToscn(((m_d & 0xf00) >> 8) + '0');
 	printToscn('-');

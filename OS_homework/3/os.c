@@ -12,7 +12,7 @@ extern void flag_scroll_up();
 extern char input_char();  //return type char
 extern unsigned short int get_pointer_pos();
 extern void set_pointer_pos();
-extern void print_corner();
+extern void print_corner( char);
 
 
 //-------------------------oslib nasm supply-----

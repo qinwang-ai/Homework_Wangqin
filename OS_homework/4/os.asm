@@ -5,6 +5,7 @@ global input_char,printToscn,get_pointer_pos
 global set_pointer_pos,print_flag,scroll_screen,flag_scroll
 global flag_position:data,flag_scroll_up,init_ss
 global init_flag_position,print_corner
+global interrupt_init
 
 
 extern main		;forbid run this file any time
@@ -37,17 +38,50 @@ screen_init:               ;make all screen write
 
 ret
 
+interrupt_init:
+	;#1  setting up time interrupt 
+	mov ax,cs
+	mov ds,ax
+	mov ax,0x1c
+	mov [ interrupt_num], ax
+	mov ax, print_corner
+	mov [ interrupt_vector_offset],ax
+	call insert_interrupt_vector
+
+
+	;#2 
+
+ret
+
+
 print_corner:
-	; \ / [
+					; \ / [
+		mov ax,cs
+		mov ds,ax
 		mov ax,0xb800
 		mov es,ax
+
+		mov dl,30
+		mov al,[ pointer]		; alert:  must be al  dont ax
+		cmp al,dl
+		jne next_print_c
+		mov byte [ pointer], 0
+		jmp cotinue_corner
+
+		next_print_c:
+		mov eax, cornerstring
+		mov bl,[ pointer]			;ebx is added sum
+		add eax,ebx
+		mov al,[ eax]
+
+		inc ebx
+		mov [ pointer],bl
+
 		mov bx,3998D
-		mov byte [es:bx],'\'
-		call delay
-		mov byte [es:bx],'/'
-		call delay
-		mov byte [es:bx],'|'
-ret
+		mov [ es:bx],al
+
+		cotinue_corner:
+iret
 
 screen_init_last_line:               ;make last line white
 	mov ax,0xb800
@@ -203,24 +237,18 @@ compatible_vmware:
 	pop bp
 ret
 
-
-;time delay
-delay:
-	push dx
-	push cx
-	mov dx,00
-	timer2:	
-		mov cx,00
-		timer:
-			inc cx
-			cmp cx,600D
-		jne timer
-		inc dx
-		cmp dx,6000D
-	jne timer2
-	pop cx
-	pop dx
+;insert a interrupt vector 
+insert_interrupt_vector:
+	mov ax,0
+	mov es,ax
+	mov bx,[ interrupt_num]
+	shl bx,2 ;interrupt num * 4 = entry
+	mov ax,cs
+	shl eax,8  ;shl 8 bit   *16
+	mov ax,[ interrupt_vector_offset]
+	mov [es:bx], eax
 ret
+
 
 
 
@@ -236,7 +264,7 @@ ret
 
 ;------------------DATA-------------------
 msg:
-	db `Welcome to Wangqin\'s OS v1.3`		;style 78D
+	db `Welcome to Wangqin\'s OS v1.4`		;style 78D
 msg_l equ $-msg
 
 msg2:					;style 71D
@@ -254,6 +282,10 @@ format_line_l equ $-format_line
 
 var:
 	flag_position dd 0x1000
+	interrupt_num dw 0x1c
+	interrupt_vector_offset dw 0x7c00
+	pointer db 0
+	cornerstring db '\\\\\\\\\\||||||||||//////////'
 
 
 

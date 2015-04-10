@@ -38,15 +38,12 @@ screen_init:               ;make all screen write
 ret
 
 print_corner:
-	; \ / [
+		; \ / [
 		mov ax,0xb800
 		mov es,ax
 		mov bx,3998D
-		mov byte [es:bx],'\'
-		call delay
-		mov byte [es:bx],'/'
-		call delay
-		mov byte [es:bx],'|'
+		mov ax,[bp+4]
+		mov byte [es:bx],ax
 ret
 
 screen_init_last_line:               ;make last line white
@@ -203,24 +200,18 @@ compatible_vmware:
 	pop bp
 ret
 
-
-;time delay
-delay:
-	push dx
-	push cx
-	mov dx,00
-	timer2:	
-		mov cx,00
-		timer:
-			inc cx
-			cmp cx,600D
-		jne timer
-		inc dx
-		cmp dx,6000D
-	jne timer2
-	pop cx
-	pop dx
+;insert a interrupt vector 
+insert_interrupt_vector:
+	mov ax,0
+	mov es,ax
+	mov bx,[bp+4]
+	shl bx,2 ;interrupt num * 4 = entry
+	mov ax,cs
+	shl eax,8  ;shl 8 bit   *16
+	mov ax,[bp+6]
+	mov [es:bx], eax
 ret
+
 
 
 
