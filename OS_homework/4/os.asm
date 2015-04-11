@@ -100,6 +100,7 @@ print_corner:
 
 		next_print_c:
 		mov eax, cornerstring
+		mov ebx,0
 		mov bl,[ pointer]			;ebx is added sum
 		add eax,ebx
 		mov al,[ eax]
@@ -146,7 +147,7 @@ process_int34:
 	mov ax,0xb800
 	mov es,ax
 
-	mov cx,2038D;stop           /2 ==0 is char or is style   stop /2 !=0
+	mov cx,2037D;stop           /2 ==0 is char or is style   stop /2 !=0
 	mov bx,1998D ;stat                          start/2==0
 
 	loop_int34:
@@ -158,8 +159,8 @@ process_int34:
 	jle loop_int34
 
 	;h dirctation
-	mov cx,2079D	;stop           /2 ==0 is char or is style
-	mov bx,280D  ;stat
+	mov cx,2077D	;stop           /2 ==0 is char or is style
+	mov bx,278D  ;stat
 
 	loop_int34_h:
 	mov byte [es:bx],'#'
@@ -202,6 +203,33 @@ process_int35:
 iret
 
 process_int36:
+	mov ax,0xb800
+	mov es,ax
+
+	mov cx,3799D;stop           /2 ==0 is char or is style   stop /2 !=0
+	mov bx,3760D ;stat                          start/2==0
+
+	loop_int36:
+	mov byte [es:bx],'#'
+	inc bx
+	mov byte [es:bx],78D;font color
+	inc bx
+	cmp bx,cx
+	jle loop_int36
+
+	;h dirctation
+	mov cx,3917D	;stop           /2 ==0 is char or is style
+	mov bx,1998D  ;stat
+
+	loop_int36_h:
+	mov byte [es:bx],'#'
+	inc bx
+	mov byte [es:bx],78D;font color
+	add bx, 159D
+	cmp bx,cx
+	jle loop_int36_h
+
+
 iret
 
 screen_init_last_line:               ;make last line white
@@ -233,7 +261,7 @@ print_welcome_msg:		;param ( string, len, position)
 
 	mov ax,1301h	;01 只有字符串
 	mov bx,78D		;Bh is font color
-	mov dx,0517h	;position
+	mov dx,0317h	;position
 	int 10h
 	pop bp
 ret 
@@ -248,7 +276,7 @@ print_message:		;  descripatoin
 
 	mov ax,1301h	;01 只有字符串
 	mov bx,71D		;Bh is font color
-	mov dx,0805h	;position
+	mov dx,0605h	;position
 	int 10h
 	pop bp
 ret 
@@ -389,7 +417,7 @@ msg:
 msg_l equ $-msg
 
 msg2:					;style 71D
-	db `There are some system programs: -- date ,time ,asc ,clear  \r\n     You can man it to see detail.Ex: man date \r\n     You can enter the funtion name to run.\r\n\r\n     There also have three user's programs \r\n     Please type 'man run' to see more.....)`
+	db `System programs: -- date ,time ,asc ,clear,help  \r\n     Type the funtion name to run.Man it to see detail.Ex: man date.\r\n\r\n     3 user programs.Type 'man run' to see more.... \r\n\r\n     We supply 4 interrupts to user: --int 33h,int 34h,int 35h,int 36h\r\n     Type <int interrupt_num> to use.Ex:int 33h.\r\n     In last user program all 4 interrupts will execute.Type 'run 3' to see`
 msg2_l equ $-msg2
 
 msg3:

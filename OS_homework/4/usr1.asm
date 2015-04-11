@@ -29,6 +29,18 @@ mov bx,78D		;Bh is font color
 mov dx,1013h	;position
 int 10h
 
+
+mov ax,0x09
+mov [ interrupt_num], ax
+mov ax,ouch_detect
+mov [ interrupt_vector_offset], ax
+call insert_interrupt_vector
+
+
+ouch_detect:
+
+iret
+
 ;LISTEN_EXIT----
 mov ah,0x00
 int 0x16
@@ -50,7 +62,7 @@ msg2:
 msg2_l equ $-msg2
 
 msg3:
-	db `Program Complete!\nPress any key to exit...`
+	db `Program Complete!\nPress Enter to exit...(Other key will display OUCH! TAT)`
 msg3_l equ $-msg3
 
 ;-----------------------FUNTION---------------
@@ -67,6 +79,29 @@ delay:
 		cmp dx,6000D
 	jne timer2
 	ret
+
+insert_interrupt_vector:
+	mov ax,0
+	mov es,ax
+	mov bx,[ interrupt_num]
+	shl bx,2 ;interrupt num * 4 = entry
+
+	mov eax,[es:bx]			;backup
+	mov [ interrupt_vector_offset_bak], eax
+
+	mov ax,cs
+	shl eax,8  ;shl 8 bit   *16
+	mov ax,[ interrupt_vector_offset]
+	mov [es:bx], eax
+ret
+
+	interrupt_num dw 0x09				;init
+	interrupt_vector_offset dw 0x7c00	;init
+	interrupt_vector_offset_bak dw 0x7c00	;init
+
+
+
+
 
 
 

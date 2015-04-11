@@ -49,10 +49,6 @@ void main(){
 	print_message();
 	print_flag(); //root@wangqin4377@:   position
 
-	__asm__(" int $0x33");
-	__asm__(" int $0x34");
-	__asm__(" int $0x35");
-
 	while(1){
 		char length = listen_key();
 
@@ -98,7 +94,7 @@ inline char listen_key(){
 		clear();
 		return i;
 	}
-	
+
 	if( strcmp( key, "time\0")){
 		time();
 		return i;
@@ -130,20 +126,20 @@ inline char listen_key(){
 	if( synCheck( key, "int\0")){
 		if( strcmp( key, "int 33h")){
 			__asm__(  "int $0x33");
+			return i;
 		}
-		return i;
 		if( strcmp( key, "int 34h")){
 			__asm__(  "int $0x34");
+			return i;
 		}
-		return i;
 		if( strcmp( key, "int 35h")){
 			__asm__(  "int $0x35");
+			return i;
 		}
-		return i;
 		if( strcmp( key, "int 36h")){
 			__asm__(  "int $0x36");
+			return i;
 		}
-		return i;
 	}
 
 	if( key[0] == '\0'){
