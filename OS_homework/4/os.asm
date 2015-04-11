@@ -59,7 +59,28 @@ interrupt_init:
 	mov ax, process_int33
 	mov [ interrupt_vector_offset],ax
 	call insert_interrupt_vector
+	
+	;#3 int 34
+	mov ax,0x34
+	mov [ interrupt_num], ax
+	mov ax, process_int34
+	mov [ interrupt_vector_offset],ax
+	call insert_interrupt_vector
 
+	;#4 int 35
+	mov ax,0x35
+	mov [ interrupt_num], ax
+	mov ax, process_int35
+	mov [ interrupt_vector_offset],ax
+	call insert_interrupt_vector
+
+	;#5 int 36
+	mov ax,0x36
+	mov [ interrupt_num], ax
+	mov ax, process_int36
+	mov [ interrupt_vector_offset],ax
+	call insert_interrupt_vector
+	
 ret
 
 
@@ -93,18 +114,91 @@ print_corner:
 iret
 
 process_int33:
-	mov al,19D
-	mov [ int_user_num],al
-	call load_user
-	call run_user
-	mov al,0
-	mov [ int_user_num],al
+	mov ax,0xb800
+	mov es,ax
+
+	mov cx,239	;stop           /2 ==0 is char or is style
+	mov bx,200  ;stat
+
+	loop_int33:
+	mov byte [es:bx],'#'
+	inc bx
+	mov byte [es:bx],78D;font color
+	inc bx
+	cmp bx,cx
+	jle loop_int33
+
+	;h dirctation
+	mov cx,1959D;stop           /2 ==0 is char or is style
+	mov bx,238D  ;stat
+
+	loop_int33_h:
+	mov byte [es:bx],'#'
+	inc bx
+	mov byte [es:bx],78D;font color
+	add bx, 159D
+	cmp bx,cx
+	jle loop_int33_h
+
 iret
 
 process_int34:
+	mov ax,0xb800
+	mov es,ax
+
+	mov cx,2038D;stop           /2 ==0 is char or is style   stop /2 !=0
+	mov bx,1998D ;stat                          start/2==0
+
+	loop_int34:
+	mov byte [es:bx],'#'
+	inc bx
+	mov byte [es:bx],78D;font color
+	inc bx
+	cmp bx,cx
+	jle loop_int34
+
+	;h dirctation
+	mov cx,2079D	;stop           /2 ==0 is char or is style
+	mov bx,280D  ;stat
+
+	loop_int34_h:
+	mov byte [es:bx],'#'
+	inc bx
+	mov byte [es:bx],78D;font color
+	add bx, 159D
+	cmp bx,cx
+	jle loop_int34_h
+
 iret
 
 process_int35:
+
+	mov ax,0xb800
+	mov es,ax
+
+	mov cx,1999D;stop           /2 ==0 is char or is style   stop /2 !=0
+	mov bx,1960D ;stat                          start/2==0
+
+	loop_int35:
+	mov byte [es:bx],'#'
+	inc bx
+	mov byte [es:bx],78D;font color
+	inc bx
+	cmp bx,cx
+	jle loop_int35
+
+	;h dirctation
+	mov cx,3809D	;stop           /2 ==0 is char or is style
+	mov bx,1960D  ;stat
+
+	loop_int35_h:
+	mov byte [es:bx],'#'
+	inc bx
+	mov byte [es:bx],78D;font color
+	add bx, 159D
+	cmp bx,cx
+	jle loop_int35_h
+
 iret
 
 process_int36:

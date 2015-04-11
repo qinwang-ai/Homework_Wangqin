@@ -49,6 +49,9 @@ void main(){
 	print_message();
 	print_flag(); //root@wangqin4377@:   position
 
+	__asm__(" int $0x33");
+	__asm__(" int $0x34");
+	__asm__(" int $0x35");
 
 	while(1){
 		char length = listen_key();
