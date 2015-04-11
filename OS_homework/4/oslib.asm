@@ -6,7 +6,8 @@ global clear,get_time,get_second
 global get_date,get_year,load_user,run_user
 
 extern flag_position 
-extern screen_init 
+extern screen_init
+;extern int_user_num
 
 clear:			;clear the screen
 
@@ -44,12 +45,25 @@ ret
 ; load_user( shanqu_num);
 load_user:
 	;load os to mem
-	mov ax,ds
+	mov ax,cs
 	mov es,ax
 
 	mov dx,bp
 	mov bp,sp
+
+	;if int_user_num is 0  then cx = bp+4 else cx = int_user_num
+	;mov al,[ int_user_num]
+	;mov ah,0
+	;cmp al,ah
+	;je bp_param
+	;mov cl,al
+	;jmp next_lu
+	;bp_param:
+
 	mov cx,[bp+4];扇区号参数
+
+	;next_lu:
+
 	mov bp,dx
 
 	xor ax,ax

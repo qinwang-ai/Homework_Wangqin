@@ -16,13 +16,6 @@ extern void run_user();
 
 extern char screen_sc_T; 
 //ing
-extern void int_33();
-extern void int_34();
-extern void int_35();
-extern void int_36();
-
-
-
 
 
 
@@ -298,27 +291,6 @@ void run( char *str){
 			}
 		str++;
 	}
-}
-
-void int_33(){
-	screen_init();
-	//load_user( 16);
-	//run_user();
-}
-
-void int_34(){
-	load_user( 17);
-	run_user();
-}
-
-void int_35(){
-	load_user( 18);
-	run_user();
-}
-
-void int_36(){
-	load_user( 19);
-	run_user();
 }
 
 

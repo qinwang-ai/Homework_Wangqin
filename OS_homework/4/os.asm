@@ -6,10 +6,11 @@ global set_pointer_pos,print_flag,scroll_screen,flag_scroll
 global flag_position:data,flag_scroll_up,init_ss
 global init_flag_position,print_corner
 global interrupt_init
+;global int_user_num:data
 
 
 extern main		;forbid run this file any time
-extern int_33,int_34,int_35,int_36
+extern load_user,run_user
 
 jmp main
 
@@ -92,19 +93,21 @@ print_corner:
 iret
 
 process_int33:
-	call int_33
+	mov al,19D
+	mov [ int_user_num],al
+	call load_user
+	call run_user
+	mov al,0
+	mov [ int_user_num],al
 iret
 
 process_int34:
-	call int_34
 iret
 
 process_int35:
-	call int_35
 iret
 
 process_int36:
-	call int_36
 iret
 
 screen_init_last_line:               ;make last line white
@@ -310,6 +313,7 @@ var:
 	interrupt_vector_offset dw 0x7c00	;init
 	pointer db 0
 	cornerstring db '\\\\\\\\\\||||||||||//////////'
+	;int_user_num db 0
 
 
 
