@@ -1,0 +1,83 @@
+\documentclass[a4paper]{article}
+\usepackage {changepage}
+
+\usepackage {fontspec}
+\setromanfont{Lantinghei SC Extralight}
+\setmonofont{Courier New}
+\XeTeXlinebreaklocale ``zh''
+\XeTeXlinebreakskip = 0pt plus 1pt
+\newcommand {\mycmdB}[1]{{ \heiti #1}}
+\begin{document}
+\title{实验报告 实验四}
+\author{姓名：王钦\quad 学号：13349112\quad 班级：计科二班}
+\date{}
+\maketitle
+\section*{ 实验要求}
+\hangindent=4em \hangafter=-10{
+1. 步骤7中所看到不同的十个协议：\verb|TCP, Http, OICQ, SSHv2, ARP, WebSocket, NBNS, UDP, DHCP, SSH|\\\\
+2. \verb|13:44:34.604860 - 13:44:31.076031 = 3.573091 second|\\\\
+3. The Internet address of the gaia.cs.umass.edu is \verb|128.119.245.12|,The Internet address of my computer is \verb|192.168.42.125|\\\\
+4. 见压缩包中的\verb|Lab1_print_PDF.pdf| 
+}
+
+\section*{ 实验步骤及效果}
+\hangindent=4em \hangafter=-50{
+1. 编辑ASM 文件	\\\\
+2. \verb|Accept-language :zh-CN\r\n|	\\\\
+3. My computer's IP: \verb|192.168.42.125|.gaia.cs.umass.edu's IP: \verb|128.119.245.12|\\\\
+4. Status code : \verb|304 Not Modified|\\\\
+5. Arrival Time : \verb|Apr  8, 2015 18:40:04.913970000 CST|\\\\
+6. \verb|554 bytes (4432 bits)|\\\\
+7. No\\\\
+8. No.There didn't have a \verb|IF-Modified-Since line|.\\\\
+9. Yes,there server did!Because I have cleaned the cache.Then the Sever explicitly return a html contents.\\\\
+10. Yes.The GET request had a IF-Modified-Since header line\verb|If-Modified-Since: Wed, 08 Apr 2015 05:59:01 GMT|.Follow is time and date.\\\\
+11. The status code is \verb|304 Not Modified|.The server didn't explicitly return the contents of the file.Because broswer has previous cache about contents.\\\\
+12. One\\\\
+13. Four TCP segments were needed.\\\\
+14. \verb|Status code: 200. Http.response.phrase:ok|\\\\
+15. NO, there are not.\\\\
+16. In total,Three GET request sent by broswer.one request a HTML,Others request three pictures which in the html\\
+	Internet address:\\
+	\indent	\verb|128.119.245.12|\\
+	\indent	\verb|165.193.140.14|\\
+	\indent	\verb|128.119.240.90|
+	\\\\
+17. They were downloaded serially.Because their time in the package list are different,and there were transmitted by 2 TCP.\\\\
+18. \verb|Status code: 401 , Phrase: Authorization Required |\\\\
+19. \verb|Authorization: Basic d2lyZXNoYXJrLXN0dWRlbnRzOm5ldHdvcms|\\\\
+}
+\section*{ 内存和软盘存储管理}
+\hangindent=4em \hangafter=-50{
+1. 引导程序加载到内存0x7c00处运行
+2. 引导程序将操作系统加载到0x7e00处运行
+3. 操作系统讲用户程序加载到0x1000处运行
+4. 软盘第1个扇区存储操作系统引导程序
+5. 软盘第2～15扇区存储操作系统内核
+6. 软盘第16～18扇区分别存储三个用户程序
+}
+
+\section*{ 实验心得及仍需改进之处}
+\hangindent=4em \hangafter=-50{
+	通过本次实验我了解了x86架构下中断的机制和原理，通过手动编写中断处理程序和修改添加中断向量表中的中断向量实现了本实验的所有要求。
+	在时钟中断的模块，刚开始打算改写08h的中断向量，后来经过网上查阅资料得知硬件中断08h会自动触发中断号为1ch的时钟中断，又叫\verb|time-tick|中断。
+	通过改写1ch的中断处理程序即可实现时钟中断效果。在后来的实验过程中发现有的用户程序无法读入内存，经过一番调试之后才发现自己操作系统太过庞大
+	占用了15个扇区，加上四个用户程序和一个引导扇区共需要19个扇区，但标准软盘1.44M最多只能支持在18个扇区的读写。我只好减少了一个用户程序。
+	最后只放了三个用户程序(其中最后一个将自动执行自定义的\verb|int 33，int 34, int 35, 36|中断)。估计在后面的试验中会不断的丰富操作系统的功能，
+	目前我存储操作系统的
+	15个扇区已经有14个被写满，下次实验考虑使用硬盘来作为存储方式，同时也优化操作系统的代码使其短小精悍。在后来在编写键盘中断处理程序的过程中，在
+	编写中断向量号为09h的中断处理程序时由于不了解键盘中断的工作方式，明明写好了中断处理程序却只能第一次按键显示OUCH之后按键就不显示了。后来经过
+	查阅相关资料发现还要对相关端口\verb|61h,60h,20h|做一些处理才可以继续等待输入下个字符。
+	实验仍需改进之处：
+	\verb|
+}
+
+
+
+
+
+
+
+\end{document}
+
+
