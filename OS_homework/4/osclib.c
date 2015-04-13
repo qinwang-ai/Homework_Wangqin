@@ -21,7 +21,7 @@ extern char screen_sc_T;
 
 //---------------------------------------------------
 char ans[20];
-inline char * strcpy( char *p, char src,char len){
+char * strcpy( char *p, char src,char len){
 	char i =1;
 	p+=src;
 	while(*p!='\0'&&i<=len){
@@ -52,7 +52,7 @@ char strlen( char*p){
 	return i;
 }
 
-inline void print_str( const char *p , unsigned short int l){
+void print_str( const char *p , unsigned short int l){
 	while(l>0){
 		printToscn( *p);
 		p++;
@@ -106,7 +106,7 @@ char* itoa(	unsigned short int value)
 
 
 
-inline void time(){
+void time(){
 	unsigned short int now_row = get_pointer_pos()/256;
 	/*
 	if( now_row>21){			// 0~24   24 is deeplist line
@@ -141,7 +141,7 @@ inline void time(){
     printToscn((sec & 0xf) + '0');
 }
 
-inline void date(){
+void date(){
 	/*
 	unsigned short int now_row = get_pointer_pos()/256;
 	if( now_row>21){			// 0~24   24 is deeplist line
@@ -198,6 +198,7 @@ char synCheck( char * str, const char * dst){		//str is key
 			!strcmp( str, "man date\0")&&
 			!strcmp( str, "man time\0")&&
 			!strcmp( str, "man asc\0")&&
+			!strcmp( str, "man help\0")&&
 			!strcmp( str, "man run\0")){
 			return 0;
 		}
@@ -263,6 +264,12 @@ void man( char *str){
 		print_str( p, strlen( p));
 		return;
 	}
+	if( strcmp( str, "man help\0")){
+		char *p = " NAME help - display help message\0";
+		print_str( p, strlen( p));
+		return;
+	}
+
 }
 
 void run_error(){
@@ -280,17 +287,17 @@ void run( char *str){
 		if('0'<*str && *str<'4'){
 			load_user( *str-'0'+15);	//in oslib.asm	
 			run_user();
-			init_flag_position();	
-			screen_init();
-			print_welcome_msg();
-			print_message();
-			print_flag(); //root@wangqin4377@:   position
-
+			
 			}else{
 				run_error();
 			}
 		str++;
 	}
+	init_flag_position();	
+	screen_init();
+	print_welcome_msg();
+	print_message();
+	print_flag(); //root@wangqin4377@:   position
 }
 
 

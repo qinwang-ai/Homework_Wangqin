@@ -5,8 +5,8 @@ global input_char,printToscn,get_pointer_pos
 global set_pointer_pos,print_flag,scroll_screen,flag_scroll
 global flag_position:data,flag_scroll_up,init_ss
 global init_flag_position,print_corner
-global interrupt_init
-;global int_user_num:data
+global interrupt_init,insert_interrupt_vector
+global interrupt_num:data,interrupt_vector_offset:data
 
 
 extern main		;forbid run this file any time
@@ -25,6 +25,9 @@ init_flag_position:
 ret
 
 screen_init:               ;make all screen write
+	push ax
+	push bx
+	push cx
 	mov ax,0xb800
 	mov es,ax
 	mov ax,00
@@ -39,6 +42,9 @@ screen_init:               ;make all screen write
 	cmp bx,cx
 	jle loop	;<=
 
+	pop cx
+	pop bx
+	pop ax
 ret
 
 interrupt_init:
@@ -51,6 +57,7 @@ interrupt_init:
 	mov ax, print_corner
 	mov [ interrupt_vector_offset],ax
 	call insert_interrupt_vector
+
 
 
 	;#2 int 33

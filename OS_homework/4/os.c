@@ -21,19 +21,19 @@ extern void clear();
 //------------------------osclibc supply-----
 
 
-extern inline void print_str( const char *p , unsigned short int l);
+extern void print_str( const char *p , unsigned short int l);
 
 //compaire whether two string equal
 
 extern char strcmp(const char *a, const char *b);
-extern inline void time ();
-extern inline void date ();
+extern void time();
+extern void date();
 void asc( char *);
 
 
 //--------------------------local-------
 
-inline char listen_key();
+char listen_key();
 
 
 
@@ -67,7 +67,7 @@ void main(){
 
 //============================MAIN END===============
 
-inline char listen_key(){
+char listen_key(){
 	char temp;
 	char i=0;
 //	unsigned short int init_pos = get_pointer_pos();
@@ -102,6 +102,16 @@ inline char listen_key(){
 
 	if( strcmp( key, "date\0")){
 		date();
+		return i;
+	}
+	if( strcmp( key, "help\0")){
+		//can't refer 2 two times, so...
+		init_flag_position();	
+		screen_init();
+		print_welcome_msg();
+		print_message();
+		print_flag(); //root@wangqin4377@:   position
+
 		return i;
 	}
 

@@ -8,8 +8,10 @@ int 36h
 
 
 ;LISTEN_EXIT----
-mov ah,0x00
-int 0x16
+listen:
+	mov ch,'A'
+	cmp ch,cl
+jne listen 
 
 ret
 
