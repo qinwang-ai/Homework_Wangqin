@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2015.3.30)  14 APR 2015 19:38
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2015.3.30)  14 APR 2015 21:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -24,33 +24,28 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/local/texlive/2014/texmf-dist/tex/latex/changepage/changepage.sty
-Package: changepage 2009/10/20 v1.0c check page and change page layout
-\c@cp@cntr=\count88
-\cp@tempcnt=\count89
-)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.sty
 (/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-\lst@mode=\count90
+\lst@mode=\count88
 \lst@gtempboxa=\box26
 \lst@token=\toks15
-\lst@length=\count91
+\lst@length=\count89
 \lst@currlwidth=\dimen103
-\lst@column=\count92
-\lst@pos=\count93
+\lst@column=\count90
+\lst@pos=\count91
 \lst@lostspace=\dimen104
 \lst@width=\dimen105
-\lst@newlines=\count94
-\lst@lineno=\count95
+\lst@newlines=\count92
+\lst@lineno=\count93
 \lst@maxwidth=\dimen106
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2014/03/04 1.5c (Carsten Heinz)
-\c@lstnumber=\count96
-\lst@skipnumbers=\count97
+\c@lstnumber=\count94
+\lst@skipnumbers=\count95
 \lst@framebox=\box27
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.cfg
@@ -95,7 +90,7 @@ L3 Module: l3bootstrap 2014/05/16 v4782 L3 Bootstrap code
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
-\et@xins=\count98
+\et@xins=\count96
 )
 L3 Module: l3names 2014/05/04 v4728 L3 Namespace for primitives
 L3 Module: l3basics 2014/05/04 v4728 L3 Basic definitions
@@ -103,24 +98,24 @@ L3 Module: l3expan 2014/04/30 v4712 L3 Argument expansion
 L3 Module: l3tl 2014/05/04 v4728 L3 Token lists
 L3 Module: l3seq 2014/04/30 v4712 L3 Sequences and stacks
 L3 Module: l3int 2014/05/16 v4776 L3 Integers
-\c_max_int=\count99
-\l_tmpa_int=\count100
-\l_tmpb_int=\count101
-\g_tmpa_int=\count102
-\g_tmpb_int=\count103
+\c_max_int=\count97
+\l_tmpa_int=\count98
+\l_tmpb_int=\count99
+\g_tmpa_int=\count100
+\g_tmpb_int=\count101
 L3 Module: l3quark 2014/05/04 v4728 L3 Quarks
 L3 Module: l3prg 2014/05/04 v4728 L3 Control structures
-\g__prg_map_int=\count104
+\g__prg_map_int=\count102
 L3 Module: l3clist 2014/05/04 v4728 L3 Comma separated lists
 L3 Module: l3token 2014/05/04 v4728 L3 Experimental token manipulation
 L3 Module: l3prop 2014/04/30 v4712 L3 Property lists
 L3 Module: l3msg 2014/05/04 v4728 L3 Messages
 L3 Module: l3file 2014/05/05 v4737 L3 File and I/O operations
-\l_iow_line_count_int=\count105
-\l__iow_target_count_int=\count106
-\l__iow_current_line_int=\count107
-\l__iow_current_word_int=\count108
-\l__iow_current_indentation_int=\count109
+\l_iow_line_count_int=\count103
+\l__iow_target_count_int=\count104
+\l__iow_current_line_int=\count105
+\l__iow_current_word_int=\count106
+\l__iow_current_indentation_int=\count107
 L3 Module: l3skip 2014/05/05 v4738 L3 Dimensions and skips
 \c_zero_dim=\dimen107
 \c_max_dim=\dimen108
@@ -141,18 +136,18 @@ L3 Module: l3skip 2014/05/05 v4738 L3 Dimensions and skips
 \g_tmpa_muskip=\muskip14
 \g_tmpb_muskip=\muskip15
 L3 Module: l3keys 2014/05/08 v4753 L3 Key-value interfaces
-\g__keyval_level_int=\count110
-\l_keys_choice_int=\count111
+\g__keyval_level_int=\count108
+\l_keys_choice_int=\count109
 L3 Module: l3fp 2014/04/30 v4712 L3 Floating points
-\c__fp_leading_shift_int=\count112
-\c__fp_middle_shift_int=\count113
-\c__fp_trailing_shift_int=\count114
-\c__fp_big_leading_shift_int=\count115
-\c__fp_big_middle_shift_int=\count116
-\c__fp_big_trailing_shift_int=\count117
-\c__fp_Bigg_leading_shift_int=\count118
-\c__fp_Bigg_middle_shift_int=\count119
-\c__fp_Bigg_trailing_shift_int=\count120
+\c__fp_leading_shift_int=\count110
+\c__fp_middle_shift_int=\count111
+\c__fp_trailing_shift_int=\count112
+\c__fp_big_leading_shift_int=\count113
+\c__fp_big_middle_shift_int=\count114
+\c__fp_big_trailing_shift_int=\count115
+\c__fp_Bigg_leading_shift_int=\count116
+\c__fp_Bigg_middle_shift_int=\count117
+\c__fp_Bigg_trailing_shift_int=\count118
 L3 Module: l3box 2014/05/04 v4728 L3 Experimental boxes
 \c_empty_box=\box28
 \l_tmpa_box=\box29
@@ -181,8 +176,8 @@ L3 Module: l3coffins 2014/05/04 v4728 L3 Coffin code layer
 \l__coffin_display_y_dim=\dimen122
 L3 Module: l3color 2014/04/30 v4712 L3 Experimental color support
 L3 Module: l3luatex 2014/04/30 v4712 L3 Experimental LuaTeX-specific functions
-\g__cctab_allocate_int=\count121
-\g__cctab_stack_int=\count122
+\g__cctab_allocate_int=\count119
+\g__cctab_stack_int=\count120
 L3 Module: l3candidates 2014/05/04 v4734 L3 Experimental additions to l3kernel
 \l__box_top_dim=\dimen123
 \l__box_bottom_dim=\dimen124
@@ -203,15 +198,15 @@ L3 Module: l3candidates 2014/05/04 v4734 L3 Experimental additions to l3kernel
 ))
 (/usr/local/texlive/2014/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2014/05/05 v4740 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count123
-\l__xparse_m_args_int=\count124
-\l__xparse_mandatory_args_int=\count125
-\l__xparse_processor_int=\count126
-\l__xparse_v_nesting_int=\count127
+\l__xparse_current_arg_int=\count121
+\l__xparse_m_args_int=\count122
+\l__xparse_mandatory_args_int=\count123
+\l__xparse_processor_int=\count124
+\l__xparse_v_nesting_int=\count125
 )
-\l_fontspec_script_int=\count128
-\l_fontspec_language_int=\count129
-\l_fontspec_strnum_int=\count130
+\l_fontspec_script_int=\count126
+\l_fontspec_language_int=\count127
+\l_fontspec_strnum_int=\count128
 \l_fontspec_tmpa_dim=\dimen138
 \l_fontspec_tmpb_dim=\dimen139
 \l_fontspec_tmpc_dim=\dimen140
@@ -267,7 +262,7 @@ LaTeX Font Info:    Try loading font information for EU1+lmss on input line 357
 (/usr/local/texlive/2014/texmf-dist/tex/latex/euenc/eu1lmss.fd
 File: eu1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ))
-\tipaTiiicode=\count131
+\tipaTiiicode=\count129
 \tipasavetokens=\toks16
 \tipachecktokens=\toks17
 
@@ -394,7 +389,7 @@ Package graphics Info: Driver file: xetex.def on input line 91.
 .................................................
 Variant \prop_gput:cnV already defined; not changing it on line 582
 Variant \prop_gput:cnx already defined; not changing it on line 583
-\l_fontspec_tmp_int=\count132
+\l_fontspec_tmp_int=\count130
 LaTeX Info: Redefining \itshape on input line 2087.
 LaTeX Info: Redefining \slshape on input line 2092.
 LaTeX Info: Redefining \scshape on input line 2097.
@@ -408,7 +403,7 @@ LaTeX Info: Redefining \upshape on input line 2102.
 . Font Lantinghei SC Extralight does not contain any OpenType `Script'
 . information.
 .................................................
-\g_fontspec_family_Lantinghei SC Extralight_int=\count133
+\g_fontspec_family_Lantinghei SC Extralight_int=\count131
 .................................................
 . fontspec info: "no-font-shape"
 . 
@@ -438,7 +433,7 @@ LaTeX Info: Redefining \upshape on input line 2102.
 . * 'normal' with NFSS spec.:
 . <->"Lantinghei SC Extralight/ICU:"
 .................................................
-\g_fontspec_family_Courier New_int=\count134
+\g_fontspec_family_Courier New_int=\count132
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -462,27 +457,27 @@ LaTeX Info: Redefining \upshape on input line 2102.
 (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 30.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 30.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 29.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 29.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 30.
-\c@lstlisting=\count135
+LaTeX Font Info:    ... okay on input line 29.
+\c@lstlisting=\count133
 .................................................
 . fontspec info: "setup-math"
 . 
@@ -490,111 +485,111 @@ LaTeX Font Info:    ... okay on input line 30.
 .................................................
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 30.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 30.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 30.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 30.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 30.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 30.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 30.
-LaTeX Font Info:    Redeclaring math accent \check on input line 30.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 30.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 30.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 30.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 30.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 30.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 29.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 29.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 29.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 29.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 29.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 29.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 29.
+LaTeX Font Info:    Redeclaring math accent \check on input line 29.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 29.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 29.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 29.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 29.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 29.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 30.
+(Font)              `operators' in the math version `normal' on input line 29.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> EU1/LantingheiSCExtralight(0)/m/n on in
-put line 30.
+put line 29.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 30.
+(Font)              `operators' in the math version `bold' on input line 29.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> EU1/LantingheiSCExtralight(0)/m/n on i
-nput line 30.
+nput line 29.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  EU1/LantingheiSCExtralight(0)/m/n --> EU1/LantingheiSCE
-xtralight(0)/m/n on input line 30.
+xtralight(0)/m/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  EU1/LantingheiSCExtralight(0)/m/n --> EU1/LantingheiSCE
-xtralight(0)/m/n on input line 30.
+xtralight(0)/m/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> EU1/LantingheiSCExtralight(0)/m/it on 
-input line 30.
+input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> EU1/LantingheiSCExtralight(0)/bx/n on 
-input line 30.
+input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> EU1/lmss/m/n on input line 30.
+(Font)                  OT1/cmss/m/n --> EU1/lmss/m/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> EU1/CourierNew(0)/m/n on input line 30
+(Font)                  OT1/cmtt/m/n --> EU1/CourierNew(0)/m/n on input line 29
 .
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  EU1/LantingheiSCExtralight(0)/m/n --> EU1/LantingheiSCE
-xtralight(0)/bx/n on input line 30.
+xtralight(0)/bx/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
 (Font)                  EU1/LantingheiSCExtralight(0)/m/n --> EU1/LantingheiSCE
-xtralight(0)/bx/n on input line 30.
+xtralight(0)/bx/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> EU1/LantingheiSCExtralight(0)/bx/it o
-n input line 30.
+n input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> EU1/lmss/bx/n on input line 30.
+(Font)                  OT1/cmss/bx/n --> EU1/lmss/bx/n on input line 29.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> EU1/CourierNew(0)/bx/n on input line 3
-0.
+(Font)                  OT1/cmtt/m/n --> EU1/CourierNew(0)/bx/n on input line 2
+9.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 35.
+(Font)              <12> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 35.
+(Font)              <8> on input line 34.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 35.
+(Font)              <6> on input line 34.
 
 
 LaTeX Font Warning: Font shape `EU1/LantingheiSCExtralight(0)/bx/n' undefined
 (Font)              using `EU1/LantingheiSCExtralight(0)/m/n' instead on input 
-line 36.
+line 35.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--43
+Underfull \hbox (badness 10000) in paragraph at lines 37--42
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 46.
+(Font)              <7> on input line 45.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 46.
+(Font)              <5> on input line 45.
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--50
+Underfull \hbox (badness 10000) in paragraph at lines 44--49
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--54
+Underfull \hbox (badness 10000) in paragraph at lines 51--53
 
  []
 
 File: Illustrations/flow.png Graphic file (type QTm)
 <use  "Illustrations/flow.png" >
-Overfull \hbox (102.52148pt too wide) in paragraph at lines 57--59
+Overfull \hbox (102.52148pt too wide) in paragraph at lines 56--58
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--59
+Underfull \hbox (badness 10000) in paragraph at lines 56--58
 
  []
 
@@ -604,214 +599,224 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--59
 Missing character: There is no 或 in font Courier New/OT:script=latn;language=DF
 LT;!
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--65
+Underfull \hbox (badness 10000) in paragraph at lines 61--64
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--65
+Underfull \hbox (badness 10000) in paragraph at lines 61--64
 
  []
 
 File: Illustrations/start.png Graphic file (type QTm)
 <use  "Illustrations/start.png" >
-Overfull \hbox (72.40909pt too wide) in paragraph at lines 65--67
+Overfull \hbox (72.40909pt too wide) in paragraph at lines 64--66
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 65--67
+Underfull \hbox (badness 10000) in paragraph at lines 64--66
 
  []
 
 File: Illustrations/manhelp.png Graphic file (type QTm)
 <use  "Illustrations/manhelp.png" >
-Overfull \hbox (62.87349pt too wide) in paragraph at lines 67--69
+Overfull \hbox (62.87349pt too wide) in paragraph at lines 66--68
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--69
+Underfull \hbox (badness 10000) in paragraph at lines 66--68
 
  []
 
 [2]
 File: Illustrations/int33h.png Graphic file (type QTm)
  <use  "Illustrations/int33h.png" >
-Overfull \hbox (70.90346pt too wide) in paragraph at lines 69--71
+Overfull \hbox (70.90346pt too wide) in paragraph at lines 68--70
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--71
+Underfull \hbox (badness 10000) in paragraph at lines 68--70
 
  []
 
 File: Illustrations/allcustomint.png Graphic file (type QTm)
 <use  "Illustrations/allcustomint.png" >
-Overfull \hbox (76.92593pt too wide) in paragraph at lines 71--73
+Overfull \hbox (76.92593pt too wide) in paragraph at lines 70--72
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--73
+Underfull \hbox (badness 10000) in paragraph at lines 70--72
 
  []
 
 [3]
 File: Illustrations/syscall.png Graphic file (type QTm)
  <use  "Illustrations/syscall.png" >
-Overfull \hbox (82.44656pt too wide) in paragraph at lines 73--75
+Overfull \hbox (82.44656pt too wide) in paragraph at lines 72--74
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--75
+Underfull \hbox (badness 10000) in paragraph at lines 72--74
 
  []
 
 File: Illustrations/afterclear.png Graphic file (type QTm)
 <use  "Illustrations/afterclear.png" >
-Overfull \hbox (77.4278pt too wide) in paragraph at lines 75--77
+Overfull \hbox (77.4278pt too wide) in paragraph at lines 74--76
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--77
+Underfull \hbox (badness 10000) in paragraph at lines 74--76
 
  []
 
 [4]
 File: Illustrations/runseqs.png Graphic file (type QTm)
  <use  "Illustrations/runseqs.png" >
-Overfull \hbox (75.9222pt too wide) in paragraph at lines 77--79
+Overfull \hbox (75.9222pt too wide) in paragraph at lines 76--78
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--79
+Underfull \hbox (badness 10000) in paragraph at lines 76--78
 
  []
 
 File: Illustrations/ouch.png Graphic file (type QTm)
 <use  "Illustrations/ouch.png" >
-Overfull \hbox (66.88846pt too wide) in paragraph at lines 79--81
+Overfull \hbox (66.88846pt too wide) in paragraph at lines 78--80
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--81
+Underfull \hbox (badness 10000) in paragraph at lines 78--80
 
  []
 
 [5]
 File: Illustrations/usr3.png Graphic file (type QTm)
  <use  "Illustrations/usr3.png" >
-Overfull \hbox (76.92593pt too wide) in paragraph at lines 81--83
+Overfull \hbox (76.92593pt too wide) in paragraph at lines 80--82
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--83
+Underfull \hbox (badness 10000) in paragraph at lines 80--82
 
  []
 
 File: Illustrations/backos.png Graphic file (type QTm)
 <use  "Illustrations/backos.png" >
-Overfull \hbox (79.4353pt too wide) in paragraph at lines 83--86
+Overfull \hbox (79.4353pt too wide) in paragraph at lines 82--85
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--86
+Underfull \hbox (badness 10000) in paragraph at lines 82--85
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--86
+Underfull \hbox (badness 10000) in paragraph at lines 82--85
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--86
+Underfull \hbox (badness 10000) in paragraph at lines 82--85
 
  []
 
-[6] (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 88--95
+
+ []
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2014/03/04 1.5c listings language file
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2014/03/04 1.5c (Carsten Heinz)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 98--100
+Underfull \hbox (badness 10000) in paragraph at lines 97--99
 
  []
 
 
 LaTeX Font Warning: Font shape `EU1/LantingheiSCExtralight(0)/m/it' undefined
 (Font)              using `EU1/LantingheiSCExtralight(0)/m/n' instead on input 
-line 108.
+line 107.
 
 [7]
-Overfull \hbox (15.00366pt too wide) in paragraph at lines 113--114
+Overfull \hbox (15.00366pt too wide) in paragraph at lines 112--113
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (27.00378pt too wide) in paragraph at lines 114--115
+Overfull \hbox (27.00378pt too wide) in paragraph at lines 113--114
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][] 
  []
 
 [8] [9]
-Overfull \hbox (33.00385pt too wide) in paragraph at lines 240--241
+Overfull \hbox (33.00385pt too wide) in paragraph at lines 239--240
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (193.00537pt too wide) in paragraph at lines 263--264
+Overfull \hbox (193.00537pt too wide) in paragraph at lines 262--263
 [][][][][][][][][][][][][][][][][][]\EU1/LantingheiSCExtralight(0)/m/it/10 滚
  []
 
 
 LaTeX Font Warning: Font shape `EU1/LantingheiSCExtralight(0)/m/sl' undefined
 (Font)              using `EU1/LantingheiSCExtralight(0)/m/n' instead on input 
-line 267.
+line 266.
 
 
-Overfull \hbox (97.0044pt too wide) in paragraph at lines 267--268
+Overfull \hbox (97.0044pt too wide) in paragraph at lines 266--267
 [][][][][][][][][][][][][][][][][][][][]\EU1/LantingheiSCExtralight(0)/m/sl/10 
 要
  []
 
-[10]
+[10] [11]
 Missing character: There is no ， in font Courier New/OT:script=latn;language=DF
 LT;!
 
-Underfull \hbox (badness 10000) in paragraph at lines 335--352
+Underfull \hbox (badness 10000) in paragraph at lines 334--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 335--352
+Underfull \hbox (badness 10000) in paragraph at lines 334--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 335--352
+Underfull \hbox (badness 10000) in paragraph at lines 334--351
 
  []
 
-[11] [12] (./report.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 334--351
+
+ []
+
+[12] (./report.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 14812 strings out of 493734
- 295725 string characters out of 6146348
- 380090 words of memory out of 5000000
- 18050 multiletter control sequences out of 15000+600000
+ 14769 strings out of 493734
+ 295027 string characters out of 6146348
+ 377324 words of memory out of 5000000
+ 18011 multiletter control sequences out of 15000+600000
  6536 words of font info for 43 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  46i,6n,51p,10396b,1552s stack positions out of 5000i,500n,10000p,200000b,80000s

@@ -1,5 +1,4 @@
 \documentclass[a4paper]{article}
-\usepackage {changepage}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage {fontspec}
@@ -65,7 +64,7 @@
 {\center\includegraphics[scale=0.5]{Illustrations/start.png}}\\\\
 4. 这次比实验三多了一个系统调用help.我们可以执行man help 查看这个调用的作用
 {\center\includegraphics[scale=0.5]{Illustrations/manhelp.png}}\\\\
-5. 输入int 33h，执行33h中断，可以看到右上角1/4屏幕打印出一个旋臂
+5. 输入int 33h，执行33h中断，可以看到左上角1/4屏幕打印出一个旋臂
 {\center\includegraphics[scale=0.5]{Illustrations/int33h.png}}\\\\
 6. 继续输入\verb|int 34h,int 35h,int 36h|，可以看到每次都在1/4屏幕上打印一个旋臂，直到生成了纳粹法西斯的标志:万字旗
 {\center\includegraphics[scale=0.5]{Illustrations/allcustomint.png}}\\\\
@@ -75,7 +74,7 @@
 {\center\includegraphics[scale=0.5]{Illustrations/afterclear.png}}\\\\
 9. 输入run 语句来运行用户程序，一共有三个用户程序,一次run可以重复运行多个用户程序
 {\center\includegraphics[scale=0.5]{Illustrations/runseqs.png}}\\\\
-10. 进入用户程序之后键盘中断09h 就被重新修改了中断向量，只要检测到键盘敲击右上角就显示OACH。当敲击4次之后，此用户程序结束
+10. 进入用户程序之后键盘中断09h 就被重新修改了中断向量，只要检测到键盘敲击左上角就显示OACH。当敲击4次之后，此用户程序结束
 {\center\includegraphics[scale=0.5]{Illustrations/ouch.png}}\\\\
 11. 第3个用户程序，里面只有\verb|int 33h int 34h int 35h|这几条语句，可以看到其效果就是现实一个万字旗
 {\center\includegraphics[scale=0.5]{Illustrations/usr3.png}}\\\\
@@ -86,12 +85,12 @@
 
 \section*{ 内存和软盘存储管理}
 \hangindent=4em \hangafter=-50{
-1. 引导程序加载到内存0x7c00处运行
-2. 引导程序将操作系统加载到0x7e00处运行
-3. 操作系统讲用户程序加载到0x1000处运行
-4. 软盘第1个扇区存储操作系统引导程序
-5. 软盘第2～15扇区存储操作系统内核
-6. 软盘第16～18扇区分别存储三个用户程序
+1. 引导程序加载到内存0x7c00处运行\\
+2. 引导程序将操作系统加载到0x7e00处运行\\
+3. 操作系统讲用户程序加载到0x1000处运行\\
+4. 软盘第1个扇区存储操作系统引导程序\\
+5. 软盘第2～15扇区存储操作系统内核\\
+6. 软盘第16～18扇区分别存储三个用户程序\\
 }
 \section*{ 主要函数模块解释}
 \hangindent=4em \hangafter=-50{
@@ -342,7 +341,7 @@
 	15个扇区已经有14个被写满，下次实验考虑优化操作系统的代码使其短小精悍。\\ \indent 在后来在编写键盘中断处理程序的过程中，在
 	编写中断向量号为09h的中断处理程序时由于不了解键盘中断的工作方式，明明写好了中断处理程序却只能第一次按键显示OUCH之后按键就不显示了。后来经过
 	查阅相关资料发现还要对相关端口\verb|61h,60h,20h| 做一些处理才可以继续等待输入下个字符。\\\\
-	实验仍需改进之处：\\
+	实验仍需改进之处：\\\\
 	仍需仔细检查多个中断发生的时候避免多个程序有无同时对同一个寄存器进行改写\\
 	可以考虑增加文件系统\\
 	没有加系统调用表\\
