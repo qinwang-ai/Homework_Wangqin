@@ -1,0 +1,25 @@
+OUCH
+
+
+
+
+
+                   I am User2,My program is running now!
+
+                   User2's program is running,Please Waiting...
+
+
+
+
+
+
+
+                   Program Complete!
+
+                   Press 4 times keyboard for display OUCH and exit...
+
+
+
+
+
+                                                                               /

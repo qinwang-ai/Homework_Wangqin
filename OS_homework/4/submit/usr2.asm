@@ -1,41 +1,53 @@
-org 0xa700		;¼ÓÔØµ½ e0000ÄÚ´æÖĞÖ´ĞĞ
-;org 0x7c00		;¼ÓÔØµ½ e0000ÄÚ´æÖĞÖ´ĞĞ
+org 0x1000		;åŠ è½½åˆ° e0000å†…å­˜ä¸­æ‰§è¡Œ
+;org 0x100		;åŠ è½½åˆ° e0000å†…å­˜ä¸­æ‰§è¡Œ
+
+push ax
+push cx
+push dx
 
 mov ax,cs
 mov es,ax
 mov ds,ax		;es ,ds   = cs
 
+push bp
+
 mov bp,msg		
 mov cx,msg_l
-mov ax,1301h	;01 Ö»ÓĞ×Ö·û´®
+mov ax,1301h	;01 åªæœ‰å­—ç¬¦ä¸²
 mov bx,71D		;Bh is font color
 mov dx,0613h	;position
 int 10h
 					;delay time function 
 mov bp,msg2		
 mov cx,msg2_l
-mov ax,1301h	;01 Ö»ÓĞ×Ö·û´®
+mov ax,1301h	;01 åªæœ‰å­—ç¬¦ä¸²
 mov bx,78D		;Bh is font color
 mov dx,0813h	;position
 int 10h
 
 
-call delay
-
 mov bp,msg3	
 mov cx,msg3_l
-mov ax,1301h	;01 Ö»ÓĞ×Ö·û´®
+mov ax,1301h	;01 åªæœ‰å­—ç¬¦ä¸²
 mov bx,78D		;Bh is font color
 mov dx,1013h	;position
 int 10h
 
+
+pop bp
+pop dx
+pop cx
+pop ax
+
 ;LISTEN_EXIT----
-mov ah,0x00
-int 0x16
+listen:
+	mov ch,'A'
+	cmp ch,cl
+jne listen 
 
 ;--------------------
 
-ret				;ÊÖ¶¯Ìí¼Óret ½áÊøºó·µ»Ø²Ù×÷ÏµÍ³
+ret				;æ‰‹åŠ¨æ·»åŠ ret ç»“æŸåè¿”å›æ“ä½œç³»ç»Ÿ
 
 
 ;-------------------------DATA-----------------
@@ -49,27 +61,14 @@ msg2:
 msg2_l equ $-msg2
 
 msg3:
-	db `Program Complete!\nPress any key to exit...`
+	db `Program Complete!\r\n\r\n                   Press 4 times keyboard for display OUCH and exit...`
 msg3_l equ $-msg3
 
 ;-----------------------FUNTION---------------
 
-delay:
-	mov dx,00
-	timer2:	
-		mov cx,00
-		timer:
-			inc cx
-			cmp cx,60000D
-		jne timer
-		inc dx
-		cmp dx,60000D
-	jne timer2
-	ret
 
 
-
-times 512-($-$$) db 0	;Ìî³äÊ£ÓàÉÈÇø0
+times 512-($-$$) db 0	;å¡«å……å‰©ä½™æ‰‡åŒº0
 
 
 
