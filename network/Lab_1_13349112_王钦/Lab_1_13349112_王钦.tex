@@ -1,12 +1,13 @@
 \documentclass[a4paper]{article}
 \usepackage {changepage}
-
+\usepackage{fancyhdr}
 \usepackage {fontspec}
 \setromanfont{Lantinghei SC Extralight}
 \setmonofont{Courier New}
 \XeTeXlinebreaklocale ``zh''
 \XeTeXlinebreakskip = 0pt plus 1pt
-\newcommand {\mycmdB}[1]{{ \heiti #1}}
+\textheight = 650pt
+\pagestyle{fancy}
 \begin{document}
 \title{实验报告 Lab 1}
 \author{姓名：王钦\quad 学号：13349112}
@@ -15,6 +16,7 @@
 \section*{ Part 1}
 \hangindent=4em \hangafter=-10{
 1. 步骤7中所看到不同的十个协议：\verb|TCP, Http, OICQ, SSHv2, ARP, WebSocket, NBNS, UDP, DHCP, SSH|\\\\
+	{\centering\includegraphics[scale=0.5]{Illustrations/1.png}}\\\\
 2. \verb|13:44:34.604860 - 13:44:31.076031 = 3.573091 second|\\\\
 3. The Internet address of the gaia.cs.umass.edu is \verb|128.119.245.12|,The Internet address of my computer is \verb|192.168.42.125|\\\\
 4. 见压缩包中的\verb|Lab1_print_PDF.pdf| 
@@ -23,6 +25,7 @@
 \section*{ Part 2}
 \hangindent=4em \hangafter=-50{
 1. Broswer http version: \verb|HTTP 1.1|.Server http version: \verb|Http|	\\\\
+
 2. \verb|Accept-language :zh-CN\r\n|	\\\\
 3. My computer's IP: \verb|192.168.42.125|.gaia.cs.umass.edu's IP: \verb|128.119.245.12|\\\\
 4. Status code : \verb|304 Not Modified|\\\\
@@ -48,6 +51,7 @@
 19. \verb|Authorization: Basic d2lyZXNoYXJrLXN0dWRlbnRzOm5ldHdvcms|\\\\
 }
 
+\fancyfoot[OC]{ \footnotesize{https://github.com/wangqin4377/Homework\_Wangqin/tree/master/network/}}
 \end{document}
 
 
