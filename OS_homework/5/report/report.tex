@@ -19,6 +19,7 @@
    %样式
    keywordstyle=\bf\color{blue},
    identifierstyle=\bf,
+   numberstyle=\tiny,
    numberstyle=\color[RGB]{0,192,192},
    commentstyle=\it\color[RGB]{0,96,96},
    stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},
@@ -47,8 +48,8 @@
 (2)扩展MYOS内核，实现上表中的所有(包括你增加的)系统调用，并开发一个用户程序，展示这些系统调用的使用效果。\\
 (3)设计一个C程序库，封闭getch(),gets(),putch(),puts(),scanf()和printf()等利用系统调用实现的细节，并参考下面程序，开发一个用户程序，测试这些函数功能。\\
 
+{\scriptsize
 \begin{lstlisting}[language={C}]
-
 include stdio.h
 main(){
    	char ch,str[80];
@@ -61,10 +62,11 @@ main(){
    	printint(“ch=%c, a=%d, str=%s”, ch, a, str);
 }
 \end{lstlisting}
+}
 
 \section*{ 实验平台}
 \hangindent=4em \hangafter=-10{
-  gcc+nasm+Linux+vim\\
+  gcc+ld+nasm+Linux+vim\\
 }
 
 \section*{ 算法流程图}
@@ -76,298 +78,344 @@ main(){
 \hangindent=4em \hangafter=-50{
 1. 编辑修改ASM 文件,和C文件	\\\\
 2. 使用make命令配合\verb|makefile|文件进行编译	\\\\
-3. 运行\verb|bochs或vmware|虚拟机进行测试,进入后所看到的欢迎界面
+3. 运行\verb|bochs or vmware|虚拟机进行测试,进入后所看到的欢迎界面
 {\center\includegraphics[scale=0.5]{Illustrations/start.png}}\\\\
-4. 这次比实验三多了一个系统调用help.我们可以执行man help 查看这个调用的作用
-{\center\includegraphics[scale=0.5]{Illustrations/manhelp.png}}\\\\
-5. 输入int 33h，执行33h中断，可以看到左上角1/4屏幕打印出一个旋臂
-{\center\includegraphics[scale=0.5]{Illustrations/int33h.png}}\\\\
-6. 继续输入\verb|int 34h,int 35h,int 36h|，可以看到每次都在1/4屏幕上打印一个旋臂，直到生成了纳粹法西斯的标志:万字旗
-{\center\includegraphics[scale=0.5]{Illustrations/allcustomint.png}}\\\\
-7. 继续输入几个系统调用程序的名字,\verb|date time asc..|可以看到屏幕向上滚动，其实这个功能在上个实验已经实现
-{\center\includegraphics[scale=0.5]{Illustrations/syscall.png}}\\\\
-8. 现在输入clear命令清除屏幕
-{\center\includegraphics[scale=0.5]{Illustrations/afterclear.png}}\\\\
-9. 输入run 语句来运行用户程序，一共有三个用户程序,一次run可以重复运行多个用户程序
-{\center\includegraphics[scale=0.5]{Illustrations/runseqs.png}}\\\\
-10. 进入用户程序之后键盘中断09h 就被重新修改了中断向量，只要检测到键盘敲击左上角就显示OACH。当敲击4次之后，此用户程序结束
-{\center\includegraphics[scale=0.5]{Illustrations/ouch.png}}\\\\
-11. 第3个用户程序，里面只有\verb|int 33h int 34h int 35h|这几条语句，可以看到其效果就是现实一个万字旗
-{\center\includegraphics[scale=0.5]{Illustrations/usr3.png}}\\\\
-12. 执行完所有用户程序之后，重新返回操作系统
-{\center\includegraphics[scale=0.5]{Illustrations/backos.png}}\\\\
-13. 在上述效果图中可以看到右下角始终有一个横杠在转动\\\\
+4. 这次比实验四多了一个系统内置程序\verb|python|,我们可以执行\verb|man python |\\查看他的作用，主要功能是输入一个数学表达式然后返回表达式的结果，类似\verb|python|命令行的作用。
+但目前这个工具只支持加法和减法且只能有两个操作数（其实主要为了展示\verb|ah=3,4|将字符串转为数值和将数值转为字符串的系统调用效果），我这里仿照\verb|linux|系统的系统调用，设置
+\verb|int 80h |为所有系统调用的入口。可以看到图中分别输入加法减法，返回计算结果。如果输入的不符合格式就会返回错误提示。最后输入\verb|exit|退出\verb|python|命令行工具。
+{\center\includegraphics[scale=0.5]{Illustrations/python.png}}\\\\
+5. 接下来测试ah等于\verb|0,1,2,5|的系统调用(显示\verb|OUCH|，字母大小写变化等)，输入\verb| run 2 |,运行第二个用户程序，
+{\center\includegraphics[scale=0.5]{Illustrations/syscall0125.png}}\\\\
+
+下面是第二个用户程序的代码：
+{\scriptsize
+	\begin{lstlisting}[language={C}]
+org 0x1000
+;org 0x100
+
+;#0
+mov ah,0
+int 80h
+
+;LISTEN_EXIT----
+listen0:
+	mov ah,0
+	int 16h
+
+
+;#2
+mov ax,0xb800
+mov es,ax
+mov dx,1994D
+mov ah,2
+int 80h
+
+;LISTEN_EXIT----
+	mov ah,0
+	int 16h
+
+;#1
+mov ax,0xb800
+mov es,ax
+mov dx,1994D
+mov ah,1
+int 80h
+
+;LISTEN_EXIT----
+	mov ah,0
+	int 16h
+
+
+
+;#5
+mov ax,cs
+mov ds,ax
+mov es,ax
+
+mov cx,0317h  ;position
+mov ah,5
+mov dx,msg
+int 80h
+
+
+;LISTEN_EXIT----
+listen:
+	mov ah,0
+	int 16h
+
+ret
+
+
+
+msg:
+	db "hello world!"
+
+times 512-($-$$) db 0	;填充剩余扇区0
+
+
+
+	\end{lstlisting}}
+下面我们将上面代码分解一下，详细介绍。\\\\
+5.1 首先执行执行\verb|ah=0|的系统调用将\verb| OUCH |  打印在屏幕中间
+{\scriptsize
+\begin{lstlisting}[language={C}]
+org 0x1000
+;org 0x100
+
+;#0
+mov ah,0
+int 80h
+;LISTEN_EXIT----
+listen0:
+	mov ah,0
+	int 16h
+
+	\end{lstlisting}}
+{\center\includegraphics[scale=0.4]{Illustrations/syscall0.png}}\\\\
+5.2 现在按下任意键，将执行\verb|ah=2|的系统调用把\verb| OUCH|的第一个字母大写O变成小写o\\\\
+{\scriptsize
+\begin{lstlisting}[language={C}]
+;#2
+mov ax,0xb800
+mov es,ax
+mov dx,1994D
+mov ah,2
+int 80h
+
+;LISTEN_EXIT----
+	mov ah,0
+	int 16h
+
+	\end{lstlisting}}
+{\center\includegraphics[scale=0.4]{Illustrations/syscall2.png}}\\\\
+5.3 按下任意键，执行\verb|ah=1|的系统调用把\verb| oUCH|的第一个字母小写o变回大写O\\\\
+{\scriptsize
+\begin{lstlisting}[language={C}]
+;#1
+mov ax,0xb800
+mov es,ax
+mov dx,1994D
+mov ah,1
+int 80h
+
+;LISTEN_EXIT----
+	mov ah,0
+	int 16h
+
+
+	\end{lstlisting}}
+{\center\includegraphics[scale=0.4]{Illustrations/syscall1.png}}\\\\
+5.4 按下任意键，执行\verb|ah=5|的系统调用在屏幕3行17列的位置打印一个\verb|helloworld|
+{\scriptsize
+\begin{lstlisting}[language={C}]
+;#5
+mov ax,cs
+mov ds,ax
+mov es,ax
+
+mov cx,0317h  ;position
+mov ah,5
+mov dx,msg
+int 80h
+
+
+;LISTEN_EXIT----
+listen:
+	mov ah,0
+	int 16h
+
+ret
+
+msg:
+	db "hello world!"
+	\end{lstlisting}}
+
+{\center\includegraphics[scale=0.4]{Illustrations/syscall5.png}}\\\\
+5.5 返回操作系统\\\\
+6. 接下来我们测试封装的osclib\_share.c库里面实验所要求的\\
+\verb|getch,gets,scanf,putch,putch,printint| ,输入\verb|run 1|执行第一个用户程序\\
+代码如下:\\
+{\scriptsize\begin{lstlisting}[language={C}]
+void main(){
+	screen_init();
+	getch( &ch);
+	gets( key);
+	putch('\r');
+	putch('\n');
+	scanf("a=%d",&a);
+
+	putch( ch);
+	puts( key);
+	printint( "ch=%c,a=%d,str=%s",ch,a,key);
+
+	wait_key();
 }
+
+\end{lstlisting}}
+6.1 首先程序等待输入一个字符
+{\center\includegraphics[scale=0.4]{Illustrations/usr1_wait.png}}\\\\
+6.2 输入字符 C,回车再输入一个字符串\verb|I am a string|回车
+{\center\includegraphics[scale=0.4]{Illustrations/usr1_inputstr.png}}\\\\
+6.3 再输入一个int类型的数字16,回车后执行下面代码\\
+{\scriptsize\begin{lstlisting}[language={C}]
+	putch( ch);
+	puts( key);
+	printint( "ch=%c,a=%d,str=%s",ch,a,key);
+\end{lstlisting}}
+可以看到相继打印出了之前输入的内容
+{\center\includegraphics[scale=0.4]{Illustrations/usr1_over.png}}\\\\
+
+7. 和之前的实验一样，内核也有设置中断,系统内置程序和重复运行多个用户程序，这里就不再赘述了。
+{\center\includegraphics[scale=0.4]{Illustrations/runseq.png}}\\\\
+{\center\includegraphics[scale=0.4]{Illustrations/allcustomint.png}}\\\\
+{\center\includegraphics[scale=0.4]{Illustrations/usr3.png}}\\\\
 
 \section*{ 内存和软盘存储管理}
 \hangindent=4em \hangafter=-50{
 1. 引导程序加载到内存0x7c00处运行\\
 2. 引导程序将操作系统加载到0x7e00处运行\\
 3. 操作系统讲用户程序加载到0x1000处运行\\
-4. 软盘第1个扇区存储操作系统引导程序\\
-5. 软盘第2～15扇区存储操作系统内核\\
-6. 软盘第16～18扇区分别存储三个用户程序\\
+4. 软盘第1个柱面的第一个扇区存储操作系统引导程序\\
+5. 软盘第1个柱面剩下所有扇区2～36扇区存储操作系统内核\\
+6. 软盘第\verb|2,3,4|柱面分别存储三个用户程序\\
+更多细节信息请阅读我的Makefile文件
 }
 \section*{ 主要函数模块解释}
 \hangindent=4em \hangafter=-50{
-	内核架构解释：os.c为内核主要控制模块，osclib.c os.asm主要为os.c提供函数实现.oslib.asm 为osclib.c提供更底层的函数封装\\\\
-	1. \verb|os.c: main| 函数模块，这个在实验三报告中已经解释这里就不在赘述
+	内核架构解释：\\
+	\verb|os.c|为内核主要控制模块\\
+	\verb|osclib.c os.asm|主要为\verb|os.c|提供函数实现.\\
+	\verb|oslib.asm| 为\verb|osclib.c|提供更底层的函数封装\\
+	\verb|osclib_share.c,oslib_share.asm| 为用户程序中所需要用到的函数，从\verb|osclib.c oslib.asm|中取出一部分作为内核和用户的共享库(使用户程序体积减少)。\\
+	\verb|os_syscall.asm| 初始化系统调用和设置系统调用相关模块\\
+	更多细节信息请阅读我的Makefile文件\\\\
+
+	1. \verb|os.c: main| 函数模块，这个在之前报告中已经解释这里就不在赘述
+{\scriptsize\begin{lstlisting}[language={C}]
+void main(){
+	//--------------------init
+	init_ss();
+	screen_init();
+	interrupt_init();
+	syscall_init();
+	print_welcome_msg();
+	print_message();
+	print_flag(); //root@wangqin4377@:   position
+	//--------------------init_end
+
+	while(1){
+		char length = listen_key();
+		if_screen_scroll(); //bottom of screen
+		flag_scroll();//move flag to next line
+		print_flag();
+	}
+}
+ \end{lstlisting}}
+	2. 本次试验主要为了实现系统调用的工作，故在 os.asm中实现了下列函数供设置系统调用使用
+{\scriptsize
 	\begin{lstlisting}[language={C}]
-
- void main(){
-     init_ss();
-     screen_init();
-     interrupt_init();
-     print_welcome_msg();
-     print_message();
-     print_flag(); //root@wangqin4377@:   position
-
-     while(1){
-         char length = listen_key();
-
-         unsigned short int now_row = get_pointer_pos()/256;
-         if( now_row >23){       // 0~24   24 is deeplist line
-             while( screen_sc_T--){
-                 scroll_screen();
-                 flag_scroll_up();
-             }
-         }
-
-         flag_scroll();//move flag to next line
-         print_flag();
-     }
- }
-	\end{lstlisting}
-	2. 本次试验主要为了实现对中断向量表的修改工作，故在 os.asm中实现了下列函数为修改中断向量表提供调用
-	\begin{lstlisting}[language={C}]
-	;insert a interrupt vector
-	insert_interrupt_vector:
-	mov ax,0
-	mov es,ax
-	mov bx,[ interrupt_num]
-	shl bx,2 ;interrupt num * 4 = entry
-	mov ax,cs
-	shl eax,8  ;shl 8 bit   *16
-	mov ax,[ interrupt_vector_offset]
-	mov [es:bx], eax
+	;---PARAM: ah is syscall num   ebx is address of syscall  bx:temp cx:function ax:sysnum
+	setting_up_syscall:
+	mov bx,0
+	mov es,bx
+	mov al,ah
+	mov ah,0
+	shl al,2
+	mov bx,0xfe00
+	add bx,ax
+	mov [es:bx],ecx
 	ret
-	\end{lstlisting}
-	3. 要修改键盘中断的中断向量的时候，要考虑用户程序执行完了再把09h中断向量修改回去。所以要几个变量来保存之前09h指向的地址
-	另外执行用户程序的时候用户press下key的时候，按下和抬起分别会触发09h中断故要开一个变量j来区分是按下还是抬起。i表示09中断被触发几次，达到4次即4*2=8则返回内核
-	oslib.asm:
+	\end{lstlisting}}
+	3. 初始化设置系统调用,设置全部6个系统调用功能，调用上面的函数实现
+
+{\scriptsize
 	\begin{lstlisting}[language={C}]
+syscall_init:
 
-	var:
-	i db 0      ;counter
-	j db 0      ;reverse every time  0101
-	flag db 0
-	duan_1 dw 0
-	offset_1 dw 0
-	\end{lstlisting}
-	4. 此为设置09h中断和执行用户程序的nasm代码
+;----#0 syscall
+mov ah,0
+mov ecx,0
+mov cx,display_center_ouch
+call setting_up_syscall
+
+;----#1 syscall
+mov ah,1
+mov ecx,0
+mov cx,letter_upper
+call setting_up_syscall
+
+;----#2 syscall
+mov ah,2
+mov ecx,0
+mov cx,letter_lower
+call setting_up_syscall
+
+;----#3 syscall
+mov ah,3
+mov ecx,0
+mov cx,atoi_syscall
+call setting_up_syscall
+
+;----#4 syscall
+mov ah,4
+mov ecx,0
+mov cx,itoa_syscall
+call setting_up_syscall
+
+;----#5 syscall
+mov ah,5
+mov ecx,0
+mov cx,display_str
+call setting_up_syscall
+ret
+	\end{lstlisting}}
+	4. 对\verb|scanf,printint,gets..|等函数的封装:
+	其实这些函数在之前的实验中已经实现，只是名字不一样罢了。本次实验单独抽出来相关代码放在osclib\_share.c中。
+	{\scriptsize
 	\begin{lstlisting}[language={C}]
-	run_user:
-	push ecx
-	push ax
-	call screen_init
-
-	;---------------------update 09 vector
-	cli
-	mov ax,0
-	mov es,ax
-	mov ecx,[ es:36]            ;backup
-	mov [ duan_1],ecx
-
-	mov ax,0x09
-	mov [ interrupt_num], ax
-	mov ax, key_detect
-	mov [ interrupt_vector_offset],ax
-	call insert_interrupt_vector
-	mov ax,0
-	mov [i],ax
-	sti
-	;--------------------run
-	call 0x1000
-
-	;--------------------reset 09 vector
-	mov ax,0
-	mov es,ax
-	mov ecx,[ duan_1]
-	mov [ es:36],ecx
-
-	pop ax
-	pop ecx
-	ret
-	\end{lstlisting}
-	5. 系统初始化设置各个中断
+	\end{lstlisting}}
+	5. python命令行工具：存放在\verb|python_extension.c|中,主要功能的就是使用系统调用实现字符串和数值之间的转换。
 	\begin{lstlisting}[language={C}]
-	interrupt_init:
-	mov ax,cs
-	mov ds,ax
+	unsigned short int itoa_temp;
+	char * itoa_ans;
+	char * itoa( short int x){
+		itoa_temp = x;
+		__asm__("mov $4,%ah");  // syscall num
+		__asm__("push %bp");
+		__asm__("int $0x80");	// syscall
+		__asm__("pop %bp");
+		return itoa_ans;
+	}
 
-	;#1  setting up time interrupt
-	mov ax,0x1c
-	mov [ interrupt_num], ax
-	mov ax, print_corner
-	mov [ interrupt_vector_offset],ax
-	call insert_interrupt_vector
-
-	;#2 int 33
-	mov ax,0x33
-	mov [ interrupt_num], ax
-	mov ax, process_int33
-	mov [ interrupt_vector_offset],ax
-	call insert_interrupt_vector
-
-	;#3 int 34
-	mov ax,0x34
-	mov [ interrupt_num], ax
-	mov ax, process_int34
-	mov [ interrupt_vector_offset],ax
-	call insert_interrupt_vector
-
-	;#4 int 35
-	mov ax,0x35
-	mov [ interrupt_num], ax
-	mov ax, process_int35
-	mov [ interrupt_vector_offset],ax
-	call insert_interrupt_vector
-
-	;#5 int 36
-	mov ax,0x36
-	mov [ interrupt_num], ax
-	mov ax, process_int36
-	mov [ interrupt_vector_offset],ax
-	call insert_interrupt_vector
-
-	ret
-	\end{lstlisting}
-	6. 循环打印’|’、’/’和’$\backslash$’
-	\begin{lstlisting}[language={C}]
-	print_corner:
-	; \ / [
-	  mov ax,cs
-	  mov ds,ax
-	  mov ax,0xb800
-	  mov es,ax
-
-	  mov dl,30
-	  mov al,[ pointer]       ; alert:  must be al  dont ax
-	  cmp al,dl
-	  jne next_print_c
-	  mov byte [ pointer], 0
-	  jmp cotinue_corner
-
-	  next_print_c:
-	  mov eax, cornerstring
-	  mov ebx,0
-	  mov bl,[ pointer]           ;ebx is added sum
-	  add eax,ebx
-	  mov al,[ eax]
-
-	  inc ebx
-	  mov [ pointer],bl
-
-	  mov bx,3998D
-	  mov [ es:bx],al
-
-	  cotinue_corner:
-	  iret
-
-	  var:
-	  flag_position dd 0x1000							;滚屏相关
-	  interrupt_num dw 0x1c               ;init		
-	  interrupt_vector_offset dw 0x7c00   ;init
-	  pointer db 0
-	  cornerstring db '\\\\\\\\\\||||||||||//////////'		;要循环打印的字符
-	  ;int_user_num db 0
-
-
-	\end{lstlisting}
-
-	7. 显示OACH
-	\begin{lstlisting}[language={C}]
-	key_detect:
-	cli
-	push ax
-	push bx
-	mov ax,0xb800
-	mov es,ax
-
-	in al,60h
-	in al,61h
-	or al,80h
-	out 61h,al
-	mov al,61h
-	out 20h,al
-
-	mov bl,0
-	mov bh,[j]
-	cmp bl,bh
-	je change1
-
-	mov bh,0
-	mov [j],bh
-	mov byte [es:00],'O'
-	mov byte [es:02],'U'
-	mov byte [es:04],'C'
-	mov byte [es:06],'H'
-
-	jmp next_de
-
-	change1:
-	mov bh,1
-	mov [j],bh
-
-	mov byte [es:00],' '
-	mov byte [es:02],' '
-	mov byte [es:04],' '
-	mov byte [es:06],' '
-
-	next_de:
-
-	mov bl,[i]
-	inc bl
-	mov [i],bl
-	mov bh,8        ;press key 8 times
-	cmp bh,bl
-	jle closesti
-	jmp niret
-	closesti:
-	mov cl,'A'
-
-	niret:
-
-	pop bx
-	pop ax
-	sti
-	iret
+	char *atoi_temp;
+	unsigned short int atoi_ans;
+	unsigned short int atoi( char * str){
+		atoi_temp = str;
+		__asm__("mov $3,%ah");  // syscall num
+		__asm__("int $0x80");	//syscall
+		return atoi_ans;
+	}
 	\end{lstlisting}
 }
 
 \section*{ 实验心得及仍需改进之处}
 \hangindent=4em \hangafter=-50{
     实验心得:\\\\
-\indent	通过本次实验我了解了x86架构下中断的机制和原理，通过手动编写中断处理程序和修改添加中断向量表中的中断向量实现了本实验的所有要求。
-	在时钟中断的模块，刚开始打算改写08h的中断向量，后来经过网上查阅资料得知硬件中断08h会自动触发中断号为1ch的时钟中断，又叫\verb|time-tick|中断。
-	通过改写1ch的中断处理程序即可实现时钟中断效果。\\ \indent 在后来的实验过程中发现有的用户程序无法读入内存，经过一番调试之后才发现自己操作系统太过庞大
-	占用了15个扇区，加上四个用户程序和一个引导扇区共需要19个扇区，我只好减少了一个用户程序。并且把
-	所有内联函数改为函数调用。最后只放了三个用户程序(其中最后一个将自动执行自定义的\verb|int 33，int 34, int 35, 36|中断)。估计在后面的试验中会不断的丰富操作系统的功能，
-	目前我存储操作系统的
-	15个扇区已经有14个被写满，下次实验考虑优化操作系统的代码使其短小精悍。\\ \indent 在后来在编写键盘中断处理程序的过程中，在
-	编写中断向量号为09h的中断处理程序时由于不了解键盘中断的工作方式，明明写好了中断处理程序却只能第一次按键显示OUCH之后按键就不显示了。后来经过
-	查阅相关资料发现还要对相关端口\verb|61h,60h,20h| 做一些处理才可以继续等待输入下个字符。\\\\
+	\indent	通过本次试验我手动编写仿照linux的系统调用通过设置功能号ah然后使用int 80h中断来调用系统服务，让我了解了用户调用内核的系统服务的机制和原理
+	在实验的过程中遇到了很多问题，比如设置好系统服务程序后，使用\verb|int 80h| 调用的时候却无法工作。通过使用bochs来调试解决了。
+	\\ \indent 总结一下所有的bug分为两类：一类是因为自己缺乏相关知识或经验错误的使用了一些指令导致的，另一类就是自己粗心大意，在细节上没有处理好，结果调试很久才发现是一个小细节上疏忽了。对我
+	而言后一类是经常遇到的，以后的实验一定在编写代码的时候一定要非常谨慎，必须每一步都要考虑操作系统全局的实现，必须要先规划好层次和模块再去实现,不能茫然的
+	直接开始写代码。其中如何将实验要求的实现系统服务功能展示出来我就换了很多种方式，最后确定功能好为\verb|3,4| 的在python 命令行工具使用的过程中展示，其他的
+	在用户程序2中展示。
+	\\ \indent 在做封装c的一些函数的时候，因为之前实验已经做好了那些函数，但是这些函数都和庞大的\verb|osclib.c os.asm oslib.asm|密不可分，我就直接将这三个很大的
+	类库与用户1的程序联合编译，结果可想而知导致用户1的程序非常大，只能改变用户程序的存储方式，原来是一个扇区存储一个用户程序，改为一个柱面存储一个用户程序。后来
+    我将用户1程序中c函数所用到的一些代码从庞大的三个文件中分离出来，建立一个操作系统和用户的共享库\verb|osclib_share.c oslib_share.asm|。使得用户1的体积减小了五倍,
+	只占两个扇区。希望在以后的实验中能实现在内核中直接可以解析执行elf文件，这样用户程序就可以已elf的格式存在，动态链接操作系统的类库，而不是自己也带一份一模一样的。\\\\
 	实验仍需改进之处：\\\\
-	仍需仔细检查多个中断发生的时候避免多个程序有无同时对同一个寄存器进行改写\\
-	可以考虑增加文件系统\\
-	没有加系统调用表\\
+	仍需完善细节，比如说python的命令行工具加入乘法，除法完全是几行代码的问题\\
+	可以考虑将用户程序做成elf格式，动态链接系统的代码库。目前的情况是用户程序自己带着一份和操作系统一样的代码库，分别联合编译\\
 	考虑精简操作系统代码，减少冗余代码\\
-	继续优化调整内核架构\\
+	继续优化调整内核架构和内存磁盘管理\\
 }
-
-
-
-
-
 
 \end{document}
