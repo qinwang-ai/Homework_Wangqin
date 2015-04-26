@@ -86,7 +86,6 @@ inline char listen_key(){
 		key[i] = temp;	
 		if(i<63)i++;
 		printToscn( temp);
-		print_corner();
 	}
 	key[i] = '\0';
 	screen_sc_T = 1;

@@ -43,7 +43,7 @@ print_corner:
 		mov es,ax
 		mov bx,3998D
 		mov ax,[bp+4]
-		mov byte [es:bx],ax
+		mov [es:bx],ax
 ret
 
 screen_init_last_line:               ;make last line white

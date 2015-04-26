@@ -6,3 +6,10 @@ perl -npe "s/\n/\r\n/g" original.txt > dosformat.txt
 33+31 = 64
 65 +31=96
 
+
+c调用nasm  c 向栈里push两个字，汇编函数结束后pop一个字。故需要手动删掉一个字
+
+
+
+
+
