@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2015.3.30)  26 APR 2015 21:24
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2015.3.30)  27 APR 2015 16:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -454,7 +454,7 @@ LaTeX Info: Redefining \upshape on input line 2102.
 . <->"Courier New/BI/ICU:script=latn;language=DFLT;"
 .................................................
 
-No file report.aux.
+(./report.aux)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
@@ -473,7 +473,7 @@ LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
 LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 30.
 LaTeX Font Info:    Try loading font information for T3+cmr on input line 30.
-(/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3cmr.fd
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
 LaTeX Font Info:    ... okay on input line 30.
@@ -584,25 +584,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--71
  []
 
 
-LaTeX Warning: File `Illustrations/flow.png' not found on input line 74.
+Underfull \hbox (badness 10000) in paragraph at lines 79--97
 
-./report.tex:74: Unable to load picture or PDF file 'Illustrations/flow.png'.
-<to be read again> 
-                   }
-l.74 ...raphics[scale=0.5]{Illustrations/flow.png}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
+ []
 
-File: Illustrations/flow.png Graphic file (type QTm)
-<use  "Illustrations/flow.png" >
-./report.tex:74: Unable to load picture or PDF file 'Illustrations/flow.png'.
-<to be read again> 
-                   \GXT@clipend 
-l.74 ...raphics[scale=0.5]{Illustrations/flow.png}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--97
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--97
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--97
+
+ []
 
 [1
 
@@ -616,491 +615,328 @@ Underfull \hbox (badness 10000) in paragraph at lines 100--103
 
  []
 
-
-LaTeX Warning: File `Illustrations/start.png' not found on input line 103.
-
-./report.tex:103: Unable to load picture or PDF file 'Illustrations/start.png'.
-<to be read again> 
-                   }
-l.103 ...phics[scale=0.5]{Illustrations/start.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
 File: Illustrations/start.png Graphic file (type QTm)
 <use  "Illustrations/start.png" >
-./report.tex:103: Unable to load picture or PDF file 'Illustrations/start.png'.
-<to be read again> 
-                   \GXT@clipend 
-l.103 ...phics[scale=0.5]{Illustrations/start.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
+Overfull \hbox (20.21199pt too wide) in paragraph at lines 103--107
+[][] 
+ []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 103--107
 
  []
 
-
-LaTeX Warning: File `Illustrations/python.png' not found on input line 107.
-
-./report.tex:107: Unable to load picture or PDF file 'Illustrations/python.png'
-.
-<to be read again> 
-                   }
-l.107 ...hics[scale=0.5]{Illustrations/python.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
+[2]
 File: Illustrations/python.png Graphic file (type QTm)
-<use  "Illustrations/python.png" >
-./report.tex:107: Unable to load picture or PDF file 'Illustrations/python.png'
-.
-<to be read again> 
-                   \GXT@clipend 
-l.107 ...hics[scale=0.5]{Illustrations/python.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 107--110
-
+ <use  "Illustrations/python.png" >
+Overfull \hbox (49.5714pt too wide) in paragraph at lines 107--109
+[][] 
  []
 
-[2]
 
-LaTeX Warning: File `Illustrations/syscall0125.png' not found on input line 110
-.
+Underfull \hbox (badness 10000) in paragraph at lines 107--109
 
-./report.tex:110: Unable to load picture or PDF file 'Illustrations/syscall0125
-.png'.
-<to be read again> 
-                   }
-l.110 ...scale=0.5]{Illustrations/syscall0125.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
+ []
 
 File: Illustrations/syscall0125.png Graphic file (type QTm)
 <use  "Illustrations/syscall0125.png" >
-./report.tex:110: Unable to load picture or PDF file 'Illustrations/syscall0125
-.png'.
-<to be read again> 
-                   \GXT@clipend 
-l.110 ...scale=0.5]{Illustrations/syscall0125.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
+Overfull \hbox (43.24783pt too wide) in paragraph at lines 109--110
+[][] 
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
-
- []
-
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 122.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 122.
-
-LaTeX Font Warning: Font shape `EU1/LantingheiSCExtralight(0)/m/sl' undefined
-(Font)              using `EU1/LantingheiSCExtralight(0)/m/n' instead on input 
-line 173.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 180--183
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
 
 [3]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 121.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 121.
+ [4]
 
-LaTeX Warning: File `Illustrations/syscall0.png' not found on input line 196.
+LaTeX Font Warning: Font shape `EU1/LantingheiSCExtralight(0)/m/sl' undefined
+(Font)              using `EU1/LantingheiSCExtralight(0)/m/n' instead on input 
+line 172.
 
-./report.tex:196: Unable to load picture or PDF file 'Illustrations/syscall0.pn
-g'.
-<to be read again> 
-                   }
-l.196 ...cs[scale=0.4]{Illustrations/syscall0.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--182
+
+ []
 
 File: Illustrations/syscall0.png Graphic file (type QTm)
 <use  "Illustrations/syscall0.png" >
-./report.tex:196: Unable to load picture or PDF file 'Illustrations/syscall0.pn
-g'.
-<to be read again> 
-                   \GXT@clipend 
-l.196 ...cs[scale=0.4]{Illustrations/syscall0.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
+Overfull \hbox (16.34666pt too wide) in paragraph at lines 195--198
+[][] 
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--199
+Underfull \hbox (badness 10000) in paragraph at lines 195--198
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--199
+Underfull \hbox (badness 10000) in paragraph at lines 195--198
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--199
+Underfull \hbox (badness 10000) in paragraph at lines 195--198
 
  []
-
-
-LaTeX Warning: File `Illustrations/syscall2.png' not found on input line 212.
-
-./report.tex:212: Unable to load picture or PDF file 'Illustrations/syscall2.pn
-g'.
-<to be read again> 
-                   }
-l.212 ...cs[scale=0.4]{Illustrations/syscall2.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
 
 File: Illustrations/syscall2.png Graphic file (type QTm)
 <use  "Illustrations/syscall2.png" >
-./report.tex:212: Unable to load picture or PDF file 'Illustrations/syscall2.pn
-g'.
-<to be read again> 
-                   \GXT@clipend 
-l.212 ...cs[scale=0.4]{Illustrations/syscall2.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
+Overfull \hbox (20.4118pt too wide) in paragraph at lines 211--214
+[][] 
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--215
+Underfull \hbox (badness 10000) in paragraph at lines 211--214
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--215
+Underfull \hbox (badness 10000) in paragraph at lines 211--214
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--215
+Underfull \hbox (badness 10000) in paragraph at lines 211--214
 
  []
 
-
-LaTeX Warning: File `Illustrations/syscall1.png' not found on input line 229.
-
-./report.tex:229: Unable to load picture or PDF file 'Illustrations/syscall1.pn
-g'.
-<to be read again> 
-                   }
-l.229 ...cs[scale=0.4]{Illustrations/syscall1.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
+[5]
 File: Illustrations/syscall1.png Graphic file (type QTm)
-<use  "Illustrations/syscall1.png" >
-./report.tex:229: Unable to load picture or PDF file 'Illustrations/syscall1.pn
-g'.
-<to be read again> 
-                   \GXT@clipend 
-l.229 ...cs[scale=0.4]{Illustrations/syscall1.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
+ <use  "Illustrations/syscall1.png" >
+Overfull \hbox (14.08824pt too wide) in paragraph at lines 228--231
+[][] 
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--232
+Underfull \hbox (badness 10000) in paragraph at lines 228--231
 
  []
 
 
-Overfull \hbox (22.97202pt too wide) in paragraph at lines 229--232
+Overfull \hbox (22.97202pt too wide) in paragraph at lines 228--231
 \EU1/LantingheiSCExtralight(0)/m/n/10 5.4 按 下 任 意 键， 执 行[]\EU1/CourierNew(0)/m/
 n/10 ah=5\EU1/LantingheiSCExtralight(0)/m/n/10 的 系 统 调 用 在 屏 幕 3 行 17 列 的 位 置 打
  印 一 个[]\EU1/CourierNew(0)/m/n/10 helloworld 
  []
 
-
-LaTeX Warning: File `Illustrations/syscall5.png' not found on input line 255.
-
-./report.tex:255: Unable to load picture or PDF file 'Illustrations/syscall5.pn
-g'.
-<to be read again> 
-                   }
-l.255 ...cs[scale=0.4]{Illustrations/syscall5.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
+[6]
 File: Illustrations/syscall5.png Graphic file (type QTm)
-<use  "Illustrations/syscall5.png" >
-./report.tex:255: Unable to load picture or PDF file 'Illustrations/syscall5.pn
-g'.
-<to be read again> 
-                   \GXT@clipend 
-l.255 ...cs[scale=0.4]{Illustrations/syscall5.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
+ <use  "Illustrations/syscall5.png" >
+Overfull \hbox (1.89279pt too wide) in paragraph at lines 254--256
+[][] 
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--260
+Underfull \hbox (badness 10000) in paragraph at lines 254--256
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--260
+Underfull \hbox (badness 10000) in paragraph at lines 254--256
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--260
+Underfull \hbox (badness 10000) in paragraph at lines 254--256
 
  []
-
-[4]
-
-LaTeX Warning: File `Illustrations/usr1_wait.png' not found on input line 278.
-
-./report.tex:278: Unable to load picture or PDF file 'Illustrations/usr1_wait.p
-ng'.
-<to be read again> 
-                   }
-l.278 ...s[scale=0.4]{Illustrations/usr1_wait.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-File: Illustrations/usr1_wait.png Graphic file (type QTm)
-<use  "Illustrations/usr1_wait.png" >
-./report.tex:278: Unable to load picture or PDF file 'Illustrations/usr1_wait.p
-ng'.
-<to be read again> 
-                   \GXT@clipend 
-l.278 ...s[scale=0.4]{Illustrations/usr1_wait.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 278--280
-
- []
-
-
-LaTeX Warning: File `Illustrations/usr1_inputstr.png' not found on input line 2
-80.
-
-./report.tex:280: Unable to load picture or PDF file 'Illustrations/usr1_inputs
-tr.png'.
-<to be read again> 
-                   }
-l.280 ...ale=0.4]{Illustrations/usr1_inputstr.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-File: Illustrations/usr1_inputstr.png Graphic file (type QTm)
-<use  "Illustrations/usr1_inputstr.png" >
-./report.tex:280: Unable to load picture or PDF file 'Illustrations/usr1_inputs
-tr.png'.
-<to be read again> 
-                   \GXT@clipend 
-l.280 ...ale=0.4]{Illustrations/usr1_inputstr.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 280--282
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 280--282
-
- []
-
-
-LaTeX Warning: File `Illustrations/usr1_over.png' not found on input line 288.
-
-./report.tex:288: Unable to load picture or PDF file 'Illustrations/usr1_over.p
-ng'.
-<to be read again> 
-                   }
-l.288 ...s[scale=0.4]{Illustrations/usr1_over.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-File: Illustrations/usr1_over.png Graphic file (type QTm)
-<use  "Illustrations/usr1_over.png" >
-./report.tex:288: Unable to load picture or PDF file 'Illustrations/usr1_over.p
-ng'.
-<to be read again> 
-                   \GXT@clipend 
-l.288 ...s[scale=0.4]{Illustrations/usr1_over.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 288--289
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 288--289
-
- []
-
-
-LaTeX Warning: File `Illustrations/runseq.png' not found on input line 291.
-
-./report.tex:291: Unable to load picture or PDF file 'Illustrations/runseq.png'
-.
-<to be read again> 
-                   }
-l.291 ...hics[scale=0.4]{Illustrations/runseq.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-File: Illustrations/runseq.png Graphic file (type QTm)
-<use  "Illustrations/runseq.png" >
-./report.tex:291: Unable to load picture or PDF file 'Illustrations/runseq.png'
-.
-<to be read again> 
-                   \GXT@clipend 
-l.291 ...hics[scale=0.4]{Illustrations/runseq.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 291--292
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 291--292
-
- []
-
-
-LaTeX Warning: File `Illustrations/allcustomint.png' not found on input line 29
-2.
-
-./report.tex:292: Unable to load picture or PDF file 'Illustrations/allcustomin
-t.png'.
-<to be read again> 
-                   }
-l.292 ...cale=0.4]{Illustrations/allcustomint.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
 
 File: Illustrations/allcustomint.png Graphic file (type QTm)
 <use  "Illustrations/allcustomint.png" >
-./report.tex:292: Unable to load picture or PDF file 'Illustrations/allcustomin
-t.png'.
-<to be read again> 
-                   \GXT@clipend 
-l.292 ...cale=0.4]{Illustrations/allcustomint.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 292--293
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 292--293
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
+
+ []
+
+[7]
+File: Illustrations/usr2.png Graphic file (type QTm)
+ <use  "Illustrations/usr2.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
 
  []
 
 
-LaTeX Warning: File `Illustrations/usr3.png' not found on input line 293.
-
-./report.tex:293: Unable to load picture or PDF file 'Illustrations/usr3.png'.
-<to be read again> 
-                   }
-l.293 ...aphics[scale=0.4]{Illustrations/usr3.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-File: Illustrations/usr3.png Graphic file (type QTm)
-<use  "Illustrations/usr3.png" >
-./report.tex:293: Unable to load picture or PDF file 'Illustrations/usr3.png'.
-<to be read again> 
-                   \GXT@clipend 
-l.293 ...aphics[scale=0.4]{Illustrations/usr3.png}
-                                                  }\\\\
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
+Underfull \hbox (badness 10000) in paragraph at lines 261--263
+
+ []
+
+File: Illustrations/man_start.png Graphic file (type QTm)
+<use  "Illustrations/man_start.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 263--265
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 307--314
+Underfull \hbox (badness 10000) in paragraph at lines 263--265
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 307--314
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
 
  []
 
-[5]
+File: Illustrations/process_start.png Graphic file (type QTm)
+<use  "Illustrations/process_start.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 266--268
+
+ []
+
+File: Illustrations/process_start2.png Graphic file (type QTm)
+<use  "Illustrations/process_start2.png" >
+Overfull \hbox (2.79616pt too wide) in paragraph at lines 268--270
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--270
+
+ []
+
+[9]
+File: Illustrations/process_start3.png Graphic file (type QTm)
+ <use  "Illustrations/process_start3.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
+
+ []
+
+File: Illustrations/process_start5.png Graphic file (type QTm)
+<use  "Illustrations/process_start5.png" >
+Overfull \hbox (5.95795pt too wide) in paragraph at lines 271--273
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 271--273
+
+ []
+
+[10]
+File: Illustrations/process_1.png Graphic file (type QTm)
+ <use  "Illustrations/process_1.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
+
+ []
+
+File: Illustrations/process_2.png Graphic file (type QTm)
+<use  "Illustrations/process_2.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
+
+ []
+
+[11]
+File: Illustrations/process_3.png Graphic file (type QTm)
+ <use  "Illustrations/process_3.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 275--277
+
+ []
+
+File: Illustrations/back.png Graphic file (type QTm)
+<use  "Illustrations/back.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
+
+ []
+
+[12]
+./report.tex:294: Undefined control sequence.
+<recently read> \indnet 
+                        
+l.294 ^^I\indnet
+                 进程栈:第i个进程对应的进程栈从内存的\verb|...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 284--297
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 284--297
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 299--306
+
+ []
+
 
 LaTeX Font Warning: Font shape `EU1/LantingheiSCExtralight(0)/m/it' undefined
 (Font)              using `EU1/LantingheiSCExtralight(0)/m/n' instead on input 
-line 318.
+line 310.
 
-
-Overfull \hbox (54.00406pt too wide) in paragraph at lines 339--340
+[13]
+Overfull \hbox (54.00406pt too wide) in paragraph at lines 331--332
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][] 
  []
 
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 425--435
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 417--427
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 425--435
+Underfull \hbox (badness 10000) in paragraph at lines 417--427
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 425--435
+Underfull \hbox (badness 10000) in paragraph at lines 417--427
 
  []
 
-[7] [8] (./report.aux)
+[15] [16] (./report.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1111,12 +947,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 ### simple group (level 1) entered at line 44 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14712 strings out of 493734
- 294558 string characters out of 6146348
- 383045 words of memory out of 5000000
- 17953 multiletter control sequences out of 15000+600000
+ 14719 strings out of 493734
+ 294740 string characters out of 6146348
+ 384045 words of memory out of 5000000
+ 17954 multiletter control sequences out of 15000+600000
  6536 words of font info for 43 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  46i,6n,51p,10396b,1570s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.pdf (8 pages).
+Output written on report.pdf (16 pages).
