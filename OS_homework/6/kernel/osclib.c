@@ -258,7 +258,7 @@ void man( char *str){
 		return;
 	}
 	if( strcmp( str, "man run\0")){
-		char *p = " NAME run - [run squence] run user's program accord squence Ex: run 123\0";
+		char *p = " NAME run - [run squence] run user's program accord squence Ex: run 12\0";
 		print_str( p, strlen( p));
 		return;
 	}
