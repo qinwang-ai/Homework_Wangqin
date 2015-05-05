@@ -1,0 +1,32 @@
+.
+├── bochsrc
+├── boot.asm
+├── disk.img
+├── kernel
+│   ├── os.asm
+│   ├── os.c
+│   ├── osclib.c
+│   ├── os.h
+│   ├── oslib.asm
+│   ├── os_syscall.asm
+│   ├── pcb.h
+│   ├── process.c
+│   ├── terminal.c
+│   └── terminal.h
+├── Makefile
+├── osclib_share.c
+├── oslib_share.asm
+├── process1.asm
+├── process2.asm
+├── process3.asm
+├── process4.asm
+├── process_wait_key.asm
+├── python_extension.c
+├── README
+├── snapshot.txt
+├── stack.png
+├── usr1.asm
+├── usr2.asm
+└── usr5.asm
+
+1 directory, 28 files
