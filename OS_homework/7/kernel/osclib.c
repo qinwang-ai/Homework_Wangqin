@@ -195,7 +195,6 @@ char synCheck( char * str, const char * dst){		//str is key
 			!strcmp( str, "man time\0")&&
 			!strcmp( str, "man asc\0")&&
 			!strcmp( str, "man help\0")&&
-			!strcmp( str, "man syscall\0")&&
 			!strcmp( str, "man python\0")&&
 			!strcmp( str, "man start\0")&&
 			!strcmp( str, "man run\0")){
@@ -210,19 +209,6 @@ char synCheck( char * str, const char * dst){		//str is key
 			!strcmp( str, "int 36h\0")
 			){
 			return 0;
-		}
-	}
-
-	if( strcmp( prompt, "syscall")){				//check man
-		if( '0'>str[ 8] || str[ 8]>'5'){	
-			flag_scroll();
-	__asm__("pop %si");
-			set_pointer_pos();
-	__asm__("pop %si");
-			screen_sc_T = 2;
-			char *p = " Run error.Note: ah should be -1<x<6";
-			print_str( p, strlen( p));
-			return 1;		//don't display no such file or 
 		}
 	}
 
@@ -316,96 +302,28 @@ void run_error(){
 
 //-------------------------------atoi
 
-char *atoi_temp;
-unsigned short int atoi_ans;
-unsigned short int atoi( char * str){
-	atoi_temp = str;
-	__asm__("mov $3,%ah");  //123
-	__asm__("int $0x80");
-	return atoi_ans;
-}
-
-char *str_atoi;
-char i_syscall;
-unsigned short int sum_syscall_ai;
-void atoi_syscall(){
-
-	i_syscall=0;
-	sum_syscall_ai=0;
-	str_atoi=atoi_temp;
+unsigned short int atoi( char * str_atoi){
+	char i_syscall=0;
+	short int sum_syscall_ai=0;
 	
 	while( str_atoi[i_syscall]!='\0'){
 		sum_syscall_ai *= 10;
 		sum_syscall_ai += (str_atoi[ i_syscall] - '0');
 		i_syscall++;
 	}
-	atoi_ans = sum_syscall_ai;
-	__asm__("pop %ax");
-	__asm__("pop %ax");
-	__asm__("pop %ax");
-	__asm__("jmp *%ax");
+	return sum_syscall_ai;
 }
 
-//---------------------------------
 
 
 //-------------------------------itoa
-
-unsigned short int itoa_temp;
-char * itoa_ans;
-char * itoa( short int x){
-	itoa_temp = x;
-	__asm__("mov $4,%ah");  //123
-	__asm__("push %bp");
-	__asm__("int $0x80");
-	__asm__("pop %bp");
-	return itoa_ans;
-}
-
-int i,j; 
-char str[10];
-short int value;
-void itoa_syscall()
-{
-	for(i=0;i<10;i++){
-		str[i]='\0';
-	}
-	value = itoa_temp;
-	if (value < 0) //如果是负数,则str[0]='-',并把value取反(变成正整数)
-	{
-		str[0] = '-';
-		value = 0-value;
-	}
-	for(i=1; value > 0; i++,value/=10) //从value[1]开始存放value的数字字符，不过是逆序，等下再反序过来
-	  str[i] = value%10+'0'; //将数字加上0的ASCII值(即'0')就得到该数字的ASCII值
-
-	for(j=i-1,i=1; j-i>=1; j--,i++) //将数字字符反序存放
-	{
-		str[i] = str[i]^str[j];
-		str[j] = str[i]^str[j];
-		str[i] = str[i]^str[j];
-	}
-
-	if(str[0] != '-') //如果不是负数，则需要把数字字符下标左移一位，即减1
-	{
-		for(i=0; str[i+1]!='\0'; i++)
-		  str[i] = str[i+1];
-		str[i] = '\0';
-	}
-
-	itoa_ans = str;
-
-
-	__asm__("mov %sp,%bp");
-	__asm__("pop %eax");
-	__asm__("pop %ax");
-	__asm__("pop %ax");
-	__asm__("pop %ax");
-	__asm__("jmp *%ax");
-}
-
+//itoa function in osclib_share.c
 
 void syscall_test(){
+	__asm__("mov $0,%ah");  //012
+	__asm__("int $0x80");
+
+	/*
 	switch( key [8]){
 		case '0':{
 			__asm__("mov $0,%ah");  //012
@@ -431,6 +349,7 @@ void syscall_test(){
 
 		default:return;
 	}
+	*/
 }
 
 

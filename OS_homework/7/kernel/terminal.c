@@ -26,11 +26,16 @@ char listen_key(){
 		date();
 		return i;
 	}
-
 	if( strcmp( key, "python\0")){
 		python();
+		Print_flag_mark = 1;
 		return i;
 	}
+	if( strcmp( key, "syscall\0")){
+		syscall_test();
+		return i;
+	}
+
 	if( strcmp( key, "start\0")){
 		screen_init();
 		Print_flag_mark = 0;
@@ -62,11 +67,6 @@ char listen_key(){
 	
 	if( synCheck( key, "run\0")){
 		run( key);
-		return i;
-	}
-
-	if( synCheck( key, "syscall\0")){
-		syscall_test();
 		return i;
 	}
 

@@ -1,6 +1,4 @@
-;org 0x1000		;加载到 e0000内存中执行
-
-org 0x1000		;加载到 e0000内存中执行
+org 0x500
 sti
 mov ax,0xb800
 mov es,ax

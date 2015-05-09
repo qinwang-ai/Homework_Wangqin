@@ -251,6 +251,12 @@ restore_reg:
 	mov si, [_si]
 ret
 
+global return_pid_Tax
+extern process_num
+return_pid_Tax:
+	mov ax,[ process_num]
+ret
+
 ;------------------DATA-------------------
 var:
 

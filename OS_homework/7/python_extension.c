@@ -16,9 +16,9 @@ extern char flag_len;
 extern unsigned short int atoi( char *);
 extern char * itoa( short int ); 
 
-char key_python[64];
-char input_1[64];
-char input_2[64];
+char key_python[20];
+char input_1[10];
+char input_2[10];
 char negative_flag;  //if positive
 void python(){
 	key_python[0]='\0';

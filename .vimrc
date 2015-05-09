@@ -1,4 +1,3 @@
-syntax on
 set number
 set ruler
 set tabstop=4
@@ -12,8 +11,10 @@ set t_Sb=^[[4%dm
 set t_Sf=^[[3%dm
 endif
 
+syntax enable
 set nu
 set laststatus=2
+colorscheme desert
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_b = '%{strftime("%c")}'
@@ -22,10 +23,6 @@ let g:airline_theme='kolor'
 
 execute pathogen#infect()
 
-set background=dark
-colorscheme solarized
-
-set cursorline
 let Tlist_Exit_OnlyWindow=1  "tagList窗口是最后一个窗口，则退出Vim
 
 let g:tlist_php_settings = 'php;c:class;f:function'
@@ -38,7 +35,6 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 let loaded_matchit = 1
 
-noremap <F5> :!g++ -g 
 
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 

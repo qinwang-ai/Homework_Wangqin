@@ -24,8 +24,9 @@ struct Tss{
 
 struct pcb{
 	struct Tss tss;
-	int process_status; // 0 is ready , 1 is runing,2 is done
+	int process_status; // 0 is ready , 1 is runing,2 is done 3 is block
 	int process_id;
+	int f_pid;
 };
 
 extern void screen_init();
@@ -39,7 +40,6 @@ extern void print_welcome_msg();
 extern void print_message();
 extern void print_flag(); //root@wangqin4377@:   position
 
-
 inline void sti(){
 	__asm__("sti");
 }
@@ -49,8 +49,13 @@ inline void cli(){
 }
 
 
-#define process_num_MAX  5
+#define process_num_MAX  7
 #define process_SEG  0
+#define READY 0
+#define RUNNING 1
+#define DONE 2
+#define BLOCK 3
+
 
 #endif
 

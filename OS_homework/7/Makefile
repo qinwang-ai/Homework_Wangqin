@@ -1,7 +1,7 @@
 LD_flags=-m elf_i386
 C_flags=-m32 -mpreferred-stack-boundary=2 -ffreestanding
 
-disk.img: boot.bin os.bin process1.com process2.com process3.com process4.com process_wait_key.com usr1.com usr2.com
+disk.img: boot.bin os.bin process1.com process2.com process3.com process4.com process_wait_key.com usr1.com usr2.com process_counter.com
 	dd if=/dev/zero of=disk.img count=2880 bs=512
 	dd if=boot.bin of=disk.img
 	dd if=os.bin of=disk.img seek=1
@@ -11,13 +11,14 @@ disk.img: boot.bin os.bin process1.com process2.com process3.com process4.com pr
 	dd if=process3.com of=disk.img bs=512 seek=108
 	dd if=process4.com of=disk.img bs=512 seek=144
 	dd if=process_wait_key.com of=disk.img bs=512 seek=180
-	dd if=usr1.com of=disk.img bs=512 seek=216
-	dd if=usr2.com of=disk.img bs=512 seek=252
+	dd if=process_counter.com of=disk.img bs=512 seek=216
+	dd if=usr1.com of=disk.img bs=512 seek=252
+	dd if=usr2.com of=disk.img bs=512 seek=288
 
 boot.bin: boot.asm 
 	nasm -f bin boot.asm -o boot.bin
 
-os.bin: os.o osc.o oslib.o  osclib.o os_syscall.o python.o oslib_share.o osclib_share.o terminal.o process.o
+os.bin: os.o osc.o oslib.o  osclib.o os_syscall.o oslib_share.o osclib_share.o terminal.o process.o python.o
 	ld $(LD_flags) -Ttext 0x7e00 --oformat binary $^ -o $@ -e main
 
 os.o: kernel/os.asm
@@ -62,6 +63,12 @@ process3.com:process3.asm
 process4.com:process4.asm 
 	nasm -f bin $^ -o $@
 
+process_counter.elf:process_counter.c
+	gcc $(C_flags) -c $^ -o $@
+
+process_counter.com:process_counter.elf osclib_share.o oslib_share.o
+	ld $(LD_flags) -Ttext 0x6000 --oformat binary $^ -o $@ -e main
+
 process_wait_key.com:process_wait_key.asm 
 	nasm -f bin $^ -o $@
 
@@ -72,7 +79,7 @@ usr2.com:usr2.asm
 	nasm -f bin $^ -o $@
 
 clean:
-	rm *.o *.bin *.com
+	rm *.o *.bin *.com *.elf
 
 
 

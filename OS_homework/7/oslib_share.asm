@@ -56,3 +56,7 @@ get_pointer_pos:
 	mov ax,dx ;return row:col
 ret 
 
+global return_ax_Tpid
+return_ax_Tpid:
+ret
+

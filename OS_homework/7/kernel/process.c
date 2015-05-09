@@ -1,9 +1,10 @@
 #include "pcb.h"
 
-char isProcessRun=0; 
+int process_num = 4;		// i don't know why but this number is actual process_num plus 2
+int start_process_num = 2;
+
+char isProcessRun = 0; 
 struct pcb PCB_queue[ process_num_MAX +1 ];
-
-
 
 
 short int w_is_r;
@@ -42,20 +43,19 @@ inline void saveToqueue(){
 }
 
 inline void queueTodata(){
- _es =	PCB_queue[ nw_is_r].tss.ES;
- _ds =	PCB_queue[ nw_is_r].tss.DS;
- _gs =	PCB_queue[ nw_is_r].tss.GS;
- _fs =	PCB_queue[ nw_is_r].tss.FS;
- _ss =	PCB_queue[ nw_is_r].tss.SS;
-								   
- _ax =	PCB_queue[ nw_is_r].tss.AX;
- _bx =	PCB_queue[ nw_is_r].tss.BX;
- _cx =	PCB_queue[ nw_is_r].tss.CX;
- _dx =	PCB_queue[ nw_is_r].tss.DX;
- _si =	PCB_queue[ nw_is_r].tss.SI;
- _di =	PCB_queue[ nw_is_r].tss.DI;
- _bp =	PCB_queue[ nw_is_r].tss.BP;
-
+	_es = PCB_queue[ nw_is_r].tss.ES;
+	_ds = PCB_queue[ nw_is_r].tss.DS;
+	_gs = PCB_queue[ nw_is_r].tss.GS;
+	_fs = PCB_queue[ nw_is_r].tss.FS;
+	_ss = PCB_queue[ nw_is_r].tss.SS;
+							   
+	_ax = PCB_queue[ nw_is_r].tss.AX;
+	_bx = PCB_queue[ nw_is_r].tss.BX;
+	_cx = PCB_queue[ nw_is_r].tss.CX;
+	_dx = PCB_queue[ nw_is_r].tss.DX;
+	_si = PCB_queue[ nw_is_r].tss.SI;
+	_di = PCB_queue[ nw_is_r].tss.DI;
+	_bp = PCB_queue[ nw_is_r].tss.BP;
 }
 
 
@@ -78,8 +78,9 @@ void init_pcb( int i, short int current_process_SEG){
 	PCB_queue[ i].tss.IP = current_process_SEG;		//cs;ip 
 	PCB_queue[ i].tss.Flags = 512; 
 
+	PCB_queue[ i].f_pid = -1; 
 	PCB_queue[ i].process_id = i; 
-	PCB_queue[ i].process_status = 0; 
+	PCB_queue[ i].process_status = READY; 
 }
 
 int fin_times = 0;
@@ -88,14 +89,17 @@ void schedule(){
 	__asm__("pop %cx");
 	__asm__("pop %eax");	//junk
 
-	nw_is_r = w_is_r + 1;
-	if( nw_is_r > process_num_MAX){
-		nw_is_r = 1;	
+	PCB_queue[ w_is_r].process_status = READY;
+	while(1){
+		nw_is_r = w_is_r + 1;
+		if( nw_is_r > process_num){
+			nw_is_r = start_process_num;	
+		}
+		if( PCB_queue[ nw_is_r].process_status == READY) break;
 	}
-
+	PCB_queue[ nw_is_r].process_status = RUNNING;
 	
 	saveToqueue();			//code order don't change	
-
 
 	//----------------set ip cs flag--------
 	__asm__("pop %ax");
@@ -119,44 +123,72 @@ void schedule(){
 	PCB_queue[ w_is_r].tss.CS = _cs;
 	PCB_queue[ w_is_r].tss.Flags = _flags;
 
-		//-----------------end------------------
+	//-----------------end------------------
 	_ip = PCB_queue[ nw_is_r].tss.IP;
 	_cs = PCB_queue[ nw_is_r].tss.CS;
 	_flags = PCB_queue[ nw_is_r].tss.Flags;
 	_sp = PCB_queue[ nw_is_r].tss.SP;
 
 	restore_reg_seg();
+	while(1);
 	__asm__("pop %cx");
 
 
 	queueTodata();		// ax bx cx...
 	
 	w_is_r++;
-	if( w_is_r > process_num_MAX){
-		w_is_r = 1;
+	if( w_is_r > process_num){
+		w_is_r = start_process_num;
 	}
 
 	restore_reg();	
-	__asm__("pop %di");		//don't use di in any process is dangerous
+	__asm__(" pop %di");		//don't use di in any process is dangerous
 
-	__asm__("jmp schedule_end");
+	__asm__(" jmp schedule_end");
 	while(1);
 }
 
 void Process(){
 	int current_process_SEG = process_SEG;
 	int i;
-	for( i = 1; i <= process_num_MAX; i++){
-		current_process_SEG += 0x1000;
-		init_pcb( i, current_process_SEG);	
+	for( i = start_process_num; i <= process_num; i++){
+		current_process_SEG += 0x0500;
+		init_pcb( i, current_process_SEG);
 	}
-	load_user(1, 0x1000);
-	load_user(2, 0x2000);
-	load_user(3, 0x3000);
-	load_user(4, 0x4000);
-	load_user(5, 0x5000);
-	w_is_r=0;
+
+	load_user( 1, 0x0500);
+	__asm__(" pop %cx");
+	load_user( 2, 0x1000);
+	__asm__(" pop %cx");
+	load_user( 3, 0x1500);
+	__asm__(" pop %cx");
+	load_user( 4, 0x2000);
+	__asm__(" pop %cx");
+	load_user( 5, 0x2500);		//wait key
+	__asm__(" pop %cx");
+	load_user( 6, 0x3000);		//father
+	__asm__("pop %cx");
+	w_is_r=1;
 	isProcessRun=1; // enter user process mode
 }
+
+extern void return_pid_Tax();
+void do_fork(){
+	process_num++;
+	PCB_queue[ process_num].f_pid = w_is_r;
+	PCB_queue[ process_num].process_id = process_num;
+	//copy_fa_Tss
+	PCB_queue[ process_num].tss = PCB_queue[w_is_r ].tss;
+	PCB_queue[ process_num].process_status = READY; 
+	return_pid_Tax();
+	__asm__(" pop %cx");
+	__asm__("pop %ax");
+	__asm__("pop %ax");
+	__asm__("pop %ax");
+	__asm__("jmp *%ax");
+}
+
+
+
 
 

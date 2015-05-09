@@ -19,19 +19,18 @@ inline void run( char *str){
 	str += 4;
 	
 	while( *str != '\0'){
-	if('0'<*str && *str< Usr_num){
-	
-			load_user( 5 + *str-'0', 0x1000);	//in oslib.asm	usri in i sector 
-			__asm__(" pop %ax");
+		if('0'<*str && *str< Usr_num){
+		
+				load_user( 6 + *str-'0', 0x1000);	//in oslib.asm	usri in i sector 
+				__asm__(" pop %ax");
 
-			run_user();
-			__asm__(" pop %ax");
-			
-			}else{
-				run_error();
-				return;
-			}
-
+				run_user();
+				__asm__(" pop %ax");
+				
+		}else{
+			run_error();
+			return;
+		}
 		str++;
 	}
 	init_flag_position();	

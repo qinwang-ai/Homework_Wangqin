@@ -288,14 +288,6 @@ load_user:
 
 	mov ax,cs
 	mov es,ax
-	;if int_user_num is 0  then cx = bp+4 else cx = int_user_num
-	;mov al,[ int_user_num]
-	;mov ah,0
-	;cmp al,ah
-	;je bp_param
-	;mov cl,al
-	;jmp next_lu
-	;bp_param:
 
 	mov cx,1;扇区号参数
 
@@ -304,8 +296,9 @@ load_user:
 
 	mov dx,bp	;backup
 	mov bp,sp
-	mov ch,[ bp+4]		; 柱面/磁道  every zhumian  has one user program 37~72  73~108 109~144
+	mov ch,[ bp+4]		; 柱面/磁道  every zhumian  has one user program 37~72  73~108 109~144		ch = 7~8 is user
 	mov bx,[ bp+8] ;add to 0x100 mem
+	
 	mov bp,dx
 
 	mov dl,0		; 软盘
@@ -314,7 +307,15 @@ load_user:
 	xor ax,ax
 	mov es,ax ;made es zero,ex:bx is addr of mem 
 	mov ax,0215h	;count 
+
 	int 13h
+	;cmp ch,6
+	;je sixun
+	;jmp nextaa
+	;sixun:
+	;jmp $
+	;nextaa:
+
 ret
 
 

@@ -8,7 +8,6 @@ extern char strcmp( char *, const char *);
 extern void clear();
 extern void time();
 extern void date();
-extern void python();
 extern void man( char *);
 extern void asc( char *);
 extern void run( char *);
