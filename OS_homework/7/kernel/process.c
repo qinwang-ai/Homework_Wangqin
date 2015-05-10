@@ -77,6 +77,7 @@ void init_pcb( int i, short int current_process_SEG){
 	PCB_queue[ i].tss.DX = 0; 
 	PCB_queue[ i].tss.IP = current_process_SEG;		//cs;ip 
 	PCB_queue[ i].tss.Flags = 512; 
+	PCB_queue[ i].tss.Stack_END = current_process_SEG-4; 
 
 	PCB_queue[ i].f_pid = -1; 
 	PCB_queue[ i].process_id = i; 
@@ -111,11 +112,6 @@ void schedule(){
 	__asm__("pop %bx");
 	__asm__("pop %cx");
 
-	/*
-	if(nw_is_r == 1){
-		while(1);
-	}
-	*/
 
 	saveall_reg_seg();		//include sp
 	__asm__("pop %cx");
@@ -149,7 +145,6 @@ void schedule(){
 	restore_reg();	
 	__asm__(" pop %di");		//don't use di in any process is dangerous
 
-
 	__asm__(" jmp schedule_end");
 	while(1);
 }
@@ -174,7 +169,7 @@ void Process(){
 	__asm__(" pop %cx");
 	load_user( 6, 0x3000);		//father
 	__asm__("pop %cx");
-	// 3500- sub stack ,3500+ is sub code
+	// 4000- sub stack 
 
 	w_is_r = 0;
 	isProcessRun=1; // enter user process mode
@@ -196,12 +191,13 @@ void update_fa(){
 
 	__asm__("mov %dx,%sp");
 	PCB_queue[ w_is_r].tss.SP = _sp;
-	PCB_queue[ w_is_r].tss.IP = 0x500 + _ip;			//continue
+	PCB_queue[ w_is_r].tss.IP = _ip;		
 	PCB_queue[ w_is_r].tss.CS = _cs;
 	PCB_queue[ w_is_r].tss.Flags = _flags;
 }
 extern void return_pid_Tax();
 extern void restore_flags();
+short int sub_stack,fa_stack;
 void do_fork(){
 	process_num++;
 	PCB_queue[ process_num].f_pid = w_is_r;
@@ -209,10 +205,20 @@ void do_fork(){
 	//copy_fa_Tss
 	
 	update_fa();
-	restore_flags();
+	restore_flags();	//to fix some stack bug
 	__asm__("pop %cx");
+	// update fa end	
 	PCB_queue[ process_num].tss = PCB_queue[ w_is_r].tss;
-	PCB_queue[ process_num].process_status = READY; 
+	PCB_queue[ process_num].tss.SP = _sp + 0x1000;
+	PCB_queue[ process_num].tss.Stack_END = PCB_queue[ w_is_r].tss.Stack_END+0x1000; 
+	
+	sub_stack = (PCB_queue[ process_num].tss.Stack_END-0x200)/16;
+	fa_stack = (PCB_queue[ w_is_r].tss.Stack_END-0x200)/16;
+	__asm__("mov $0x104,%cx");
+	copy_stack();
+	__asm__("pop %cx");
+
+	PCB_queue[ process_num].process_status = READY;
 
 	return_pid_Tax();
 	__asm__(" pop %cx");

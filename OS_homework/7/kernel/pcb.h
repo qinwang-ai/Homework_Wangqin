@@ -18,6 +18,7 @@ struct Tss{
 	short int CX;
 	short int BX;
 	short int AX;
+	short int Stack_END;
 	int IP;
 	short int Flags;
 };

@@ -259,6 +259,35 @@ restore_reg:
 	mov si, [_si]
 ret
 
+; PRAMA: sub_ss FA_ss size
+global copy_stack
+extern sub_stack,fa_stack
+copy_stack:
+	push ax
+	push es
+	push ds
+	push di
+	push si
+	push cx
+	mov ax,[ sub_stack] 
+	mov es,ax
+	mov edi,4
+
+	mov byte [es:di],0x12   ;3df0
+
+	mov ax,[ fa_stack]
+	mov ds,ax
+	mov esi,4
+	cld
+	rep movsw			;ds:si  ->  es:di
+	pop cx
+	pop si
+	pop di
+	pop ds
+	pop es
+	pop ax
+ret
+
 global return_pid_Tax
 extern process_num
 return_pid_Tax:

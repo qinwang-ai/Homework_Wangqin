@@ -15,11 +15,13 @@ __asm__("popw %ds;");
 extern char return_ax_Tpid();
 char pid;
 char fork(){
+	__asm__("cli");
 	__asm__("mov $6,%ah");
 	__asm__("int $0x80");
 
 	pid = return_ax_Tpid();
 	__asm__("pop %cx");
+	__asm__("sti");
 	return pid;	
 }
 
