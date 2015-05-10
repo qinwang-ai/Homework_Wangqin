@@ -1,7 +1,7 @@
 #include "pcb.h"
 
-int process_num = 4;		// i don't know why but this number is actual process_num plus 2
-int start_process_num = 2;
+int process_num = 6;		// i don't know why but this number is actual process_num plus 2
+int start_process_num = 1;
 
 char isProcessRun = 0; 
 struct pcb PCB_queue[ process_num_MAX +1 ];
@@ -91,20 +91,31 @@ void schedule(){
 
 	PCB_queue[ w_is_r].process_status = READY;
 	while(1){
-		nw_is_r = w_is_r + 1;
+		if( w_is_r == 0)
+			nw_is_r = start_process_num;
+		else
+			nw_is_r = w_is_r + 1;
+
 		if( nw_is_r > process_num){
 			nw_is_r = start_process_num;	
 		}
 		if( PCB_queue[ nw_is_r].process_status == READY) break;
 	}
-	PCB_queue[ nw_is_r].process_status = RUNNING;
 	
+	PCB_queue[ nw_is_r].process_status = RUNNING;
+
 	saveToqueue();			//code order don't change	
 
 	//----------------set ip cs flag--------
 	__asm__("pop %ax");
 	__asm__("pop %bx");
 	__asm__("pop %cx");
+
+	/*
+	if(nw_is_r == 1){
+		while(1);
+	}
+	*/
 
 	saveall_reg_seg();		//include sp
 	__asm__("pop %cx");
@@ -129,20 +140,15 @@ void schedule(){
 	_flags = PCB_queue[ nw_is_r].tss.Flags;
 	_sp = PCB_queue[ nw_is_r].tss.SP;
 
-	restore_reg_seg();
-	while(1);
+	restore_reg_seg();		//include sp
 	__asm__("pop %cx");
-
 
 	queueTodata();		// ax bx cx...
 	
-	w_is_r++;
-	if( w_is_r > process_num){
-		w_is_r = start_process_num;
-	}
-
+	w_is_r = nw_is_r;
 	restore_reg();	
 	__asm__(" pop %di");		//don't use di in any process is dangerous
+
 
 	__asm__(" jmp schedule_end");
 	while(1);
@@ -152,36 +158,65 @@ void Process(){
 	int current_process_SEG = process_SEG;
 	int i;
 	for( i = start_process_num; i <= process_num; i++){
-		current_process_SEG += 0x0500;
+		current_process_SEG = i*0x0800;
 		init_pcb( i, current_process_SEG);
 	}
 
-	load_user( 1, 0x0500);
+	load_user( 1, 0x0800);
 	__asm__(" pop %cx");
 	load_user( 2, 0x1000);
 	__asm__(" pop %cx");
-	load_user( 3, 0x1500);
+	load_user( 3, 0x1800);
 	__asm__(" pop %cx");
 	load_user( 4, 0x2000);
 	__asm__(" pop %cx");
-	load_user( 5, 0x2500);		//wait key
+	load_user( 5, 0x2800);		//wait key
 	__asm__(" pop %cx");
 	load_user( 6, 0x3000);		//father
 	__asm__("pop %cx");
-	w_is_r=1;
+	// 3500- sub stack ,3500+ is sub code
+
+	w_is_r = 0;
 	isProcessRun=1; // enter user process mode
 }
 
+void update_fa(){
+	saveall_reg();			//hurry not inclue sp	
+	__asm__("pop %cx");
+	saveToqueue();			//code order don't change	
+
+	__asm__("mov %sp,%dx");	//save fa ip flags  cs sp
+	__asm__("add $22,%sp");
+	__asm__("pop %ax");
+	__asm__("pop %bx");
+	__asm__("pop %cx");
+
+	saveall_reg_seg();		//include sp
+	__asm__("pop %cx");
+
+	__asm__("mov %dx,%sp");
+	PCB_queue[ w_is_r].tss.SP = _sp;
+	PCB_queue[ w_is_r].tss.IP = 0x500 + _ip;			//continue
+	PCB_queue[ w_is_r].tss.CS = _cs;
+	PCB_queue[ w_is_r].tss.Flags = _flags;
+}
 extern void return_pid_Tax();
+extern void restore_flags();
 void do_fork(){
 	process_num++;
 	PCB_queue[ process_num].f_pid = w_is_r;
 	PCB_queue[ process_num].process_id = process_num;
 	//copy_fa_Tss
-	PCB_queue[ process_num].tss = PCB_queue[w_is_r ].tss;
+	
+	update_fa();
+	restore_flags();
+	__asm__("pop %cx");
+	PCB_queue[ process_num].tss = PCB_queue[ w_is_r].tss;
 	PCB_queue[ process_num].process_status = READY; 
+
 	return_pid_Tax();
 	__asm__(" pop %cx");
+
 	__asm__("pop %ax");
 	__asm__("pop %ax");
 	__asm__("pop %ax");

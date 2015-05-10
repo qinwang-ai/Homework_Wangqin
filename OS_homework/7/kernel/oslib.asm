@@ -197,6 +197,14 @@ saveall_reg_seg:
 	push di
 	push si
 ret
+global restore_flags
+restore_flags:	 ;for process.c dofork
+	mov bp,sp
+	mov ecx,0
+	mov [ bp+20],ecx
+	mov cx,[ _flags]
+	mov [ bp+22],cx
+ret
 
 restore_reg_seg:
 	mov ax,[ _ip]

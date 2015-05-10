@@ -1,5 +1,4 @@
-
-org 0x2000		;加载到 e0000内存中执行
+org 0x2000		;加载到 
 sti
 mov ax,0xb800
 mov es,ax
@@ -7,7 +6,7 @@ mov es,ax
 mov al,'*';
 again:
 
-	mov bx,3798D;start           /2 ==0 is char or is style   stop /2 !=0
+	mov bx,3798D ;start           /2 ==0 is char or is style   stop /2 !=0
 	mov cx,3759D ;stop                          start/2==0
 
 	loop_int36:

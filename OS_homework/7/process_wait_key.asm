@@ -1,4 +1,4 @@
-org 0x2500	
+org 0x2800	
 sti
 
 mov ah,0

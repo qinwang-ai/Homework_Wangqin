@@ -1,4 +1,4 @@
-org 0x500
+org 0x800
 sti
 mov ax,0xb800
 mov es,ax

@@ -67,7 +67,7 @@ process_counter.elf:process_counter.c
 	gcc $(C_flags) -c $^ -o $@
 
 process_counter.com:process_counter.elf osclib_share.o oslib_share.o
-	ld $(LD_flags) -Ttext 0x6000 --oformat binary $^ -o $@ -e main
+	ld $(LD_flags) -Ttext 0x3000 --oformat binary $^ -o $@ -e main
 
 process_wait_key.com:process_wait_key.asm 
 	nasm -f bin $^ -o $@
