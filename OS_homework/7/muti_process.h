@@ -12,18 +12,12 @@ __asm__("call main\n");
 __asm__("popw %es;");
 __asm__("popw %ds;");
 
-extern char return_ax_Tpid();
-char pid;
-char fork(){
-	__asm__("cli");
-	__asm__("mov $6,%ah");
-	__asm__("int $0x80");
 
-	pid = return_ax_Tpid();
-	__asm__("pop %cx");
-	__asm__("sti");
-	return pid;	
+char flag_len = 17;
+void inline printf( char *str){
+	print_str( str, strlen( str));
 }
+
 
 void ntos( short int value ){
 	char *str = itoa( value);
@@ -40,9 +34,34 @@ void inline CountLetter( char *str){
 	}
 }
 
-char flag_len = 17;
-void inline printf( char *str){
-	print_str( str, strlen( str));
+extern char return_ax_Tpid();
+char pid;
+char fork(){
+	__asm__("cli");
+	__asm__("mov $6,%ah");
+	__asm__("int $0x80");
+
+	pid = return_ax_Tpid();
+	__asm__("pop %cx");
+	__asm__("sti");
+	return pid;	
+}
+
+
+char wait(){
+	__asm__("cli");
+	__asm__("mov $7,%ah");
+	__asm__("int $0x80");
+	__asm__("sti");
+	return pid;	
+}
+
+void exit( char x){
+	__asm__("cli");
+	__asm__("mov $8,%ah");
+	__asm__("int $0x80");
+	__asm__("sti");
+	while(1);
 }
 
 #endif

@@ -4,7 +4,7 @@ jmp main
 
 global syscall_init,run_syscall
 extern syscall_num
-extern do_fork
+extern do_fork, do_wait, do_exit
 
 
 ;---PARAM: ah is syscall num   ebx is address of syscall  bx:temp cx:function ax:sysnum
@@ -49,6 +49,18 @@ syscall_init:
 	mov ah,6
 	mov ecx,0
 	mov cx,do_fork
+	call setting_up_syscall
+
+;----#7 syscall
+	mov ah,7
+	mov ecx,0
+	mov cx,do_wait
+	call setting_up_syscall
+
+;----#8 syscall
+	mov ah,8
+	mov ecx,0
+	mov cx,do_exit
 	call setting_up_syscall
 
 ret

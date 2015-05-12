@@ -87,7 +87,6 @@ void print_str( const char *p , unsigned short int l){
 	}
 }
 
-
 char strlen( char*p){
 	char i=0;
 	while(*p!='\0'){
@@ -96,19 +95,6 @@ char strlen( char*p){
 	}
 	return i;
 }
-char wait(){
-	return 48;
-}
-
-void exit(){
-	
-}
-
-
-
-
-
-
 
 
 

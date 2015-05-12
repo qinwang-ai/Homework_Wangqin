@@ -112,7 +112,6 @@ void schedule(){
 	__asm__("pop %bx");
 	__asm__("pop %cx");
 
-
 	saveall_reg_seg();		//include sp
 	__asm__("pop %cx");
 
@@ -195,7 +194,6 @@ void update_fa(){
 	PCB_queue[ w_is_r].tss.CS = _cs;
 	PCB_queue[ w_is_r].tss.Flags = _flags;
 }
-extern void return_pid_Tax();
 extern void restore_flags();
 short int sub_stack,fa_stack;
 void do_fork(){
@@ -210,6 +208,7 @@ void do_fork(){
 	// update fa end	
 	PCB_queue[ process_num].tss = PCB_queue[ w_is_r].tss;
 	PCB_queue[ process_num].tss.SP = _sp + 0x1000;
+	PCB_queue[ process_num].tss.AX = w_is_r;
 	PCB_queue[ process_num].tss.Stack_END = PCB_queue[ w_is_r].tss.Stack_END+0x1000; 
 	
 	sub_stack = (PCB_queue[ process_num].tss.Stack_END-0x200)/16;
@@ -220,14 +219,29 @@ void do_fork(){
 
 	PCB_queue[ process_num].process_status = READY;
 
-	return_pid_Tax();
-	__asm__(" pop %cx");
+	__asm__("mov $0,%ax");
 
+	__asm__("pop %bx");
+	__asm__("pop %bx");
+	__asm__("pop %bx");
+	__asm__("jmp *%bx");
+}
+
+void do_wait(){
+	PCB_queue[ w_is_r].process_status = BLOCK;
 	__asm__("pop %ax");
 	__asm__("pop %ax");
 	__asm__("pop %ax");
 	__asm__("jmp *%ax");
 }
+void do_exit(){
+	PCB_queue[ w_is_r].process_status = DONE;
+	__asm__("pop %ax");
+	__asm__("pop %ax");
+	__asm__("pop %ax");
+	__asm__("jmp *%ax");
+}
+
 
 
 
