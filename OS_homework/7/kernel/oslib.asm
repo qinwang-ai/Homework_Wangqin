@@ -16,6 +16,7 @@ global saveall_reg,restore_reg
 ;extern insert_interrupt_vector
 ;extern interrupt_num,interrupt_vector_offset
 
+
 extern screen_init
 
 clear:			;clear the screen
@@ -286,6 +287,13 @@ copy_stack:
 	pop ds
 	pop es
 	pop ax
+ret
+global restore_ax_pid
+extern w_is_r
+restore_ax_pid:
+	mov eax,0
+	mov ax,[ w_is_r]
+	inc ax
 ret
 
 ;------------------DATA-------------------

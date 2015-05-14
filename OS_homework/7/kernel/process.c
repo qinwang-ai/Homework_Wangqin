@@ -90,7 +90,9 @@ void schedule(){
 	__asm__("pop %cx");
 	__asm__("pop %eax");	//junk
 
-	PCB_queue[ w_is_r].process_status = READY;
+	if( PCB_queue[ w_is_r].process_status == RUNNING){
+		PCB_queue[ w_is_r].process_status = READY;
+	}
 	while(1){
 		if( w_is_r == 0)
 			nw_is_r = start_process_num;
@@ -101,6 +103,7 @@ void schedule(){
 			nw_is_r = start_process_num;	
 		}
 		if( PCB_queue[ nw_is_r].process_status == READY) break;
+		w_is_r = nw_is_r;
 	}
 	
 	PCB_queue[ nw_is_r].process_status = RUNNING;
@@ -140,7 +143,7 @@ void schedule(){
 
 	queueTodata();		// ax bx cx...
 	
-	w_is_r = nw_is_r;
+	w_is_r = nw_is_r;			//change now running process
 	restore_reg();	
 	__asm__(" pop %di");		//don't use di in any process is dangerous
 
@@ -198,7 +201,7 @@ extern void restore_flags();
 short int sub_stack,fa_stack;
 void do_fork(){
 	process_num++;
-	PCB_queue[ process_num].f_pid = w_is_r;
+	PCB_queue[ process_num].f_pid = w_is_r;		//sub -> father
 	PCB_queue[ process_num].process_id = process_num;
 	//copy_fa_Tss
 	
@@ -208,7 +211,7 @@ void do_fork(){
 	// update fa end	
 	PCB_queue[ process_num].tss = PCB_queue[ w_is_r].tss;
 	PCB_queue[ process_num].tss.SP = _sp + 0x1000;
-	PCB_queue[ process_num].tss.AX = w_is_r+1;
+	PCB_queue[ process_num].tss.AX = 0;
 	PCB_queue[ process_num].tss.Stack_END = PCB_queue[ w_is_r].tss.Stack_END+0x1000; 
 	
 	sub_stack = (PCB_queue[ process_num].tss.Stack_END-0x200)/16;
@@ -219,7 +222,8 @@ void do_fork(){
 
 	PCB_queue[ process_num].process_status = READY;
 
-	__asm__("mov $0,%ax");
+	restore_ax_pid();
+	__asm__("pop %bx");
 
 	__asm__("pop %bx");
 	__asm__("pop %bx");
@@ -229,6 +233,7 @@ void do_fork(){
 
 void do_wait(){
 	PCB_queue[ w_is_r].process_status = BLOCK;
+	__asm__("int $0x1c");
 	__asm__("pop %ax");
 	__asm__("pop %ax");
 	__asm__("pop %ax");
@@ -236,6 +241,8 @@ void do_wait(){
 }
 void do_exit(){
 	PCB_queue[ w_is_r].process_status = DONE;
+	PCB_queue[ PCB_queue[ w_is_r].f_pid].process_status = READY;
+	__asm__("int $0x1c");
 	__asm__("pop %ax");
 	__asm__("pop %ax");
 	__asm__("pop %ax");

@@ -6,20 +6,30 @@ void main() {
 	__asm__( "sti");
 	int pid;
 	char ch;
-	printf( "\r\nprocess_counter:Before fork \r\n");
-	printf( "fork start");
+	printf( "\r\nBefore fork \r\n");
+	printf( "fork start..");
 	pid = fork();
-	printf( "\r\nafter fork; my pid is ");
-	printInt( pid);
 	if ( pid == -1) printf( "error in fork!\0");
 	if ( pid){
+		printf( "\r\nFather process:after fork pid is ");
+		printInt( pid);
+		printf( "\r\nFather process:running...");
+		printf( "\r\nFather process:blocked \r\n");
+
 		ch = wait();
-		printf( "\n\rLetterNr=");
+		printf( "\r\nFather process:running...");
+		printf( "\n\rFather process:LetterNr=");
 		ntos( LetterNr);
+		printf( "\r\nFather process:exit");
 		exit(0);
 	}
 	else{
+		printf( "\r\nSub process:after fork pid is ");
+		printInt( pid);
+		printf( "\r\nSub process:running...");
+
 		CountLetter( str);
+		printf( "\r\nSub process:exit\r\n");
 		exit( 0);
 	}
 }

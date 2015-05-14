@@ -37,7 +37,8 @@ char listen_key(){
 	}
 
 	if( strcmp( key, "start\0")){
-		screen_init();
+		clear();
+		set_pointer_pos();
 		Print_flag_mark = 0;
 		Process();
 		return i;
