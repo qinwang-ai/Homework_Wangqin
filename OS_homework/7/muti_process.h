@@ -19,9 +19,13 @@ void inline printf( char *str){
 }
 
 
-void ntos( short int value ){
+void inline ntos( short int value ){
 	char *str = itoa( value);
 	print_str( str, strlen( str));
+}
+
+void printInt( char s){
+	printToscn( s+'0');
 }
 
 extern int LetterNr;

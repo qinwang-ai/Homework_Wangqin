@@ -208,7 +208,7 @@ void do_fork(){
 	// update fa end	
 	PCB_queue[ process_num].tss = PCB_queue[ w_is_r].tss;
 	PCB_queue[ process_num].tss.SP = _sp + 0x1000;
-	PCB_queue[ process_num].tss.AX = w_is_r;
+	PCB_queue[ process_num].tss.AX = w_is_r+1;
 	PCB_queue[ process_num].tss.Stack_END = PCB_queue[ w_is_r].tss.Stack_END+0x1000; 
 	
 	sub_stack = (PCB_queue[ process_num].tss.Stack_END-0x200)/16;

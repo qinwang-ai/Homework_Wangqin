@@ -10,10 +10,11 @@ void main() {
 	printf( "fork start");
 	pid = fork();
 	printf( "\r\nafter fork; my pid is ");
+	printInt( pid);
 	if ( pid == -1) printf( "error in fork!\0");
 	if ( pid){
 		ch = wait();
-		printf( "LetterNr=");
+		printf( "\n\rLetterNr=");
 		ntos( LetterNr);
 		exit(0);
 	}
