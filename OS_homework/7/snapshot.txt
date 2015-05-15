@@ -1,25 +1,25 @@
 
-
-
-                       Welcome to Wangqin's OS v1.6
-
-
-     System programs -- date,time,asc,clear,help,python,start
-         Man it to see detail.Ex: man date.
-
-     User programs   -- Type 'man run' for help
-
-     Process         -- Type <start> to start run 4 processes
-
-     Others          -- Please read my report to see more...
-
-
-root@wangqin:~#
-
-
-
-
-
-
-
-                                                                               |
+Before fork         ******************                     *
+fork start..                                               *
+Father process:after fork pid is 7                         *
+Father process:running...                                  *
+Father process:blocked                                     *
+                                                           *
+Sub process:after fork pid is 0                            *
+Sub process:running...                                     *
+Sub process:exit                                           *
+                                                           *
+Father process:running...                                  *
+Father process:Lette*******                          *******
+Father process:exitﬂ*
+                    *
+                    *
+                    *
+                    *
+                    *
+                    *
+                    *
+                    *
+                    *
+                    *                     ******************
+                                                                               \
