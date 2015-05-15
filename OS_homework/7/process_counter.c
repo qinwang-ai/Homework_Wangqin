@@ -14,7 +14,7 @@ void main() {
 		printf( "\r\nFather process:after fork pid is ");
 		printInt( pid);
 		printf( "\r\nFather process:running...");
-		printf( "\r\nFather process:blocked \r\n");
+		printf( "\r\nFather process:blocked \r\n\r\n");
 
 		ch = wait();
 		printf( "\r\nFather process:running...");
@@ -29,7 +29,7 @@ void main() {
 		printf( "\r\nSub process:running...");
 
 		CountLetter( str);
-		printf( "\r\nSub process:exit\r\n");
+		printf( "\r\nSub process:exit\r\n\r\n");
 		exit( 0);
 	}
 }

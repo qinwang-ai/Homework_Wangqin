@@ -300,11 +300,11 @@ ret
 var:
 
 msg:
-	db `Welcome to Wangqin\'s OS v1.6`		;style 78D
+	db `Welcome to Wangqin\'s OS v1.7`		;style 78D
 msg_l equ $-msg
 
 msg2:					;style 71D
-	db `System programs -- date,time,asc,clear,help,python,start  \r\n         Man it to see detail.Ex: man date.\r\n\r\n     User programs   -- Type 'man run' for help \r\n\r\n     Process         -- Type <start> to start run 4 processes \r\n\r\n     Others          -- Please read my report to see more...`
+	db `System programs -- date,time,asc,clear,help,python,start  \r\n         Man it to see detail.Ex: man date.\r\n\r\n     User programs   -- Type 'man run' for help \r\n\r\n     Process         -- Type <start> to start run all processes\r\n\r\n     Please read my report to see more...`
 msg2_l equ $-msg2
 
 msg3:
