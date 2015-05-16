@@ -2,7 +2,7 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage {fontspec}
-\usepackage{fancyhdr}	
+\usepackage{fancyhdr}
 \pagestyle{fancy}
 \setromanfont{Lantinghei SC Extralight}
 \setmonofont{Courier New}
@@ -30,7 +30,7 @@
  }
 
 \begin{document}
-\title{实验报告 实验六}
+\title{实验报告 实验七}
 \author{姓名：王钦\quad 学号：13349112\quad 班级：计科二班}
 \date{}
 
@@ -43,15 +43,30 @@
 }
 \section*{ 实验内容}
 \hangindent=4em \hangafter=-10{
-在实验五的基础上，进化你的原型操作系统，原型保留原有特征的基础上，设计满足下列要求的新原型操作系统：\\
-(1)内核实现简单进程模型，进程具有就绪、运行两种基本状态。建议在c程序中定义进程表，进程数量最多4个。\\
-(2)内核可以一次性加载最多4个用户程序。用户进程采用时间片轮转调度进程。由你设计有个性的用户程序，它们的输出各占1/4屏幕区域，信息输出有动感，以便观察程序是否在执行。\\
-(3)在原型中保证原有的系统调用服务可用。再编写4个用户程序，展示系统调用服务还能工作。\\
+在实验五或更后的原型基础上，进化你的原型操作系统，原型保留原有特征的基础上，设计满足下列要求的新原型操作系统：\\
+(1)实现控制的基本原语do\_fork()、 do\_wait()、do\_exit()、blocked()和wakeup()。\\
+(2)内核实现三系统调用fork()、 wait()和exit() ，并在c库中封装相关的系统调用.\\
+(3)编写一个c语言程序，实现多进程合作的应用程序。\\
+多进程合作的应用程序可以在下面的基础上完成：由父进程生成一个字符串，交给子进程统计其中字母的个数，然后在父进程中输出这一统计结果。\\
+参考程序如下：\\
+{\scriptsize
+	\begin{lstlisting}[language={C}]
+char str[80]=”129djwqhdsajd128dw9i39ie93i8494urjoiew98kdkd”;
+int LetterNr=0;
+void main() {
+   int pid;   char ch;   pid=fork();
+if (pid==-1) printf(“error in fork!”);
+      if (pid)  {   ch=wait(); printf(“LetterNr=”); ntos(LetterNr); }
+Else {   CountLetter(str);   exit(0);}
+}
+\end{lstlisting}}
+编译连接你编写的用户程序，产生一个com文件，放进程原型操作系统映像盘中。\\
+
 }
 
 \section*{ 实验平台}
 \hangindent=4em \hangafter=-10{
-  dd+gcc+ld+nasm+Linux+vim\\
+  xxd+dd+gcc+ld+nasm+Linux+vim\\
 }
 
 \section*{ 算法流程图}
@@ -78,189 +93,76 @@
 	  一个横杠在转动.\\
 		\indent 另外有自定义中断\verb|int 33h,int 34h,int 35h,int 36h|分别在屏幕四分之一的位置打印个性化信息\\\\
 	{\large 4. 进程调度:}\\
-		\indent 软盘中共存放了用于展示进程调度的五个应用程序，其中一个应用程序为监听用户键盘事件然后退出多进程调度状态回到\verb| terminal|每个应用程序分别代表一个进程。开启装载进程并进行进程调度由\verb|1|中系统内置功能的\verb| start|指令激活。\\
+		\indent 软盘中共存放了用于展示进程调度的六个应用程序，其中一个应用程序为监听用户键盘事件然后退出多进程调度状态回到\verb| terminal|每个应用程序分别代表一个进程。开启装载进程并进行进程调度由\verb|1|中系统内置功能的\verb| start|指令激活。\\
+	{\large 5. 进程\verb|fork,wait,exit|:}\\
+		\indent 这个功能也是本次实验要求实现的，具体使用在第六个进程中，执行\verb|start|后即可看到包括第六个进程在内全部进程执行的结果。
 }
 
 \section*{ 实验步骤及效果图}
 \hangindent=4em \hangafter=-50{
 1. 编辑修改ASM 文件,和C文件	\\\\
 2. 使用make命令配合\verb|makefile|文件进行编译	\\\\
-3. 运行\verb|bochs or vmware|虚拟机进行测试,进入后所看到的欢迎界面,同时进入terminal界面等待输入指令
+3. 运行\verb|bochs or vmware|虚拟机进行测试,输入\verb|man start|,查看此条指令的说明\\\\
+{\center\includegraphics[scale=0.45]{Illustrations/man_start.png}}\\\\
+4. 输入\verb|start| 指令测试本次实验要求实现的功能
 {\center\includegraphics[scale=0.45]{Illustrations/start.png}}\\\\
-4. 我们可以执行\verb|man python |\\查看\verb|python|的作用，主要功能是输入一个数学表达式然后返回表达式的结果，类似\verb|python|命令行的作用。其他类似的系统内置功能也可以使用\verb|man|命令来查看帮助信息。
-但目前\verb|python|只支持加法和减法且只能有两个操作数（其实主要为了展示\verb|ah=3,4|将字符串转为数值和将数值转为字符串的系统调用效果），我这里仿照\verb|linux|系统的系统调用，设置
-\verb|int 80h |为所有系统调用的入口。可以看到图中分别输入加法减法，返回计算结果。如果输入的不符合格式就会返回错误提示。最后输入\verb|exit|退出\verb|python|命令行工具。
-{\center\includegraphics[scale=0.45]{Illustrations/python.png}}\\\\
-5. 接下来测试ah等于\verb|0,1,2,5|的系统调用(显示\verb|OUCH|，字母大小写变化等)，输入\verb| run 2 |,运行第二个用户程序，
-{\center\includegraphics[scale=0.45]{Illustrations/syscall0125.png}}\\\\
-
-下面是第二个用户程序的代码：
+5. 执行\verb| start|后开始执行的进程包括四个分别在\verb|1/4|屏幕打印个性信息的进程和一个监听任意按键退出的进程最后一个就是本次实验要测试的含有fork等函数的c语言进程,一共6个进程,
+下面是这个c进程的详细代码\\\\
 {\scriptsize
 	\begin{lstlisting}[language={C}]
-org 0x1000
-;org 0x100
 
-;#0
-mov ah,0
-int 80h
+#include "muti_process.h"
 
-;LISTEN_EXIT----
-listen0:
-	mov ah,0
-	int 16h
+char str[ 80] = "129djwqhdsajd128dw9i39ie93i8494urjoiew98kdkd";
+int LetterNr = 0;
+void main() {
+    __asm__( "sti");
+    int pid;
+    char ch;
+    printf( "\r\nBefore fork \r\n");
+    printf( "fork start..");
+    pid = fork();
+    if ( pid == -1) printf( "error in fork!\0");
+    if ( pid){
+        printf( "\r\nFather process:after fork pid is ");
+        printInt( pid);
+        printf( "\r\nFather process:running...");
+        printf( "\r\nFather process:blocked \r\n\r\n");
 
+        ch = wait();
+        printf( "\r\nFather process:running...");
+        printf( "\n\rFather process:LetterNr=");
+        ntos( LetterNr);
+        printf( "\r\nFather process:exit");
+        exit(0);
+    }
+    else{
+        printf( "\r\nSub process:after fork pid is ");
+        printInt( pid);
+        printf( "\r\nSub process:running...");
 
-;#2
-mov ax,0xb800
-mov es,ax
-mov dx,1994D
-mov ah,2
-int 80h
-
-;LISTEN_EXIT----
-	mov ah,0
-	int 16h
-
-;#1
-mov ax,0xb800
-mov es,ax
-mov dx,1994D
-mov ah,1
-int 80h
-
-;LISTEN_EXIT----
-	mov ah,0
-	int 16h
-
-
-
-;#5
-mov ax,cs
-mov ds,ax
-mov es,ax
-
-mov cx,0317h  ;position
-mov ah,5
-mov dx,msg
-int 80h
-
-
-;LISTEN_EXIT----
-listen:
-	mov ah,0
-	int 16h
-
-ret
+        CountLetter( str);
+        printf( "\r\nSub process:exit\r\n\r\n");
+        exit( 0);
+    }
+}
+	\end{lstlisting}
+}
 
 
 
-msg:
-	db "hello world!"
-
-times 512-($-$$) db 0	;填充剩余扇区0
-
-
-
-	\end{lstlisting}}
-下面我们将上面代码分解一下，详细介绍。\\\\
-5.1 首先执行执行\verb|ah=0|的系统调用将\verb| OUCH |  打印在屏幕中间
-{\scriptsize
-\begin{lstlisting}[language={C}]
-org 0x1000
-;org 0x100
-
-;#0
-mov ah,0
-int 80h
-;LISTEN_EXIT----
-listen0:
-	mov ah,0
-	int 16h
-
-	\end{lstlisting}}
-{\center\includegraphics[scale=0.45]{Illustrations/syscall0.png}}\\\\
-5.2 现在按下任意键，将执行\verb|ah=2|的系统调用把\verb| OUCH|的第一个字母大写O变成小写o\\\\
-{\scriptsize
-\begin{lstlisting}[language={C}]
-;#2
-mov ax,0xb800
-mov es,ax
-mov dx,1994D
-mov ah,2
-int 80h
-
-;LISTEN_EXIT----
-	mov ah,0
-	int 16h
-
-	\end{lstlisting}}
-{\center\includegraphics[scale=0.45]{Illustrations/syscall2.png}}\\\\
-5.3 按下任意键，执行\verb|ah=1|的系统调用把\verb| oUCH|的第一个字母小写o变回大写O\\\\
-{\scriptsize
-\begin{lstlisting}[language={C}]
-;#1
-mov ax,0xb800
-mov es,ax
-mov dx,1994D
-mov ah,1
-int 80h
-
-;LISTEN_EXIT----
-	mov ah,0
-	int 16h
+6. 下图就是刚执行后的效果，6个进程开始执行并调度
+{\center\includegraphics[scale=0.45]{Illustrations/fork_begin.png}}\\\\
+{\center\includegraphics[scale=0.45]{illustrations/fork_done.png}}\\\\
+7. 下面具体解释一下执行的详细过程,可以参照第5步贴的代码，绿色框内是执行fork之前输出的字符串，黄色框代表fork后父进程输出的代码，紫色是fork后子进程输出的。
+可以看到fork完之后父进程运行了一段时间后被阻塞，然后子进程继续运行直到退出并唤醒父进程。父进程再次执行并把子进程执行\verb|countletter|的结果打印出来，最后父进程退出
+\\\\
+{\center\includegraphics[scale=0.45]{illustrations/intro.png}}\\\\
+8. 再执行的任何时间都可以按下任意按键退出模拟多进程调度的程序回到\verb|terminal|。\\\\
+{\center\includegraphics[scale=0.45]{illustrations/back.png}}\\\\
 
 
-	\end{lstlisting}}
-{\center\includegraphics[scale=0.45]{Illustrations/syscall1.png}}\\\\
-5.4 按下任意键，执行\verb|ah=5|的系统调用在屏幕3行17列的位置打印一个\verb|helloworld|
-{\scriptsize
-\begin{lstlisting}[language={C}]
-;#5
-mov ax,cs
-mov ds,ax
-mov es,ax
 
-mov cx,0317h  ;position
-mov ah,5
-mov dx,msg
-int 80h
-
-
-;LISTEN_EXIT----
-listen:
-	mov ah,0
-	int 16h
-
-ret
-
-msg:
-	db "hello world!"
-	\end{lstlisting}}
-
-{\center\includegraphics[scale=0.45]{Illustrations/syscall5.png}} \\\\
-\indent 5.5 返回操作系统\\\\
-
-6. 内核也有设置自定义中断,在\verb| terminal| 的右下角一直有个横杠在转动，转动频率由\verb| 0x1c|时钟中断触发。在第一个用户程序中\verb| run 1|可以看到自定义的\verb| 33h~36h|中断分别向屏幕1/4位置打印，组合成一个万字旗
-{\center\includegraphics[scale=0.45]{Illustrations/allcustomint.png}}\\\\
-{\center\includegraphics[scale=0.45]{Illustrations/usr2.png}}\\\\
-
-7. 接下来展示这次实验要求实现的多进程调度。\\\\
-\indent 7.1 我这里创建并执行进程由命令\verb| start|  触发.
-{\center\includegraphics[scale=0.45]{Illustrations/man_start.png}}\\\\
-7.2 我们在\verb| terminal|中输入\verb| start|回车。开始创建四个进程并且进行每\verb| 18.2|次的调度，四个进程均分时间片T\\
-\[ T = \frac{1 \ S}{18.2} = 0.05494 S = 54.94 ms \]\\\\
-{\center\includegraphics[scale=0.45]{Illustrations/process_start.png}}\\\\
-7.3 可以看到每个进程向屏幕四分之一区域打印个性化信息，由于使用的延时函数是用暴力循环的方法，所以存在在不同配置的虚拟机上动画的速度不一样的问题。
-{\center\includegraphics[scale=0.45]{Illustrations/process_start2.png}}\\\\
-7.4 在屏幕形成一个万字旗，并且打印出\verb| THE SECOND WORLD WAR| 
-{\center\includegraphics[scale=0.45]{Illustrations/process_start3.png}}\\\\
-{\center\includegraphics[scale=0.45]{Illustrations/process_start5.png}}\\\\
-7.5 进程执行动画描述: 万字旗组成的符号每次循环都被自动加1并显示,直到加到\verb| ascii|码中最后一个字符\verb| ~|，再换回*,如此反复循环\ldots
-{\center\includegraphics[scale=0.45]{Illustrations/process_1.png}}\\\\
-{\center\includegraphics[scale=0.45]{Illustrations/process_2.png}}\\\\
-{\center\includegraphics[scale=0.45]{Illustrations/process_3.png}}\\\\
-7.6 实际上执行\verb| start| 命令后，总共创建了5个进程，其中四个在上面已经说到，另外一个是为了退出进程调度动画回到\verb| terminal|的监听键盘事件的后台进程。与其他四个进程拥有同样长的时间片，也就是说在进程调度动画执行的任何时候都可以随便按一个键返回\verb| terminal|.
-{\center\includegraphics[scale=0.45]{Illustrations/back.png}}\\\\
 
 
 
@@ -272,8 +174,8 @@ msg:
 3. 操作系统讲用户程序加载到0x1000处运行\\
 4. 软盘第0个柱面的第一个扇区存储操作系统引导程序\\
 5. 软盘第0个柱面剩下所有扇区2～36扇区存储操作系统内核\\
-6. 软盘第\verb|1,2,3,4,5,6|柱面分别存储五个进程代码\\
-7. 软盘第\verb|7,8|柱面分别存储两个用户程序的程序代码\\\\
+6. 软盘第\verb|1,2,3,4,5,6,7|柱面分别存储六个进程代码\\
+7. 软盘第\verb|8,9|柱面分别存储两个用户程序的程序代码\\\\
 {\large 栈结构}\\
 	\indent 内核栈:从内存的\verb| 0xffff|开始向下扩展\\
 	\indent 用户栈:从内存的\verb| 0x1000|开始向下扩展\\
@@ -282,7 +184,7 @@ msg:
 }
 \section*{ 系统架构}
 \hangindent=4em \hangafter=-50{
-{\scriptsize 
+{\scriptsize
   \setmonofont{Lantinghei SC Extralight}
 \begin{verbatim}
 .
@@ -309,7 +211,7 @@ msg:
 ├── process4.asm
 ├── process_wait_key.asm    监听退出进程
 ├── python_extension.c      Python扩展
-├── README					
+├── README
 ├── snapshot.txt
 ├── stack.png
 ├── usr1.asm                用户代码
@@ -344,10 +246,10 @@ void main(){
 	print_flag(); //root@wangqin4377@:   position
 	__asm__("pop %si");
 	//--------------------init_end
-	while(1){							
+	while(1){
 		char length = listen_key();// load shell and enter terminal
 
-		if_screen_scroll(); //bottom of screen		
+		if_screen_scroll(); //bottom of screen
 		flag_scroll();//move flag to next line
 		__asm__("pop %si");
 		if( Print_flag_mark)
@@ -435,7 +337,7 @@ ret
   自动触发的\verb| 0x1C|号中断实现.
   {\scriptsize \begin{lstlisting}[language={C}]
 
-	;#1  setting up time interrupt 
+	;#1  setting up time interrupt
 	mov ax,0x1c
 	mov [ interrupt_num], ax
 	mov ax, timer_interrupt_process
@@ -450,7 +352,7 @@ ret
 	mov ax, process_int33
 	mov [ interrupt_vector_offset],ax
 	call insert_interrupt_vector
-	
+
 	;#3 int 34
 	mov ax,0x34
 	mov [ interrupt_num], ax
@@ -484,11 +386,11 @@ ret
   {\scriptsize \begin{lstlisting}[language={C}]
 inline void run( char *str){
 	str += 4;
-	
+
 	while( *str != '\0'){
 	if('0'<*str && *str< Usr_num){
-	
-			load_user( 5 + *str-'0', 0x1000);	//in oslib.asm	usri in i sector 
+
+			load_user( 5 + *str-'0', 0x1000);	//in oslib.asm	usri in i sector
 			__asm__(" pop %ax");
 			run_user();
 			__asm__(" pop %ax");
@@ -498,7 +400,7 @@ inline void run( char *str){
 			}
 		str++;
 	}
-	init_flag_position();	
+	init_flag_position();
 	screen_init();
 	print_welcome_msg();
 	print_message();
@@ -514,7 +416,7 @@ void Process(){
 	int i;
 	for( i = 1; i <= process_num_MAX; i++){
 		current_process_SEG += 0x1000;
-		init_pcb( i, current_process_SEG);	
+		init_pcb( i, current_process_SEG);
 	}
 	load_user(1, 0x1000);
 	load_user(2, 0x2000);
@@ -529,17 +431,17 @@ void Process(){
  8. 进程调度，这个是本次试验最核心的要求，\verb| w_is_r:which process is running|,\verb| nw_is_r:which next process will run |换老进程下来的时候首先保存的是通用寄存器到这个进程的上下文\verb| TSS|，具体实现就是先把\verb| ax,bx..|等通用寄存器保存到c语言中定义的全局变量中然后再由全局变量保存到进程控制模块队列的pcb结构体中。最后保存的是\verb| IP,CS,Flags,SP|,前三个直接从当前栈中直接pop出来即可，因为cpu在发生中断的时候已经自动把这三个push到栈中了，最后再保存sp,栈指针寄存器。接下来根据\verb| di|寄存器的值来判断是否该结束调度程序回到terminal。如果不是则继续换上新的进程，首先还原的是\verb| sp,ip,cs,flags|，后三个直接push到栈里面就可以了，iret的时候会自动取出来并跳转到\verb| cs:ip|位置执行。最后跳转到\verb| schedule_end|中执行iret结束本次调度。
   {\scriptsize \begin{lstlisting}[language={C}]
 void schedule(){
-	saveall_reg();			//hurry not inclue sp	
+	saveall_reg();			//hurry not inclue sp
 	__asm__("pop %cx");
 	__asm__("pop %eax");	//junk
 
 	nw_is_r = w_is_r + 1;
 	if( nw_is_r > process_num_MAX){
-		nw_is_r = 1;	
+		nw_is_r = 1;
 	}
 
-	
-	saveToqueue();			//code order don't change	
+
+	saveToqueue();			//code order don't change
 
 
 	//----------------set ip cs flag--------
@@ -550,7 +452,7 @@ void schedule(){
 	saveall_reg_seg();		//include sp
 	__asm__("pop %cx");
 
-	if( _di == 0x1234){	
+	if( _di == 0x1234){
 		isProcessRun = 0;			//shut down process
 		nw_is_r = 0;
 		backto_os();
@@ -575,13 +477,13 @@ void schedule(){
 
 
 	queueTodata();		// ax bx cx...
-	
+
 	w_is_r++;
 	if( w_is_r > process_num_MAX){
 		w_is_r = 1;
 	}
 
-	restore_reg();	
+	restore_reg();
 	__asm__("pop %di");		//don't use di in any process is dangerous
 
 	__asm__("jmp schedule_end");
@@ -596,7 +498,7 @@ inline void saveToqueue(){
 	PCB_queue[ w_is_r].tss.GS = _gs;
 	PCB_queue[ w_is_r].tss.FS = _fs;
 	PCB_queue[ w_is_r].tss.SS = _ss;
-								
+
 	PCB_queue[ w_is_r].tss.AX = _ax;
 	PCB_queue[ w_is_r].tss.BX = _bx;
 	PCB_queue[ w_is_r].tss.CX = _cx;
@@ -662,7 +564,7 @@ ret
 \end{lstlisting}}
 
 
-}	
+}
 \section*{ 实验心得及仍需改进之处}
 \hangindent=4em \hangafter=-50{
 	{\large 实验心得:}\\\\
@@ -683,4 +585,3 @@ ret
 }
 \fancyfoot[OC]{ \footnotesize{https://github.com/wangqin4377/Homework\_Wangqin/tree/master/OS\_homework/}}
 \end{document}
-
