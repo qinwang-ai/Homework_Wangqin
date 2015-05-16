@@ -121,7 +121,7 @@ void schedule(){
 	if( _di == 0x1234){	
 		isProcessRun = 0;			//shut down process
 		nw_is_r = 0;
-		w_is_r = 0;
+		process_num --;
 		backto_os();
 	}else{
 		isProcessRun = 1;
