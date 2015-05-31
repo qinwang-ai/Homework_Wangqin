@@ -38,7 +38,7 @@ char fork(){
 	pid = return_ax_Tpid();
 	__asm__("pop %cx");
 	__asm__("sti");
-	return pid;	
+	return pid;
 }
 
 
@@ -57,25 +57,41 @@ void exit( char x){
 	__asm__("sti");
 	while(1);
 }
-void GetSem( char value ){
+char GetSem( char value ){
 	__asm__("cli");
 	__asm__("mov $9,%ah");
 	__asm__("int $0x80");
+	__asm__("pop %ebx");
+	__asm__("pop %ebx");
+	__asm__("pop %bx");
 	__asm__("sti");
+	__asm__("jmp *%bx");
 }
 void sema_P( int s){
 	__asm__("cli");
-	__asm__("mov $10,%ah");
-	stobx( s);
+	stosi( s);
 	__asm__("pop %cx");
+	__asm__("mov $10,%ah");
 	__asm__("int $0x80");
+	__asm__("pop %ebx");
+	__asm__("pop %ebx");
+	__asm__("pop %bx");
 	__asm__("sti");
+	__asm__("int $0x1c");
+	__asm__("jmp *%bx");
 }
 void sema_V( int s){
 	__asm__("cli");
+	stosi( s);
+	__asm__("pop %cx");
 	__asm__("mov $11,%ah");
 	__asm__("int $0x80");
+	__asm__("pop %ebx");
+	__asm__("pop %ebx");
+	__asm__("pop %bx");
 	__asm__("sti");
+	__asm__("int $0x1c");
+	__asm__("jmp *%bx");
 }
 void ReleaseSem( char value ){
 	__asm__("cli");
@@ -86,29 +102,28 @@ void ReleaseSem( char value ){
 
 void myprintf( char *str){
 	printf( str);
-	printf( "father enjoy fruit");
+	printf( "AND father enjoy fruit\n\r\n\r");
 }
 extern char words[60];
 void putwords( char *str){
 	char i = 1;
-	while( *str!='\0'&& i<=strlen( str)){
+	while( *str!='\0'){
 		words[ i-1] = *str;
 		i++;
 		str++;
 	}
+	printf( "put words complete!\n\r");
 }
 extern char fruit_disk;
 void putfruit(){
-	fruit_disk = 1;
+	fruit_disk = rdtsc_ax()%2+1;
+	printf( "put fruit complete! fruit is ");
+	printToscn( fruit_disk + 48);
+	printToscn( '\r');
+	printToscn( '\n');
 }
 
 #endif
-
-
-
-
-
-
 
 
 

@@ -63,10 +63,13 @@ process3.com:process3.asm
 process4.com:process4.asm 
 	nasm -f bin $^ -o $@
 
+usrlib.o:usrlib.asm
+	nasm -f elf $^ -o $@
+
 process_semaphore.elf:process_semaphore.c
 	gcc $(C_flags) -c $^ -o $@
 
-process_semaphore.com:process_semaphore.elf osclib_share.o oslib_share.o
+process_semaphore.com:process_semaphore.elf osclib_share.o oslib_share.o usrlib.o
 	ld $(LD_flags) -Ttext 0x3000 --oformat binary $^ -o $@ -e main
 
 process_wait_key.com:process_wait_key.asm 

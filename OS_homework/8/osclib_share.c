@@ -7,24 +7,7 @@ extern unsigned short int get_pointer_pos();
 
 char strlen( char*);
 void print_str( const char * , unsigned short int );
-void putch( char );
 //----------------shengming  end
-
-
-
-void puts(char *key){
-	print_str( key ,strlen( key));	
-}
-
-void putch( char ch){
-	printToscn( ch);
-}
-
-char scanftmp[5];
-void wait_key(){
-	puts("\r\n\r\n  press any key to exit...");
-	char a=input_char();
-}
 
 char str[10];
 char * itoa( short int value){

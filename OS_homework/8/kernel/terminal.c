@@ -17,22 +17,9 @@ char listen_key(){
 		return i;
 	}
 
-	if( strcmp( key, "time\0")){
-		time();
-		return i;
-	}
-
-	if( strcmp( key, "date\0")){
-		date();
-		return i;
-	}
 	if( strcmp( key, "python\0")){
 		python();
 		Print_flag_mark = 1;
-		return i;
-	}
-	if( strcmp( key, "syscall\0")){
-		syscall_test();
 		return i;
 	}
 
@@ -55,40 +42,10 @@ char listen_key(){
 		return i;
 	}
 //---------------------------------mark: man xxx, run xxx,asc xx...
-
-	if( synCheck( key, "asc\0")){
-		asc( key);
-		return i;
-	}
-
-	if( synCheck( key, "man\0")){
-		man( key);
-		return i;
-	}	
-	
+		
 	if( synCheck( key, "run\0")){
 		run( key);
 		return i;
-	}
-
-
-	if( synCheck( key, "int\0")){
-		if( strcmp( key, "int 33h")){
-			__asm__(  "int $0x33");
-			return i;
-		}
-		if( strcmp( key, "int 34h")){
-			__asm__(  "int $0x34");
-			return i;
-		}
-		if( strcmp( key, "int 35h")){
-			__asm__(  "int $0x35");
-			return i;
-		}
-		if( strcmp( key, "int 36h")){
-			__asm__(  "int $0x36");
-			return i;
-		}
 	}
 
 	if( key[0] == '\0'){

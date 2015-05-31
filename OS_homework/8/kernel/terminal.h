@@ -6,10 +6,6 @@ __asm__(".code16gcc");
 extern char gets( char *);
 extern char strcmp( char *, const char *);
 extern void clear();
-extern void time();
-extern void date();
-extern void man( char *);
-extern void asc( char *);
 extern void run( char *);
 
 extern void syscall_test();
@@ -22,6 +18,5 @@ extern void init_flag_position();
 extern void printToscn( char);
 extern void print_message();
 extern void print_welcome_msg();
-extern void syscall_test();
 
 #endif

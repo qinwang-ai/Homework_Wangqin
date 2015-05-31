@@ -33,31 +33,6 @@ init_flag_position:
 	mov [ flag_position],ax 
 ret
 
-
-get_time:
-	mov ah,0x02
-	int 0x1a
-	mov ax,cx
-ret
-
-get_second:
-	mov ah,0x02
-	int 0x1a
-	mov ax,dx
-ret
-
-get_year:
-	mov ah,0x04
-	int 0x1a
-	mov ax,cx
-ret
-
-get_date:
-	mov ah,0x04
-	int 0x1a
-	mov ax,dx
-ret
-
 print_welcome_msg:		;param ( string, len, position) 
 	mov ax,cs
 	mov es,ax
@@ -301,16 +276,21 @@ return_sema:
 	mov bp,sp
 	mov ax,[ bp+4]
 ret
+global sitoindex
+extern s_index
+sitoindex:
+	mov [ s_index],si
+ret
 
 ;------------------DATA-------------------
 var:
 
 msg:
-	db `Welcome to Wangqin\'s OS v1.7`		;style 78D
+	db `Welcome to Wangqin\'s OS v1.8`		;style 78D
 msg_l equ $-msg
 
 msg2:					;style 71D
-	db `System programs -- date,time,asc,clear,help,python,start  \r\n         Man it to see detail.Ex: man date.\r\n\r\n     User programs   -- Type 'man run' for help \r\n\r\n     Process         -- Type <start> to start run all processes\r\n\r\n     Please read my report to see more...`
+	db `System programs -- clear,help,python,start  \r\n\r\n     User programs   -- Ex:run 12 \r\n\r\n     Process         -- Type <start> to start run all processes\r\n\r\n     Please read my report to see more...`
 msg2_l equ $-msg2
 
 msg3:
@@ -322,11 +302,6 @@ flag_position dd 0x1000
 format_line:
 	db '                                                            '
 format_line_l equ $-format_line
-
-
-
-
-
 
 
 

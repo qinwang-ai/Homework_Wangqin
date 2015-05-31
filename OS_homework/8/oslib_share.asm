@@ -55,13 +55,27 @@ get_pointer_pos:
 	mov ax,dx ;return row:col
 ret 
 
-global stobx
-stobx:
-	mov bp,sp
-	mov bx,[ bp+4]
-ret
-
 global return_ax_Tpid
 return_ax_Tpid:
 ret
+
+global delay
+delay:
+	push dx
+	push cx
+	mov si,2000D
+	mov dx,00
+	timer2:	
+		mov cx,00
+		timer:
+			inc cx
+			cmp cx,si
+		jne timer
+		inc dx
+		cmp dx,si
+	jne timer2
+	pop cx
+	pop dx
+ret
+
 

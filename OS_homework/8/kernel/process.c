@@ -281,11 +281,63 @@ void do_getsem(){
 	__asm__("jmp *%bx");  //back to os_syscall callrun  
 }
 
-void do_P(){
+void semaBlock( char s){
+	PCB_queue[ w_is_r].process_status = BLOCK;
+	sema_array[ s].block_queue[ sema_array[ s].tail] = w_is_r;
+	sema_array[ s].tail++;
+	if( sema_array[ s].tail>process_num_MAX)
+		sema_array[ s].tail = 0;
 }
+char s_index;
+void do_P(){
+	sitoindex();
+	__asm__("pop %bx");
+
+	sema_array[ s_index].count --;
+	if( sema_array[ s_index].count<0){
+		semaBlock( s_index);	
+	}
+
+	__asm__("mov %bp,%sp");
+	__asm__("pop %bx");
+	__asm__("pop %bx");
+	__asm__("pop %bx");
+	__asm__("jmp *%bx");  //back to os_syscall callrun  
+}
+char temp;
+void semaWakeUp( char s){
+	temp = sema_array[ s].block_queue[ sema_array[ s].head];
+	PCB_queue[ temp].process_status = READY;
+	sema_array[ s].head++;
+	if( sema_array[ s].head > process_num_MAX)
+		sema_array[ s].head = 0;
+}
+
 void do_V(){
+	sitoindex();
+	__asm__("pop %bx");
+	sema_array[ s_index].count ++;
+	if( sema_array[ s_index].count<=0){
+		semaWakeUp( s_index);	
+	}
+	__asm__("mov %bp,%sp");
+	__asm__("pop %bx");
+	__asm__("pop %bx");
+	__asm__("pop %bx");
+	__asm__("jmp *%bx");  //back to os_syscall callrun  
 }
 void do_free(){
+	sitoindex();
+	__asm__("pop %bx");
+	sema_array[ s_index].count = 0;
+	sema_array[ s_index].used = 0;
+	sema_array[ s_index].head = 0;
+	sema_array[ s_index].tail = 0;
+	__asm__("mov %bp,%sp");
+	__asm__("pop %bx");
+	__asm__("pop %bx");
+	__asm__("pop %bx");
+	__asm__("jmp *%bx");  //back to os_syscall callrun  
 }
 
 
