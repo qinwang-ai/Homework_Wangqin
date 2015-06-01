@@ -22,25 +22,17 @@
 ├── process2.asm
 ├── process3.asm
 ├── process4.asm
-├── process_counter.c
+├── process_semaphore.c
 ├── process_wait_key.asm
 ├── python_extension.c
 ├── report
 │   ├── Illustrations
-│   │   ├── back.png
-│   │   ├── flow.png
-│   │   ├── fork_begin.png
-│   │   ├── fork_done.png
-│   │   ├── intro.png
-│   │   ├── man_start.png
-│   │   └── start.png
-│   ├── report.aux
-│   ├── report.log
-│   ├── report.pdf
+│   │   └── flow.png
 │   ├── report.tex
 │   └── tree
 ├── snapshot.txt
 ├── usr1.asm
-└── usr2.asm
+├── usr2.asm
+└── usrlib.asm
 
-3 directories, 40 files
+3 directories, 32 files
