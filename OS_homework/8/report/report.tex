@@ -2,6 +2,7 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage {fontspec}
+\usepackage {multicap}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \setromanfont{Lantinghei SC Extralight}
@@ -77,7 +78,7 @@ Void putfruit() {    随机选择一个水果放进fruit_disk; }
 
 \section*{ 算法流程图}
 \hangindent=4em \hangafter=-10{
-  \includegraphics[scale=0.6]{Illustrations/flow.png}
+  \begin{center} \includegraphics[scale=0.5]{Illustrations/flow.png} \mfcaption{flow}\end{center}
 }
 
 \section*{ 功能一览}
@@ -87,7 +88,7 @@ Void putfruit() {    随机选择一个水果放进fruit_disk; }
 		\indent \verb| clear|, 清除当前屏幕所有字符，刷新屏幕\\
 		\indent \verb| help|, 显示系统帮助信息\\
 		\indent \verb| python |, python 扩展，类似python命令行工具，可以使用这个工具输入计算表达式返回计算结果，目前只支持加法减法\\
-		\indent \verb| start|, 开始创建并执行四个进程并且每秒18.2次的调度，分别在屏幕\verb|1/4|处打印一些个性化信息( 不同配置的虚拟机动画速度不一样，建议使用vmware测试)\\\\
+		\indent \verb| start|, 开始创建并执行四个进程并且每秒18.2次的调度，分别在屏幕\verb|1/4|处打印一些个性化信息( 不同配置的虚拟机动画速度不一样，建议使用bochs测试)\\\\
 	{\large 2. 用户程序:}\\
 		\indent \verb| run |,软盘中含有两个用户程序,输入\verb|run 12|,可分别执行两个用户程序，当然也可以通过改变执行序列来改变执行的顺序\\\\
 	{\large 3. 自定义中断:}\\
@@ -98,13 +99,20 @@ Void putfruit() {    随机选择一个水果放进fruit_disk; }
 		\indent 软盘中共存放了用于展示进程调度的六个应用程序，其中一个应用程序为监听用户键盘事件然后退出多进程调度状态回到\verb| terminal|每个应用程序分别代表一个进程。开启装载进程并进行进程调度由\verb|1|中系统内置功能的\verb| start|指令激活。\\
 		\\
 	{\large 5. 进程\verb|fork,wait,exit|:}\\
-		\indent 具体使用在第六个进程中，执行\verb|start|后即可看到包括第六个进程在内全部进程执行的结果。
+		\indent 具体使用在第六个进程中，执行\verb|start|后即可看到包括第六个进程在内全部进程执行的结果。\\\\
 	{\large 6. 使用信号量解决进程间的同步:}\\
 		\indent 具体使用在第六个进程中，执行\verb|start|后即可看到包括第六个进程在内全部进程执行的结果。
 }
 
 \section*{ 实验步骤及效果图}
 \hangindent=4em \hangafter=-50{
+	\begin{enumerate}
+		\item 运行\verb| start|命令，开始执行并调度所有进程
+		\begin{center} \includegraphics[scale=0.4]{Illustrations/start.png} \mfcaption{start}\end{center}
+		\item 下图为执行画面，利用信号量实现了进程间的同步关系，儿子放水果的时候随机放1或2（1代表苹果，2代表雪梨）可以看到每次都是两个儿子进程putfruit，putwords
+		  之后再让第一个进程执行打印出句子和水果。
+		\begin{center} \includegraphics[scale=0.4]{Illustrations/semaphore.png} \mfcaption{start}\end{center}
+	\end{enumerate}
 }
 \section*{ 内存和软盘存储管理}
 \hangindent=4em \hangafter=-50{
