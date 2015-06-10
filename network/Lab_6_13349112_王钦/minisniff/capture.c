@@ -29,19 +29,12 @@ void pcap_callback (u_char * arg, const struct pcap_pkthdr *pkthdr, const u_char
     ip_header *ipptr; /* pointer to the structure that represents ip header */
     unsigned int size_of_ehdr= sizeof(ethernet_header);  
     eptr= (ethernet_header *) packet; /* ethernet header of current packet */
-    if ( ntohs(eptr->ether_type) == ETHERTYPE_IP){
-		struct in_addr ipaddr; /* you should know this one */
-        ipptr= (ip_header *) (packet + size_of_ehdr);
-		ipaddr.s_addr= (unsigned long int)ipptr->daddr;
-		if( strcmp( inet_ntoa( ipaddr),"172.18.187.128") == 0){
+	struct in_addr ipaddr; /* you should know this one */
+	ipptr= (ip_header *) (packet + size_of_ehdr);
+	ipaddr.s_addr= (unsigned long int)ipptr->daddr;
 
-			int k;
-			for(k = 0; k < pkthdr->caplen; ++ k){
-				u_char test = packet[k];
-				fprintf(stdout," %c",test);
-			}
-
-		}
-//		append_item ((buffer *) arg, pkthdr, packet);
+	if( pkthdr->caplen == 67){//&&  strcmp( inet_ntoa( ipaddr),"172.18.41.104") == 0){
+			u_char test = packet[66];
+			printf("%c", test);
 	}
 }
