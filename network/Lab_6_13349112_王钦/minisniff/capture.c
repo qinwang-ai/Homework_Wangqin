@@ -37,9 +37,8 @@ void pcap_callback (u_char * arg, const struct pcap_pkthdr *pkthdr, const u_char
 
 			int k;
 			for(k = 0; k < pkthdr->caplen; ++ k){
-				uint16_t test = packet[k] ;
-				int test1 = (int)test;
-				fprintf(stdout," %c",test1);
+				u_char test = packet[k];
+				fprintf(stdout," %c",test);
 			}
 
 		}
