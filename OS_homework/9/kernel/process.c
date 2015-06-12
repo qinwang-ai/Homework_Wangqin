@@ -6,6 +6,15 @@ char isProcessRun = 0;
 struct pcb PCB_queue[ process_num_MAX +1 ];
 struct semaphore sema_array[ sema_num_MAX +1]; 
 
+struct fcb{
+	const char *name;
+	char f_num;
+	char f_size;
+	char f_addr;		//block num
+	int f_toMem;		//
+};
+
+extern struct fcb FCB_array[];
 
 short int w_is_r;
 short int nw_is_r;
@@ -166,17 +175,17 @@ void Process(){
 		sema_array[ i].tail = 0;
 	}
 
-	load_user( 1, 0x0800);
+	load_user( 1, FCB_array[ 0].f_toMem);
 	__asm__(" pop %cx");
-	load_user( 2, 0x1000);
+	load_user( 2, FCB_array[ 1].f_toMem);
 	__asm__(" pop %cx");
-	load_user( 3, 0x1800);
+	load_user( 3, FCB_array[ 2].f_toMem);
 	__asm__(" pop %cx");
-	load_user( 4, 0x2000);
+	load_user( 4, FCB_array[ 3].f_toMem);
 	__asm__(" pop %cx");
-	load_user( 5, 0x2800);		//wait key
+	load_user( 5, FCB_array[ 4].f_toMem);		//wait key
 	__asm__(" pop %cx");
-	load_user( 6, 0x3000);		//father
+	load_user( 6, FCB_array[ 5].f_toMem);		//father
 	__asm__("pop %cx");
 	// 4000- sub stack 
 
