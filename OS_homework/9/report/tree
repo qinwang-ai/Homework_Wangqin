@@ -3,10 +3,15 @@
 ├── README
 ├── bochsrc
 ├── boot.asm
+<<<<<<< HEAD
 ├── boot.bin
 ├── disk.img
 ├── kernel
 │   ├── fcb.h
+=======
+├── disk.img
+├── kernel
+>>>>>>> 6bbb9151f7a29ac0f1c473835f4c5848087813a9
 │   ├── os.asm
 │   ├── os.c
 │   ├── os.h
@@ -18,6 +23,7 @@
 │   ├── terminal.c
 │   └── terminal.h
 ├── muti_process.h
+<<<<<<< HEAD
 ├── os.bin
 ├── os.o
 ├── os_syscall.o
@@ -63,3 +69,25 @@
 └── usrlib.o
 
 3 directories, 59 files
+=======
+├── osclib_share.c
+├── oslib_share.asm
+├── process1.asm
+├── process2.asm
+├── process3.asm
+├── process4.asm
+├── process_semaphore.c
+├── process_wait_key.asm
+├── python_extension.c
+├── report
+│   ├── Illustrations
+│   │   └── flow.png
+│   ├── report.tex
+│   └── tree
+├── snapshot.txt
+├── usr1.asm
+├── usr2.asm
+└── usrlib.asm
+
+3 directories, 32 files
+>>>>>>> 6bbb9151f7a29ac0f1c473835f4c5848087813a9
