@@ -1,0 +1,25 @@
+
+Before fork         ******************                     *
+fork start..                                               *
+Father process:after fork pid is 7                         *
+Father process:running...                                  *
+Father process:blocked                                     *
+                                                           *
+Sub process:after fork pid is 0                            *
+Sub process:running...                                     *
+Sub process:exit                                           *
+                                                           *
+Father process:running...                                  *
+Father process:Lette*******                          *******
+Father process:exitﬂ*
+                    *
+                    *
+                    *
+                    *
+                    *
+                    *
+                    *
+                    *
+                    *
+                    *                     ******************
+                                                                               \
