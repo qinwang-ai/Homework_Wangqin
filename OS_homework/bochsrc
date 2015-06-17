@@ -11,7 +11,7 @@ romimage: file=/usr/share/bochs/BIOS-bochs-latest
  
 vgaromimage: file=/usr/share/vgabios/vgabios.bin
  # what disk images will be used
-floppya: 1_44=p1.img, status=inserted
+floppya: 1_44=p2.img, status=inserted
 #display_library: sdl
  
  # choose the boot disk.
