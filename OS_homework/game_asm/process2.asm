@@ -12,7 +12,7 @@ sti
 	msg2:	db "name:wangqin"  ;length =28
 	grades db 48
 	speedi db 1000D
-	speedj db 600D
+	speedj db 6000D
 
 [section .text]
 mov ax, 0xB800
