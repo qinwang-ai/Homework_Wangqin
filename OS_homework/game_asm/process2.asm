@@ -243,6 +243,7 @@ display_grades:
 ret
 
 game_over:
+	push di
 	mov ax,0xb800
 	mov es,ax
 	mov si,msg
@@ -263,6 +264,7 @@ game_over:
 	jge nex22
 	loop g
 	nex22:
+	pop di
 
 	
 jmp $

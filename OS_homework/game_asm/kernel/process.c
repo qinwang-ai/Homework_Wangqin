@@ -1,6 +1,6 @@
 #include "pcb.h"
 
-int process_num = 2; 
+int process_num = 3; 
 int start_process_num = 1;
 char isProcessRun = 0; 
 struct pcb PCB_queue[ process_num_MAX +1 ];
@@ -130,7 +130,6 @@ void schedule(){
 	if( _di == 0x1234){	
 		isProcessRun = 0;			//shut down process
 		nw_is_r = 0;
-		process_num --;
 		backto_os();
 	}else{
 		isProcessRun = 1;
@@ -179,6 +178,9 @@ void Process(){
 	__asm__(" pop %cx");
 	load_user( 2, FCB_array[ 1].f_toMem);
 	__asm__(" pop %cx");
+	load_user( 3, FCB_array[ 2].f_toMem);
+	__asm__(" pop %cx");
+
 		// 4000- sub stack 
 
 	w_is_r = 0;
