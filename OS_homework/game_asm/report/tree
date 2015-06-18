@@ -3,15 +3,9 @@
 ├── README
 ├── bochsrc
 ├── boot.asm
-<<<<<<< HEAD
-├── boot.bin
 ├── disk.img
 ├── kernel
 │   ├── fcb.h
-=======
-├── disk.img
-├── kernel
->>>>>>> 6bbb9151f7a29ac0f1c473835f4c5848087813a9
 │   ├── os.asm
 │   ├── os.c
 │   ├── os.h
@@ -23,71 +17,30 @@
 │   ├── terminal.c
 │   └── terminal.h
 ├── muti_process.h
-<<<<<<< HEAD
-├── os.bin
-├── os.o
-├── os_syscall.o
-├── osc.o
-├── osclib.o
 ├── osclib_share.c
-├── osclib_share.o
-├── oslib.o
 ├── oslib_share.asm
-├── oslib_share.o
-├── process.o
 ├── process1.asm
-├── process1.com
+├── process1.img
 ├── process2.asm
-├── process2.com
 ├── process3.asm
-├── process3.com
 ├── process4.asm
-├── process4.com
-├── process_semaphore.c
-├── process_semaphore.com
-├── process_semaphore.elf
-├── process_wait_key.asm
-├── process_wait_key.com
-├── python.o
+├── process_P2.asm
 ├── python_extension.c
 ├── report
 │   ├── Illustrations
-│   │   ├── ls.png
-│   │   ├── ls_resu.png
-│   │   ├── run.png
-│   │   └── run_resu.png
+│   │   ├── flow.png
+│   │   ├── gaming.png
+│   │   ├── gaming0.png
+│   │   ├── over.png
+│   │   ├── python.png
+│   │   └── start.png
+│   ├── report.aux
+│   ├── report.log
 │   ├── report.pdf
 │   ├── report.tex
 │   └── tree
-├── snapshot.txt
-├── terminal.o
-├── usr1.asm
-├── usr1.com
-├── usr2.asm
-├── usr2.com
-├── usrlib.asm
-└── usrlib.o
-
-3 directories, 59 files
-=======
-├── osclib_share.c
-├── oslib_share.asm
-├── process1.asm
-├── process2.asm
-├── process3.asm
-├── process4.asm
-├── process_semaphore.c
-├── process_wait_key.asm
-├── python_extension.c
-├── report
-│   ├── Illustrations
-│   │   └── flow.png
-│   ├── report.tex
-│   └── tree
-├── snapshot.txt
 ├── usr1.asm
 ├── usr2.asm
 └── usrlib.asm
 
-3 directories, 32 files
->>>>>>> 6bbb9151f7a29ac0f1c473835f4c5848087813a9
+6 directories, 48 files

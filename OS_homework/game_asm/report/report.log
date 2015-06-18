@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2015.3.30)  18 JUN 2015 23:03
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014) (preloaded format=xelatex 2015.3.30)  19 JUN 2015 03:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -613,123 +613,128 @@ LaTeX Font Warning: Font shape `EU1/lmss/m/sc' in size <10> not available
 (Font)              Font shape `EU1/lmr/m/sc' tried instead on input line 52.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--77
+Underfull \hbox (badness 10000) in paragraph at lines 57--72
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--77
+Underfull \hbox (badness 10000) in paragraph at lines 57--72
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--77
+Underfull \hbox (badness 10000) in paragraph at lines 57--72
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--77
+Underfull \hbox (badness 10000) in paragraph at lines 57--72
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--77
+Underfull \hbox (badness 10000) in paragraph at lines 57--72
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--77
+Underfull \hbox (badness 10000) in paragraph at lines 57--72
 
  []
 
 [1
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 83--86
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--86
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
 
  []
 
 File: Illustrations/start.png Graphic file (type QTm)
 <use  "Illustrations/start.png" >
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 86--86
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 81--81
  [] 
+ []
+
+
+Overfull \hbox (11.00586pt too wide) in paragraph at lines 82--85
+\EU1/LantingheiSCExtralight(0)/m/n/10 主 要 功 能 是 输 入 一 个 数 学 表 达 式 然 后 返 回 表 达 式
+ 的 结 果， 类 似[]\EU1/CourierNew(0)/m/n/10 python\EU1/LantingheiSCExtralight(0)/m/n
+/10 命
  []
 
 
 LaTeX Font Warning: Font shape `EU1/LantingheiSCExtralight(0)/m/sl' undefined
 (Font)              using `EU1/LantingheiSCExtralight(0)/m/n' instead on input 
-line 86.
+line 85.
 
 [2]
 File: Illustrations/python.png Graphic file (type QTm)
  <use  "Illustrations/python.png" >
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 90--90
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 85--85
+ [] 
+ []
+
+File: Illustrations/start.png Graphic file (type QTm)
+<use  "Illustrations/start.png" >
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 87--87
  [] 
  []
 
 [3]
-File: Illustrations/start.png Graphic file (type QTm)
- <use  "Illustrations/start.png" >
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 92--92
- [] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 93--94
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
  []
 
 File: Illustrations/gaming0.png Graphic file (type QTm)
 <use  "Illustrations/gaming0.png" >
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 94--94
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 89--89
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--96
+Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
 
 File: Illustrations/gaming.png Graphic file (type QTm)
 <use  "Illustrations/gaming.png" >
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 96--96
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 91--91
  [] 
  []
 
-[4]
-Overfull \hbox (16.78876pt too wide) in paragraph at lines 97--98
+
+Overfull \hbox (16.78876pt too wide) in paragraph at lines 92--93
 \EU1/LantingheiSCExtralight(0)/m/sl/10 5.3 当 玩 家 无 法 挡 住 小 球 往 下 落 的 时 候 就 会 游 
 戏 结 束， 显 示[] \EU1/CourierNew(0)/m/n/10 game over!\EU1/LantingheiSCExtralight(0)
-/m/sl/10 . 
+/m/sl/10 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
 
 File: Illustrations/over.png Graphic file (type QTm)
 <use  "Illustrations/over.png" >
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 98--98
+Overfull \hbox (16.34912pt too wide) in paragraph at lines 93--93
  [] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--116
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--116
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 98--111
 
  []
 
-[5]
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--111
+
+ []
+
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -744,6 +749,41 @@ Underfull \hbox (badness 10000) in paragraph at lines 103--116
 . 
 . This font family consists of the following shapes:
 .................................................
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+[5]
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
+Missing character: There is no   in font Lantinghei SC Extralight/OT!
 Missing character: There is no   in font Lantinghei SC Extralight/OT!
 Missing character: There is no   in font Lantinghei SC Extralight/OT!
 Missing character: There is no   in font Lantinghei SC Extralight/OT!
@@ -780,54 +820,66 @@ File: lstmisc.sty 2014/03/04 1.5c (Carsten Heinz)
 
 LaTeX Font Warning: Font shape `EU1/LantingheiSCExtralight(0)/m/it' undefined
 (Font)              using `EU1/LantingheiSCExtralight(0)/m/n' instead on input 
-line 162.
+line 170.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 166.
+(Font)              <7> on input line 174.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 166.
+(Font)              <5> on input line 174.
 [6] [7]
-Overfull \hbox (58.2041pt too wide) in paragraph at lines 324--325
+Overfull \hbox (58.2041pt too wide) in paragraph at lines 332--333
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[8] [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 501--518
+
+Overfull \hbox (57.43439pt too wide) in paragraph at lines 370--371
+[]\EU1/LantingheiSCExtralight(0)/m/sl/10 8. 进 程 调 度，[] \EU1/CourierNew(0)/m/n/1
+0 w_is_r:which process is running\EU1/LantingheiSCExtralight(0)/m/sl/10 ,[] \EU
+1/CourierNew(0)/m/n/10 nw_is_r:which next pro-
+ []
+
+[8] [9] [10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 629--631
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 501--518
+Underfull \hbox (badness 10000) in paragraph at lines 631--633
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 501--518
+Underfull \hbox (badness 10000) in paragraph at lines 631--633
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 501--518
+Underfull \hbox (badness 10000) in paragraph at lines 634--636
 
  []
 
-[11] [12] (./report.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 634--636
+
+ []
+
+[12] (./report.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 82 ({)
+### simple group (level 1) entered at line 77 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 15191 strings out of 493734
- 300604 string characters out of 6146348
- 396575 words of memory out of 5000000
- 18417 multiletter control sequences out of 15000+600000
+ 15267 strings out of 493734
+ 301348 string characters out of 6146348
+ 398547 words of memory out of 5000000
+ 18493 multiletter control sequences out of 15000+600000
  6552 words of font info for 45 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 46i,12n,51p,10378b,1721s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 46i,12n,51p,10378b,1669s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on report.pdf (12 pages).

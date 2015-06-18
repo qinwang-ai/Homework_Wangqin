@@ -40,7 +40,7 @@
 \maketitle
 \section*{ 实验目的}
 \hangindent=4em \hangafter=-10{
-	平时原型操作系统中的各个项目中的汇编语言程序设计
+	完成一个汇编语言设计的互动单人游戏程序设计项目
 }
 \section*{ 实验平台}
 \hangindent=4em \hangafter=-10{
@@ -56,14 +56,9 @@
 \hangindent=4em \hangafter=-50{
 	{\large 1. 系统内置功能：}\\
 		\indent \verb| terminal|,装载内核shell，为用户提供一个与操作系统交互的工具,开机后自动进入,以下所有功能都在terminal中交互\\
-		\indent	\verb| date|, 显示当前日期\\
-		\indent \verb| time|, 显示当前时间\\
-		\indent \verb| asc|, 显示一个字符的asc码\\
 		\indent \verb| clear|, 清除当前屏幕所有字符，刷新屏幕\\
 		\indent \verb| help|, 显示系统帮助信息\\
-		\indent \verb| man |, 显示内置函数的帮助信息,比如\verb| man date |,显示date的相关帮助\\
-		\indent \verb| python |, python 扩展，类似python命令行工具，可以使用这个工具输入计算表达式返回计算结果，目前只支持加法减法\\
-		\indent \verb| start|, 开始创建并执行四个进程并且每秒18.2次的调度，分别在屏幕\verb|1/4|处打印一些个性化信息( 不同配置的虚拟机动画速度不一样，建议使用vmware测试)\\\\
+		\indent \verb| python |, python 扩展，类似python命令行工具，可以使用这个工具输入计算表达式返回计算结果，目前只支持加法减法\\\\
 	{\large 2. 用户程序:}\\
 		\indent \verb| run |,软盘中含有两个用户程序,输入\verb|run 12|,可分别执行两个用户程序，当然也可以通过改变执行序列来改变执行的顺序\\\\
 	{\large 3. 自定义中断:}\\
@@ -73,7 +68,7 @@
 	{\large 4. 进程调度:}\\
 		\indent 操作系统所有执行的进程都使用时间片轮转的方法实现进程调度。\\\\
 	{\large 5. 游戏:}\\
-		\indent 输入指令\verb| game|,后可以进入游戏界面，可以看到一个小球弹来弹去，玩家要做的就是移动一个挡板来防止小球掉落下来。{\scriptsize （注意：a为往左运动，d为向右运动）}，详细信息可以看实验步骤及效果图的第五步\\\\ 
+		\indent 输入指令\verb| game|,后可以进入游戏界面，可以看到一个小球弹来弹去，玩家要做的就是移动一个挡板来防止小球掉落下来。{\scriptsize （注意：a为往左运动，d为向右运动,按住不松手,esc为退出）}，详细信息可以看实验步骤及效果图的第五步\\\\ 
 
 
 }
@@ -84,17 +79,17 @@
 2. 使用make命令配合\verb|makefile|文件进行编译	\\\\
 3. 运行\verb|vmware|虚拟机进行测试,进入后所看到的欢迎界面,同时进入terminal界面等待输入指令
   \begin{center} \includegraphics[scale=0.5]{Illustrations/start.png} \mfcaption{start}\end{center}
-4. 我们可以执行\verb|man python |\\查看\verb|python|的作用，主要功能是输入一个数学表达式然后返回表达式的结果，类似\verb|python|命令行的作用。其他类似的系统内置功能也可以使用\verb|man|命令来查看帮助信息。
+4. 我们可以执行\verb| python |\\主要功能是输入一个数学表达式然后返回表达式的结果，类似\verb|python|命令行的作用。其他类似的系统内置功能也可以使用\verb|man|命令来查看帮助信息。
 但目前\verb|python|只支持加法和减法且只能有两个操作数（其实主要为了展示\verb|ah=3,4|将字符串转为数值和将数值转为字符串的系统调用效果），我这里仿照\verb|linux|系统的系统调用，设置
 \verb|int 80h |为所有系统调用的入口。可以看到图中分别输入加法减法，返回计算结果。如果输入的不符合格式就会返回错误提示。最后输入\verb|exit|退出\verb|python|命令行工具。
 \begin{center} \includegraphics[scale=0.5]{Illustrations/python.png} \mfcaption{python}\end{center}
-5. 输入game指令开始装载和运行游戏，可以看到一个小球已经飞入屏幕，你可以使用键盘的a和d键来控制下面的挡板来防止小球跌入下面，每次小球触碰到挡板你的分数都会增加1，显示在右上角，初始化分数是0。并且随着分数的增加小球的运动速度也会增加，你要做的就是合理的控制挡板使分数最高！{\scriptsize （注意：a为往左运动，d为向右运动）} 
+5. 输入game指令开始装载和运行游戏，可以看到一个小球已经飞入屏幕，你可以使用键盘的a和d键来控制下面的挡板来防止小球跌入下面，每次小球触碰到挡板你的分数都会增加1，显示在右上角，初始化分数是0。并且随着分数的增加小球的运动速度也会增加，你要做的就是合理的控制挡板使分数最高！游戏结束后或过程中都可以按下esc键来退出游戏回到操作系统,回到操作系统后输入game便可再次游戏{\scriptsize （注意：a为往左运动，d为向右运动,按住不松手,esc为退出）} 
   \begin{center} \includegraphics[scale=0.5]{Illustrations/start.png} \mfcaption{start game}\end{center}
-5.1 玩家使用a和d键来控制挡板左右移动来挡住小球\\
+  5.1 玩家使用a和d键来控制挡板左右移动来挡住小球{\scriptsize (按住不松手)}\\
   \begin{center} \includegraphics[scale=0.5]{Illustrations/gaming0.png} \mfcaption{gaming}\end{center}
-5.2 右上角会显示你的得分和现在小球的速度\\
+5.2 右上角会显示你的得分或可以说是现在小球的速度等级也是游戏难度，也可以叫做关卡\\
   \begin{center} \includegraphics[scale=0.5]{Illustrations/gaming.png} \mfcaption{gaming}\end{center}
-5.3 当玩家无法挡住小球往下落的时候就会游戏结束，显示\verb| game over!|.\\
+5.3 当玩家无法挡住小球往下落的时候就会游戏结束，显示\verb| game over!|得分为6.可按esc键返回操作系统\\
   \begin{center} \includegraphics[scale=0.5]{Illustrations/over.png} \mfcaption{game over}\end{center}
 
 
@@ -105,7 +100,7 @@
 3. 操作系统讲用户程序加载到0x1000处运行\\
 4. 软盘第1个柱面的第一个扇区存储操作系统引导程序\\
 5. 软盘第1个柱面剩下所有扇区2～36扇区存储操作系统内核\\
-6. 软盘第\verb|2,3,4,5,6|柱面分别存储五个进程代码\\
+6. 软盘第\verb|2,3,4|柱面分别存储三个游戏相关的进程\\
 7. 软盘第\verb|7,8|柱面分别存储两个用户程序的程序代码\\\\
 {\large 栈结构}\\
 	\indent 内核栈:从内存的\verb| 0xffff|开始向下扩展\\
@@ -119,42 +114,55 @@
   \setmonofont{Lantinghei SC Extralight}
 \begin{verbatim}
 .
-├── bochsrc
-├── boot.asm				引导程序
-├── disk.img
-├── kernel                  目录中存放内核相关代码
-│   ├── os.asm              主要为os.c提供函数实现.
-│   ├── os.c                为内核主要控制模块
-│   ├── osclib.c            主要为os.c提供函数实现.
-│   ├── os.h
-│   ├── oslib.asm           为osclib.c提供更底层的函数封装
-│   ├── os_syscall.asm      初始化系统调用和设置系统调用相关模块
-│   ├── pcb.h
-│   ├── process.c           进程调度创建相关代码
-│   ├── terminal.c          装载shell的工具
-│   └── terminal.h
 ├── Makefile                makefile 文件
-├── osclib_share.c          内核和用户的共享库(使用户程序体积减少)。
-├── oslib_share.asm         内核和用户的共享库(使用户程序体积减少)。
-├── process1.asm            第一个进程
-├── process2.asm            第二个进程
-├── process3.asm
-├── process4.asm
-├── process_wait_key.asm    监听退出进程
-├── python_extension.c      Python扩展
-├── README					
-├── snapshot.txt
-├── stack.png
+├── README
+├── bochsrc				
+├── boot.asm                引导程序	
+├── disk.img			                                             
+├── kernel                  目录中存放内核相关代码
+│   ├── fcb.h               文件控制模块 
+│   ├── os.asm              主要为os.c提供函数实现. 
+│   ├── os.c                为内核主要控制模块 
+│   ├── os.h                主要为os.c提供函数实现.   
+│   ├── os_syscall.asm      系统调用相关代码 
+│   ├── osclib.c            初始化系统调用和设置系统调用相关模块
+│   ├── oslib.asm           为osclib.c提供更底层的函数封装   
+│   ├── pcb.h               进程调度创建相关代码
+│   ├── process.c           
+│   ├── terminal.c          装载shell的工具           
+│   └── terminal.h    
+├── muti_process.h          
+├── osclib_share.c          内核和用户的共享库(使用户程序体积减少)。 
+├── oslib_share.asm         内核和用户的共享库(使用户程序体积减少)。 
+├── process1.asm            第一个进程，监听ad键移动挡板
+├── process1.img            第二个进程，移动小球和判断分数           
+├── process2.asm            第三个进程,监听esc键是否按下            
+├── process3.asm		    
+├── process4.asm  	        
+├── process_P2.asm                                                   
+├── python_extension.c      Python扩展                                         
+├── report                  实验报告目录                                         
+│   ├── Illustrations       实验报告插图 
+│   │   ├── flow.png
+│   │   ├── gaming.png
+│   │   ├── gaming0.png
+│   │   ├── over.png
+│   │   ├── python.png
+│   │   └── start.png
+│   ├── report.pdf          实验报告文件
+│   ├── report.tex          latex文件
+│   └── tree
 ├── usr1.asm                用户代码
 ├── usr2.asm
+└── usrlib.asm
 
-1 directory, 28 files
-\end{verbatim}}
-}
+6 directories, 48 files
+\end{verbatim}
+}}
 
 \setmonofont{Courier New}
 
-\section*{ 主要函数模块}
+\section*{ 主要函数模块\scriptsize (游戏部分从13开始)}
 \hangindent=4em \hangafter=-50{
 
 	1. \verb|os.c: main| 函数模块，由于每次调用汇编函数c都会向栈里面压两个字，但ret返回的时候却只从栈里面弹出一个字，为了保持栈中无冗余数据故每次调用汇编函数都要手动再pop出来一个字。
@@ -359,7 +367,7 @@ void Process(){
 }
 
 	\end{lstlisting}}
- 8. 进程调度，这个是本次试验最核心的要求，\verb| w_is_r:which process is running|,\verb| nw_is_r:which next process will run |换老进程下来的时候首先保存的是通用寄存器到这个进程的上下文\verb| TSS|，具体实现就是先把\verb| ax,bx..|等通用寄存器保存到c语言中定义的全局变量中然后再由全局变量保存到进程控制模块队列的pcb结构体中。最后保存的是\verb| IP,CS,Flags,SP|,前三个直接从当前栈中直接pop出来即可，因为cpu在发生中断的时候已经自动把这三个push到栈中了，最后再保存sp,栈指针寄存器。接下来根据\verb| di|寄存器的值来判断是否该结束调度程序回到terminal。如果不是则继续换上新的进程，首先还原的是\verb| sp,ip,cs,flags|，后三个直接push到栈里面就可以了，iret的时候会自动取出来并跳转到\verb| cs:ip|位置执行。最后跳转到\verb| schedule_end|中执行iret结束本次调度。
+ 8. 进程调度，\verb| w_is_r:which process is running|,\verb| nw_is_r:which next process will run |换老进程下来的时候首先保存的是通用寄存器到这个进程的上下文\verb| TSS|，具体实现就是先把\verb| ax,bx..|等通用寄存器保存到c语言中定义的全局变量中然后再由全局变量保存到进程控制模块队列的pcb结构体中。最后保存的是\verb| IP,CS,Flags,SP|,前三个直接从当前栈中直接pop出来即可，因为cpu在发生中断的时候已经自动把这三个push到栈中了，最后再保存sp,栈指针寄存器。接下来根据\verb| di|寄存器的值来判断是否该结束调度程序回到terminal。如果不是则继续换上新的进程，首先还原的是\verb| sp,ip,cs,flags|，后三个直接push到栈里面就可以了，iret的时候会自动取出来并跳转到\verb| cs:ip|位置执行。最后跳转到\verb| schedule_end|中执行iret结束本次调度。
   {\scriptsize \begin{lstlisting}[language={C}]
 void schedule(){
 	saveall_reg();			//hurry not inclue sp	
@@ -491,29 +499,154 @@ ret
 	push di
 	push si
 ret
+\end{lstlisting}}
+13. 游戏部分:process1.asm,第一个进程为监听用户按下ad键不松手向左或向右移动挡板。
+\verb|now_index |代表的是目前挡板的最前端位置相对\verb| 0xb800|的偏移,
+每次移动只需移动挡板最前端同时把挡板最后端的字符赋值为空格,挡板长度为\verb|strl|
+{\scriptsize \begin{lstlisting}[language={C}]
+loop_k:
+mov ah,0
+int 16h
+mov ah,97D
+cmp al,ah	判断是否是a，
+je m_n_l	向左移动
+mov ah,100D
+cmp al,ah	判断是否是d
+je m_n_r	向右移动
+
+jmp loop_k
+m_n_l:
+call moveleft
+jmp loop_k
+m_n_r:
+call moveright
+jmp loop_k
+
+moveleft:
+	mov ax,cs
+	mov ds,ax
+	mov si,[ now_index]
+	dec si
+	dec si
+	mov [ now_index],si
+	mov ax,0xb800
+	mov es,ax
+	mov bx,[now_index]
+	mov byte [es:bx],'='
+	mov cx,strl
+	add bx,cx
+	add bx,cx
+	mov byte [es:bx],' '
+ret
+	
+
+moveright:
+	mov ax,cs
+	mov ds,ax
+	mov si,[ now_index]
+	inc si
+	inc si
+	mov [ now_index],si
+	mov ax,0xb800
+	mov es,ax
+	mov bx,[now_index]
+	mov byte [es:bx],'='
+	mov cx,strl
+	sub bx,cx
+	sub bx,cx
+	mov byte [es:bx],' '
+ret
 
 \end{lstlisting}}
+14. 游戏部分：process2.asm,这部分是游戏的主要内容,具体就是控制一个小球相上下左右移动并且
+碰到墙壁和挡板就反弹，如果碰到下面的边缘就显示Game Over游戏结束。
+\verb|	speedi dw 1000D,speedj dw 60000D|这两个代表的是游戏的初始化速度，每当小球碰到一次挡板speedi就会减掉100D，并且grades要加1分。
 
+{\scriptsize \begin{lstlisting}[language={C}]
+	cmp bx,3839D   ;24*160-1 3839			CHANGE
+	jge game_over
+	mov ah, '='
+	mov byte al,[es:bx]
+	cmp al,ah
+	jne bottom
+	mov ax,cs
+	mov ds,ax
+	mov ah,[ grades]
+	inc ah
+	mov byte [ grades],ah	;change grades
+	mov ax,[ speedi]		;change speed
+	sub ax,100D
+	mov [speedi],ax
+	call display_grades
+\end{lstlisting}}
+本文件中有两个很长的模块\verb|bottom,top|,这两个模块代码非常长我就不贴这里了，具体
+就是控制小球向下和向上的两个函数，并且判断向下或向上的过程中是否碰到左右的墙壁，如果碰到做相应处理。\\
+以下代码是本文件中的延时函数。
+{\scriptsize \begin{lstlisting}[language={C}]
+delay:					;delay time function 
+	mov ax,cs
+	mov ds,ax
+	mov dx,00
+	timer2:	
+		mov cx,00
+		timer:
+			inc cx
+			cmp cx,[speedj]
+		jne timer
+		inc dx
+		cmp dx,[ speedi]
+	jne timer2
+	ret
+\end{lstlisting}}
+15. 游戏模块：process3.asm，这个文件主要就是监听用户是否按下esc键如果按下就设置
+标志在系统进程调度的时候停止调度进程回到操作系统界面。代码也非常简单易懂，其实这个
+功能完全可以放在第一个进程中监听ad键的代码中实现，但是为了游戏架构更具有扩展性和
+层次感还是单独作为一个进程来实现。
+{\scriptsize \begin{lstlisting}[language={C}]
+loop_k:
+mov ah,0
+int 16h
 
+mov ah,27D
+cmp al,ah	判断是否是esc键
+je m_n_l
+jmp loop_k	不是继续监听
+m_n_l:
+setdi:
+mov di,0x1234	是则死循环设置标记,调度时会识别该标记
+jmp setdi
+
+jmp loop_k
+
+times 510-($-$$) db 0
+db 0x55,0xaa
+
+\end{lstlisting}}
 }	
-\section*{ 实验心得及仍需改进之处}
-\hangindent=4em \hangafter=-50{
-	{\large 实验心得:}\\\\
-	\indent	本次实验过程中遇到了很多挫折，最大的一个问题就是编写进程调度的算法的时候由于自己疏忽在创建进程启动进程调度的时候没有把时钟中断清零导致，无法发生下一次时钟中断,原本以为 \verb|0x1c|用户时钟中断可以不需要像\verb|0x08|那样每次对\verb|8259|芯片进行重新设置。时钟中断正常工作后又发现调度出现一些问题，比如第一个进程的时间片用完之后不能换到第二个进程执行，当然这个问题还是经过调试很容易解决的。\\
-	\indent 后来发现第二个进程执行用完时间片后切换到第一个进程时第一个进程无法按照原来停止执行的\verb|cs:ip|处进行执行，这个问题经过调试也是比较容易解决的。最难调试的问题是栈的切换，我这里为每个进程都设置了一个应用程序栈，进程时间片用完之后切换进程的时候进程的上下文数据\verb|RSS|中
-	也会包含这个进程所对应的用户程序栈的栈指针。也就是切换进程的时候也要对应用程序栈\verb| ss:sp|进行切换,但是c语言调用汇编的时候是向栈里压两个字，而汇编返回c调用处的时候是从栈里弹出一个字到\verb| IP|指令指针寄存器。\\
-	\indent 这种不对称的出栈入栈很容易造成使用栈的过程中导致栈数据混乱。而且当时钟中断的处理程序即进程调度程序执行完毕后要从栈里弹出三个字的数据到\verb| IP,CS,Flags|这些寄存器，调度的时候就要手动的先把原来的\verb| IP,cs,flags|弹出来保存然后压入新进程的\verb| ip,cs,flags|,所以保持栈清晰，有规律是非常重要的，否则进程调度将会失败。
-	\\
-	\indent 栈切换这里这里调了很长时间，得到的教训就是一定要注意细节，c调用汇编或汇编调用c都要特别注意有没有冗余的数据被压栈，注意一定要先保存\verb| ip,cs,flags,sp|和一些段寄存器的数据,合适的时机再切换栈指针寄存器。当换一个新进程开始执行的时候一定要保证这个进程上次被换下来的时候,栈指针寄存器\verb| sp|一定是上次的位置减去三个字，因为要压入\verb| ip,cs,flags|。总之注意写代码的时候注意细节总会可以大大降低\verb|debug|的时间从而减少写代码的总时间，提高编程效率。同时也是
-	作为一个专业学生好的习惯。这次实验中我优化了操作系统和内核的结构，将\verb| shell|和内核分开，使主内核文件\verb| os.c|代码量大大减少，向\verb|Linux|提倡的微内核走进了一步。\\\\
-	{\large 实验仍需改进之处:}\\\\
-	\indent 仍需完善细节，比如说\verb|python|的命令行工具加入乘法，除法完全是几行代码的问题\\
-	\indent 可以考虑将用户程序做成\verb|elf|格式，动态链接系统的代码库。目前的情况是用户程序自己带着一份和操作系统一样的代码库，分别联合编译\\
-	\indent 考虑精简操作系统代码，减少冗余代码\\
-	\indent 增加文件系统功能\\
-	\indent 调度算法和进程控制模块的存储有待优化\\
-	\indent 继续优化调整操作系统内核架构和内存磁盘管理\\
+\section*{ 设计游戏实验心得}
+\hangindent=4em \hangafter=-200{
+\begin{enumerate}
+	\item 由于本次试验完全基于多进程的原型系统上花费去设计游戏的精力并不多，只是新加了几个汇编的进程而已。本来想写个贪吃蛇，看到周围很多同学都写贪吃蛇，于是就决定写个
+	这种弹小球的游戏，实验过程中发现必须连续按住ad键，挡板才会移动，一下下的按是不行的，这个可能和时间片设置的大小有关系具体等待研究。实验过程中也遇到很多bug比如说小球碰到挡板会把挡板给破坏掉或者撞到显示分数和速度的地方会出一些很细节的问题，后来经过耐心精心仔细调试发现了这些躲在非常小地方的小bug，因为有之前做操作系统实验的经验处理这些小bug并不难。\\
+	\item 这学期的汇编和实验课总算到此为止了,从中简直是获益匪浅。手动实现各种操作系统底层的结构了解了现代操作系统的运行机制同时通过艰难的调试让我体会到了作为一个
+	以后还要打几十年代码的人来说写代码的时候细心是最重要的，基本上每次做实验用来调试的时间总是远远大于写代码的时间。最后查出来只是一句甚至是一个寄存器写错了而已。\\\\
+	
+	\item 最后感谢老师\&助教能辛苦的布置和批改检查我们的实验，带领我们走进操作系统底层的奇妙世界。的确感觉c++语言设计和操作系统是整个大学中最重要的两门课，无论是对
+	专业能力的提升还是对个人知识面的增加都有非常大的帮助。\\\\
+\end{enumerate}
 }
-\fancyfoot[OC]{ \footnotesize{https://github.com/wangqin4377/Homework\_Wangqin/tree/master/OS\_homework/}}
+\fancyfoot[OC]{ \footnotesize{github:https://github.com/wangqin4377/Homework\_Wangqin/tree/master/OS\_homework/}}
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
 
