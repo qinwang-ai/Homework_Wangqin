@@ -8,11 +8,11 @@ sti
 	tmpl1 db 130D
 	tmp_ax db 162D
 	zero db 0D
-	msg:	db "GAME OVER "
+	msg:	db "GAME OVER!"
 	msg2:	db "name:wangqin"  ;length =28
 	grades db 48
-	speedi db 1000D
-	speedj db 6000D
+	speedi dw 1000D
+	speedj dw 60000D
 
 [section .text]
 mov ax, 0xB800
@@ -20,7 +20,7 @@ mov es,ax
 call init_display
 call display_grades
 
-mov byte [es:00],'A'
+mov byte [es:00],'@'
 mov bx,00			;init 
 
 mov si,162D 
@@ -32,14 +32,19 @@ bottom:
 
 	mov ax,si
 	sub bx,ax
+	mov byte cl,[es:bx]
+	mov ch,'@'
+	cmp ch,cl
+	jne nx_e
 	mov byte [es:bx],' '
+	nx_e:
 	add bx,ax
 
 	mov cl,'='
 	mov ch,[es:bx]
 	cmp cl,ch
 	je n1
-	mov byte [es:bx],'*'
+	mov byte [es:bx],'@'
 	n1:
 
 	mov ax,bx	;bx is dividend
@@ -112,10 +117,6 @@ top:
 	mov [tmpdi],bx
 	sub bx,ax
 	call delay
-	mov al,'='
-	mov ah,[es:bx]
-	cmp al,ah		; don't overirrde my name and number
-	je n2
 	mov ax,si
 	add bx,ax
 	push cx
@@ -127,7 +128,13 @@ top:
 	sub_not_blank:
 	pop cx
 	sub bx,ax
-	mov byte [es:bx],'*'
+
+	mov al,' '
+	mov ah,[es:bx]
+	cmp al,ah		; don't overirrde my name and number
+	jne n2
+
+	mov byte [es:bx],'@'
 	n2:
 	inc bx		;plus the 0 and css offset so add two times
 	inc bx
@@ -195,7 +202,7 @@ init_display:
 	push bx
 	mov ax,0xb800
 	mov es,ax
-	mov bx,138D
+	mov bx,126D
 	mov byte [es:bx],'G'
 	add bx,2
 	mov byte [es:bx],'r'
@@ -206,6 +213,20 @@ init_display:
 	add bx,2
 	mov byte [es:bx],'e'
 	add bx,2
+	mov byte [es:bx],'/'
+	add bx,2
+	mov byte [es:bx],'S'
+	add bx,2
+	mov byte [es:bx],'p'
+	add bx,2
+	mov byte [es:bx],'e'
+	add bx,2
+	mov byte [es:bx],'e'
+	add bx,2
+	mov byte [es:bx],'d'
+	add bx,2
+
+
 	mov byte [es:bx],':'
 
 	pop bx
@@ -249,12 +270,14 @@ jmp $
 
 
 delay:					;delay time function 
+	mov ax,cs
+	mov ds,ax
 	mov dx,00
 	timer2:	
 		mov cx,00
 		timer:
 			inc cx
-			cmp cx,[ speedj]
+			cmp cx,[speedj]
 		jne timer
 		inc dx
 		cmp dx,[ speedi]

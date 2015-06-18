@@ -179,13 +179,7 @@ void Process(){
 	__asm__(" pop %cx");
 	load_user( 2, FCB_array[ 1].f_toMem);
 	__asm__(" pop %cx");
-	load_user( 3, FCB_array[ 2].f_toMem);
-	__asm__(" pop %cx");
-	load_user( 4, FCB_array[ 3].f_toMem);
-	__asm__(" pop %cx");
-	load_user( 5, FCB_array[ 4].f_toMem);		//wait key
-	__asm__(" pop %cx");
-	// 4000- sub stack 
+		// 4000- sub stack 
 
 	w_is_r = 0;
 	isProcessRun=1; // enter user process mode

@@ -1,6 +1,7 @@
 org 0x2800	
 sti
 
+jmp $
 [section .data]
 	tmpdi db 130D
 	tmpsi db 130D
